@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XRechnung lesbar machen: kostenlos im Browser</title>
+<meta name="description" content="XRechnung lesbar und sichtbar machen – kostenlos, direkt im Browser, ohne Upload. Aus der XML-Datei wird eine übersichtliche Rechnung mit Beträgen, IBAN und Fälligkeit; auf Wunsch als PDF.">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/xrechnung-lesbar-machen.html">
+<meta property="og:title" content="XRechnung lesbar machen – kostenlos im Browser">
+<meta property="og:type" content="article">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie kann ich eine XRechnung lesbar machen?","acceptedAnswer":{"@type":"Answer","text":"Öffnen Sie die XML-Datei im E-Rechnung Viewer im Browser: Datei hineinziehen, und die Rechnung erscheint als übersichtliches Dokument mit Positionen, Beträgen, IBAN und Fälligkeit. Kostenlos, ohne Registrierung und ohne Upload – die Datei bleibt auf Ihrem Gerät."}},
+{"@type":"Question","name":"Warum ist eine XRechnung nicht direkt lesbar?","acceptedAnswer":{"@type":"Answer","text":"Die XRechnung ist als strukturierter XML-Datensatz für die automatische Verarbeitung durch Software gebaut, eine Ansicht für Menschen ist im Format nicht vorgesehen. Ein Doppelklick öffnet deshalb nur rohen XML-Text. Ein Viewer übersetzt die Daten in eine lesbare Rechnungsansicht."}},
+{"@type":"Question","name":"Kann ich die XRechnung kostenlos als PDF speichern?","acceptedAnswer":{"@type":"Answer","text":"Ja. Der E-Rechnung Viewer zeigt die XRechnung lesbar an; über den Druckdialog des Browsers speichern Sie diese Ansicht als PDF. Wichtig für die Aufbewahrung: Das Original bleibt die XML-Datei, das PDF ist nur eine Lesekopie."}}
+]}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a4a8f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23fff' text-anchor='middle'%3EER%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="stil.css">
+<style>
+.wrap{max-width:780px}
+.lead{color:var(--grau);font-size:1.05rem;max-width:56em}
+.ctabox{border-top:1px solid var(--tinte);border-bottom:1px solid var(--tinte);padding:16px 0;margin:26px 0}
+main table{width:100%;border-collapse:collapse;font-size:.92rem}
+main table th,main table td{padding:9px 11px;border-bottom:1px solid var(--linie);text-align:left;vertical-align:top}
+main table th{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);border-bottom:1px solid var(--tinte);font-weight:600}
+h2{font-size:1.25rem;margin:30px 0 8px}
+code{font-family:var(--mono);font-size:.9em}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./">E-Rechnung <em>Viewer</em></a>
+    <nav class="tabs" aria-label="Werkzeuge">
+      <a href="index.html">Lesen</a>
+      <a href="erstellen.html">Erstellen</a>
+      <a href="pruefen.html">Prüfen</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1>XRechnung lesbar machen: von der XML-Datei zur übersichtlichen Rechnung</h1>
+  <p class="lead">Eine <strong>XRechnung</strong> kommt als XML-Datei, und ein Doppelklick zeigt nur
+  Spitzklammern und Rohtext. Das ist kein Fehler der Datei: Das Format ist für Software gebaut.
+  Lesbar wird die Rechnung mit einem Viewer – in drei Schritten, kostenlos und ohne Upload.</p>
+
+  <div class="steps">
+    <ol>
+      <li><strong><a href="index.html">E-Rechnung Viewer öffnen</a></strong> (kostenlos, ohne Registrierung)</li>
+      <li>XML-Datei hineinziehen – der Viewer erkennt XRechnung in beiden Syntaxen (UBL und CII) und zeigt Positionen, Beträge, Steuern, IBAN und Fälligkeit als übersichtliche Rechnung</li>
+      <li>Bei Bedarf über den Druckdialog als PDF sichern oder direkt ausdrucken</li>
+    </ol>
+  </div>
+  <p style="text-align:center"><a class="cta" href="index.html">→ XRechnung jetzt lesbar machen</a></p>
+  <p style="text-align:center;font-size:.88rem;color:var(--ok);font-weight:600">✓ Verarbeitung komplett auf Ihrem Gerät – kein Upload auf fremde Server</p>
+
+  <h2>Warum ist die XRechnung nicht direkt lesbar?</h2>
+  <p>Die XRechnung ist der deutsche Standard für strukturierte elektronische Rechnungen nach
+  EN&nbsp;16931. Sie besteht bewusst nur aus Daten, damit Buchhaltungssoftware und Behörden sie
+  automatisch verarbeiten können; eine eingebaute Ansicht für Menschen sieht das Format nicht vor.
+  Seit 2025 müssen alle Unternehmen solche Rechnungen empfangen können – das Lesbarmachen bleibt
+  dabei Sache des Empfängers.</p>
+
+  <h2>XRechnung sichtbar machen: die drei Wege im Vergleich</h2>
+  <table>
+    <thead><tr><th>Weg</th><th>Geeignet für</th><th>Zu beachten</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Viewer im Browser</strong> (lokal, wie <a href="index.html">dieser</a>)</td>
+        <td>Schnell ansehen, sachlich prüfen, ablegen</td>
+        <td>Datei bleibt auf dem Gerät, keine Kontopflicht; auch für <a href="zugferd-datei-oeffnen.html">ZUGFeRD-PDFs</a> geeignet</td>
+      </tr>
+      <tr>
+        <td><strong>Als PDF speichern</strong> (über den Druckdialog)</td>
+        <td>Lesekopie für Akte, Steuerberater oder Ausdruck</td>
+        <td>Das Original bleibt die XML-Datei (GoBD); <a href="xml-rechnung-in-pdf-umwandeln.html">Anleitung Schritt für Schritt</a></td>
+      </tr>
+      <tr>
+        <td><strong>Upload-Portale</strong></td>
+        <td>Gelegentliche Einzelfälle</td>
+        <td>Rechnungsdaten (Beträge, IBAN, Adressen) landen auf fremden Servern – für Geschäftsunterlagen abwägen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Lesbar heißt noch nicht korrekt</h2>
+  <p>Ob eine XRechnung formal gültig ist, sieht man ihr auch in der lesbaren Ansicht nicht immer an.
+  Der <a href="pruefen.html">Prüfen-Tab</a> validiert die Datei mit den offiziellen
+  KoSIT-Regeln (EN&nbsp;16931 und XRechnung-CIUS) direkt im Browser und erstellt einen Prüfbericht
+  mit Regel-IDs und Fundstellen.</p>
+
+  <div class="notice"><strong>Aufbewahrung:</strong> Bewahren Sie die XML-Originaldatei unverändert
+  elektronisch auf (GoBD). Ein erzeugtes PDF ist nur eine Lesekopie, kein Ersatz.</div>
+
+  <h2>Selbst XRechnungen schreiben?</h2>
+  <p>Einzelne Rechnungen erstellen Sie <a href="erstellen.html">kostenlos per Formular</a> – als
+  XRechnung-XML oder als ZUGFeRD-PDF (PDF/A-3, EN&nbsp;16931). Viele auf einmal aus Excel erzeugt
+  <a href="batch-pro.html">XRechnung Batch Pro</a> (offline, 39&nbsp;Euro einmalig).</p>
+
+  <p style="font-size:.85rem;color:var(--grau)">Diese Seite erklärt Technik und Ablauf; sie ersetzt
+  keine Steuerberatung und keine Rechtsberatung.</p>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Rechnung Viewer</span>
+    <a href="index.html">Viewer</a>
+    <a href="erstellen.html">XRechnung erstellen</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
