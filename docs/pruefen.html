@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XRechnung prüfen / validieren – kostenlos mit offiziellen Prüfregeln (ohne Upload)</title>
+<meta name="description" content="XRechnung und ZUGFeRD kostenlos validieren: Prüfung mit den offiziellen KoSIT-Geschäftsregeln (EN 16931 + XRechnung-CIUS) direkt im Browser – ohne Upload, ohne Registrierung. Mit druckbarem Prüfbericht.">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/pruefen.html">
+<meta property="og:title" content="XRechnung prüfen – offizielle Regeln, 100 % lokal">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ayyoubaha.github.io/e-rechnung-viewer/pruefen.html">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XRechnung-Prüfung (Validator)","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"Validiert XRechnung- und ZUGFeRD-Rechnungen mit den offiziellen KoSIT-Geschäftsregeln (EN 16931, XRechnung-CIUS) – vollständig lokal im Browser, ohne Upload.","inLanguage":"de"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie kann ich eine XRechnung kostenlos prüfen?","acceptedAnswer":{"@type":"Answer","text":"XML- oder ZUGFeRD-Datei in das Prüf-Tool ziehen. Die Rechnung wird mit den offiziellen Geschäftsregeln (EN 16931 und – falls zutreffend – den deutschen XRechnung-Regeln) validiert. Das Ergebnis erscheint als übersichtlicher Bericht mit Regel-IDs wie BR-DE-15, den Sie auch als PDF drucken können. Alles läuft lokal im Browser, nichts wird hochgeladen."}},
+{"@type":"Question","name":"Sind das dieselben Regeln wie beim offiziellen Validator?","acceptedAnswer":{"@type":"Answer","text":"Die Prüfung nutzt die offiziellen Schematron-Prüfregeln der KoSIT (Koordinierungsstelle für IT-Standards) in der jeweils eingebundenen Version – dieselbe Regelbasis, mit der auch Behörden-Validatoren arbeiten. Nicht enthalten ist die XSD-Schemaprüfung; grob fehlerhafte XML-Strukturen werden aber ohnehin als nicht wohlgeformt bzw. durch Regelverstöße erkannt."}},
+{"@type":"Question","name":"Was bedeuten Fehler wie BR-DE-15 oder BR-CO-15?","acceptedAnswer":{"@type":"Answer","text":"Jede Geschäftsregel hat eine ID: BR-… sind europäische Regeln (z. B. BR-CO-15: Summenkonsistenz), BR-DE-… deutsche XRechnung-Zusatzregeln (z. B. BR-DE-15: Käufer-Referenz muss übermittelt werden). Der Bericht zeigt zu jeder verletzten Regel die Original-Meldung und die Fundstelle in der Datei."}},
+{"@type":"Question","name":"Wird meine Rechnung hochgeladen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Regeln und Prüf-Engine werden in Ihren Browser geladen und die Prüfung läuft vollständig auf Ihrem Gerät – im Gegensatz zu Online-Validatoren, die Ihre Rechnung auf fremde Server übertragen."}}
+]}
+</script>
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
+  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --okbg:#e7f2ea;
+  --err:#a03030; --errbg:#fbecec; --warn:#7a5a1d; --warnbg:#fdf3e3; --badge-bg:#e7f2ea; --badge-ink:#1d7a4f;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
+    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --okbg:#1c2f24;
+    --err:#e08a8a; --errbg:#341e1e; --warn:#e0c070; --warnbg:#2e2617; --badge-bg:#1c2f24; --badge-ink:#5cc48f;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-weight:700}.logo a{color:inherit;text-decoration:none}.logo span{color:var(--accent)}
+.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px}
+nav.tabs{margin-left:auto;display:flex;gap:4px}
+nav.tabs a{padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem}
+nav.tabs a.active{background:var(--accent);color:var(--accent-ink)}
+main{padding:30px 0 10px}
+h1{font-size:clamp(1.4rem,3.4vw,1.9rem);line-height:1.25;margin:0 0 8px}
+.sub{color:var(--ink-soft);max-width:52em;margin:0 0 22px}
+#drop{border:2px dashed var(--accent);border-radius:14px;background:var(--surface);padding:36px 20px;text-align:center;cursor:pointer}
+#drop.over{border-style:solid}
+#drop .big{font-weight:700;font-size:1.05rem}
+#drop .hint{color:var(--ink-soft);font-size:.88rem;margin-top:6px}
+#drop button{margin-top:12px;background:var(--accent);color:var(--accent-ink);border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer}
+#status{display:none;margin:16px 0;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+#status.show{display:block}
+.errbox{background:var(--errbg);color:var(--err);border-radius:10px;padding:13px 16px;margin:14px 0;display:none}
+.errbox.show{display:block}
+#report{display:none;margin-top:22px}
+#report.show{display:block}
+.verdict{border-radius:14px;padding:20px 24px;margin-bottom:16px}
+.verdict.ok{background:var(--okbg);color:var(--ok)}
+.verdict.bad{background:var(--errbg);color:var(--err)}
+.verdict h2{margin:0 0 4px;font-size:1.25rem}
+.verdict p{margin:0;font-size:.92rem}
+.meta{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem;color:var(--ink-soft);margin:0 0 14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+.actions button{font:inherit;font-weight:600;border-radius:9px;padding:9px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.actions button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:var(--bg);text-align:left;font-size:.73rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);padding:9px 12px}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+.sev{font-weight:700;white-space:nowrap}
+.sev.f{color:var(--err)} .sev.w{color:var(--warn)}
+td .rid{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+td .loc{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);word-break:break-all;display:block;margin-top:4px}
+section.content{margin:48px 0}
+section.content h2{font-size:1.25rem}
+section.content p{max-width:52em;color:var(--ink-soft)}
+details.faq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin:8px 0}
+details.faq summary{font-weight:600;padding:11px 0;cursor:pointer;color:var(--ink)}
+details.faq p{margin:0 0 13px}
+a{color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:20px 0 32px;color:var(--ink-soft);font-size:.85rem}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap}
+@media print{
+  header.top,#drop,#status,.actions,section.content,footer,.errbox{display:none !important}
+  body{background:#fff}
+  #report{display:block !important}
+  .tablewrap{border:0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><a href="index.html">E-Rechnung <span>Viewer</span></a></div>
+    <span class="badge">100 % lokal – ohne Upload</span>
+    <nav class="tabs">
+      <a href="index.html">Lesen</a>
+      <a href="erstellen.html">Erstellen</a>
+      <a href="pruefen.html" class="active">Prüfen</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>XRechnung prüfen – mit den offiziellen Prüfregeln, direkt im Browser</h1>
+  <p class="sub">Validiert Ihre <strong>XRechnung (XML)</strong> oder <strong>ZUGFeRD-PDF</strong> gegen die
+  offiziellen <strong>KoSIT-Geschäftsregeln</strong> (EN&nbsp;16931 + deutsche XRechnung-Regeln) — dieselbe
+  Regelbasis wie bei Behörden-Validatoren. Ihre Rechnung <strong>verlässt Ihren Rechner nicht</strong>.
+  Ergebnis als druckbarer Prüfbericht.</p>
+
+  <div id="drop" role="button" tabindex="0">
+    <div class="big">Rechnung hierher ziehen</div>
+    <div class="hint">XRechnung (.xml) oder ZUGFeRD/Factur-X (.pdf)</div>
+    <button type="button" id="pick">Datei auswählen</button>
+    <input type="file" id="fileinput" accept=".xml,.pdf,application/xml,text/xml,application/pdf" hidden>
+  </div>
+
+  <div id="status"></div>
+  <div class="errbox" id="errbox"></div>
+
+  <div id="report">
+    <div class="verdict" id="verdict"></div>
+    <div class="meta" id="meta"></div>
+    <div class="actions">
+      <button class="primary" type="button" onclick="window.print()">🖨 Prüfbericht drucken / als PDF</button>
+      <button type="button" id="resetbtn">Neue Datei prüfen</button>
+    </div>
+    <div class="tablewrap" id="findingswrap">
+      <table>
+        <thead><tr><th style="width:110px">Schweregrad</th><th>Regel &amp; Meldung</th><th style="width:220px">Ebene</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="content">
+    <h2>Was genau wird geprüft?</h2>
+    <p>Die Datei wird gegen die <strong>Schematron-Geschäftsregeln</strong> validiert, die die KoSIT für
+    XRechnung veröffentlicht: die europäischen Regeln der EN&nbsp;16931 (BR-…, BR-CO-…, BR-S-… u.&nbsp;a.)
+    und — wenn die Rechnung das XRechnung-Profil erklärt — zusätzlich die deutschen CIUS-Regeln
+    (BR-DE-…). Geprüft werden u.&nbsp;a. Pflichtangaben, Summen- und Steuerlogik, Codelisten-Nutzung und
+    deutsche Zusatzanforderungen wie Bankverbindung und Ansprechpartner.
+    <em>Transparenz:</em> Die XSD-Schemaprüfung ist nicht enthalten; nicht wohlgeformtes XML wird
+    abgewiesen, strukturelle Fehler schlagen in aller Regel als Regelverstöße auf.</p>
+    <h2>Warum lokal statt Online-Validator?</h2>
+    <p>Rechnungen enthalten Geschäftsdaten: Beträge, Bankverbindungen, Kundennamen. Die üblichen
+    Online-Validatoren laden Ihre Datei auf fremde Server. Hier laufen Regeln und Prüf-Engine in
+    Ihrem Browser — auch für vertrauliche Rechnungen und große Mengen geeignet, funktioniert nach dem
+    ersten Laden sogar offline.</p>
+    <h2>Häufige Fragen</h2>
+    <details class="faq"><summary>Meine Rechnung hat Fehler — was nun?</summary><p>Der Bericht nennt zu jeder Regel die Original-Meldung (z.&nbsp;B. „BR-DE-15: Käufer-Referenz muss übermittelt werden") und die Fundstelle. Wenn Sie die Rechnung selbst erstellt haben, korrigieren Sie das Feld im Ursprungssystem. Eigene fehlerfreie XRechnungen erstellen Sie <a href="erstellen.html">hier kostenlos</a>.</p></details>
+    <details class="faq"><summary>Ist ein „Warnung"-Befund schlimm?</summary><p>Warnungen (z.&nbsp;B. Empfehlungen zu Liefer-/Leistungsdatum) machen die Rechnung nicht ungültig, sollten aber beachtet werden. Fehler der Stufe „Fehler/fatal" führen dagegen bei Behörden und vielen Systemen zur Ablehnung.</p></details>
+    <details class="faq"><summary>Prüft das Tool auch ZUGFeRD-PDFs?</summary><p>Ja — aus dem PDF wird das eingebettete Rechnungs-XML extrahiert und geprüft. Ob das PDF selbst formal PDF/A-3-konform ist, prüft dieses Tool nicht (das XML ist der rechtlich maßgebliche Teil).</p></details>
+    <details class="faq"><summary>Was kostet das?</summary><p>Nichts — wie <a href="index.html">Anzeigen</a> und <a href="erstellen.html">Erstellen</a> dauerhaft kostenlos. Wer viele Rechnungen aus Excel erzeugen will, findet in <a href="batch-pro.html">Batch Pro</a> die passende Stapelverarbeitung.</p></details>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Rechnung Viewer</span>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+  </div>
+</footer>
+
+<script type="module">
+import { validateInvoice } from './pruefen-engine.mjs';
+
+const $ = (id) => document.getElementById(id);
+let currentFile = '';
+
+function setStatus(msg) {
+  const s = $('status');
+  if (!msg) { s.classList.remove('show'); return; }
+  s.textContent = msg;
+  s.classList.add('show');
+}
+function showError(msg) {
+  $('errbox').textContent = '⚠ ' + msg;
+  $('errbox').classList.add('show');
+  setStatus('');
+}
+
+let saxonReady = null;
+function ensureSaxon() {
+  if (!saxonReady) {
+    saxonReady = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'vendor/SaxonJS2.rt.js';
+      s.onload = () => res(window.SaxonJS);
+      s.onerror = () => rej(new Error('Prüf-Engine konnte nicht geladen werden.'));
+      document.head.append(s);
+    });
+  }
+  return saxonReady;
+}
+
+async function extractFromPdf(file) {
+  const pdfjs = await import('./vendor/pdf.min.mjs');
+  pdfjs.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.mjs';
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+  const att = await pdf.getAttachments();
+  if (!att) throw new Error('In diesem PDF ist keine E-Rechnung eingebettet.');
+  const names = Object.keys(att);
+  const key = names.find((n) => /(^factur-x\.xml$|^zugferd-invoice\.xml$|^xrechnung\.xml$)/i.test(n)) || names.find((n) => n.toLowerCase().endsWith('.xml'));
+  if (!key) throw new Error('PDF enthält kein Rechnungs-XML (ZUGFeRD/Factur-X nicht gefunden).');
+  return new TextDecoder('utf-8').decode(att[key].content);
+}
+
+async function handleFile(file) {
+  $('errbox').classList.remove('show');
+  $('report').classList.remove('show');
+  currentFile = file.name;
+  try {
+    let xml;
+    if (/\.pdf$/i.test(file.name) || file.type === 'application/pdf') {
+      setStatus('Extrahiere eingebettetes Rechnungs-XML aus dem PDF …');
+      xml = await extractFromPdf(file);
+    } else {
+      xml = await file.text();
+    }
+    setStatus('Lade offizielle Prüfregeln (einmalig, danach im Cache) und prüfe …');
+    const SaxonJS = await ensureSaxon();
+    const result = await validateInvoice(xml, {
+      SaxonJS,
+      sefLocation: (name) => new URL(`sef/${name}.sef.json`, location.href).href,
+    });
+    render(result);
+    setStatus('');
+  } catch (e) {
+    showError(e && e.message ? e.message : 'Prüfung fehlgeschlagen.');
+  }
+}
+
+function render(r) {
+  const v = $('verdict');
+  const nE = r.errors.length, nW = r.warnings.length;
+  if (nE === 0) {
+    v.className = 'verdict ok';
+    v.innerHTML = `<h2>✓ Keine Regelverstöße gefunden</h2><p>${currentFile ? escText(currentFile) + ' — ' : ''}alle geprüften Geschäftsregeln bestanden${nW ? ` (${nW} Hinweis${nW > 1 ? 'e' : ''}/Warnung${nW > 1 ? 'en' : ''} unten)` : ''}.</p>`;
+  } else {
+    v.className = 'verdict bad';
+    v.innerHTML = `<h2>✕ ${nE} Regelverstoß${nE > 1 ? '̈e' : ''} gefunden</h2><p>${escText(currentFile)} — Details unten. Fehler dieser Stufe führen bei Behörden i. d. R. zur Ablehnung.</p>`;
+  }
+  $('meta').innerHTML = [
+    `Syntax: <b>${r.syntax === 'ubl' ? 'UBL' : 'UN/CEFACT CII'}</b>`,
+    `Profil: <b>${escText(r.profileId || 'unbekannt')}</b>`,
+    `Geprüfte Ebenen: <b>${r.layers.map((l) => l.label).join(' + ')}</b>`,
+    `Geprüft am: <b>${new Date().toLocaleString('de-DE')}</b>`,
+    `Prüfregeln: KoSIT XRechnung 3.0.x / EN 16931`,
+  ].map((x) => `<span>${x}</span>`).join('');
+
+  const rows = $('rows');
+  rows.innerHTML = '';
+  const all = [...r.errors, ...r.warnings, ...r.infos];
+  if (!all.length) {
+    rows.innerHTML = '<tr><td colspan="3" style="color:var(--ok);font-weight:600">Keine Befunde — die Rechnung erfüllt alle geprüften Regeln.</td></tr>';
+  }
+  for (const f of all) {
+    const tr = document.createElement('tr');
+    const sev = f.flag === 'warning' ? '<span class="sev w">⚠ Warnung</span>' : '<span class="sev f">✕ Fehler</span>';
+    tr.innerHTML = `<td>${sev}</td>
+      <td><span class="rid">${escText(f.id || '—')}</span><br>${escText(f.text)}<span class="loc">${escText(f.location)}</span></td>
+      <td>${escText(f.layer)}</td>`;
+    rows.append(tr);
+  }
+  $('report').classList.add('show');
+  $('report').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function escText(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+const drop = $('drop'), input = $('fileinput');
+$('pick').onclick = (e) => { e.stopPropagation(); input.click(); };
+drop.onclick = () => input.click();
+drop.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') input.click(); };
+input.onchange = () => { if (input.files[0]) handleFile(input.files[0]); input.value = ''; };
+['dragover', 'dragenter'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', (e) => { if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+$('resetbtn').onclick = () => { $('report').classList.remove('show'); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+</script>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
