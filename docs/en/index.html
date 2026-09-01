@@ -119,18 +119,18 @@ ul.ratgeber li{border-top:1px solid var(--linie);padding:10px 0}
 </header>
 
 <main class="wrap">
-  <h1>Open &amp; read e-invoices – right in your browser</h1>
+  <h1>Open and read e-invoices, right in your browser</h1>
   <p class="sub">View <strong>XRechnung</strong> (XML), <strong>ZUGFeRD / Factur-X</strong> PDFs and
   <strong>EN 16931 UBL</strong> invoices (incl. Peppol BIS style) in a clean, human-readable layout;
-  and print them to PDF. Your file is <strong>never uploaded</strong>: everything runs locally on your
+  and print them to PDF. Your file is <strong>never uploaded</strong>; everything runs locally on your
   device. Works on Windows, macOS and Linux.</p>
 
   <div id="drop" role="button" tabindex="0" aria-label="Select or drop an e-invoice">
     <div class="big">Drop your e-invoice here</div>
-    <div class="hint">XRechnung / UBL / CII (.xml) or ZUGFeRD / Factur-X (.pdf); multiple files supported</div>
+    <div class="hint">XRechnung / UBL / CII (.xml) or ZUGFeRD / Factur-X (.pdf), multiple files supported</div>
     <button type="button" id="pick">Choose file</button>
     <input type="file" id="fileinput" accept=".xml,.pdf,application/xml,text/xml,application/pdf" multiple hidden>
-    <div class="local-note">✓ Privacy: your invoice never leaves your device</div>
+    <div class="local-note">Your invoice never leaves your device.</div>
   </div>
 
   <div id="filelist" aria-label="Loaded files"></div>
@@ -148,14 +148,20 @@ ul.ratgeber li{border-top:1px solid var(--linie);padding:10px 0}
 
   <section class="content">
     <h2>What this tool does</h2>
-    <div class="cardgrid">
-      <div class="card"><h3>XRechnung &amp; UBL</h3><p>Reads both official XML syntaxes (UBL and UN/CEFACT CII) used across the EU under EN 16931: including German XRechnung and Peppol-BIS-style invoices.</p></div>
-      <div class="card"><h3>ZUGFeRD / Factur-X PDFs</h3><p>Extracts and displays the machine-readable XML embedded in hybrid invoice PDFs: so you see what accounting systems actually read.</p></div>
-      <div class="card"><h3>Convert to PDF</h3><p>Save the rendered view as a PDF via your browser's print dialog, handy for filing and forwarding.</p></div>
-      <div class="card"><h3>Plausibility checks</h3><p>Flags missing mandatory fields and inconsistent totals (net + VAT ≠ gross, line sums).</p></div>
-      <div class="card"><h3>No upload, works offline</h3><p>All processing happens in your browser. No third-party requests at all: after the first load the page even works offline.</p></div>
-      <div class="card"><h3>Validate against official rules</h3><p><a href="validate.html">Full business-rule validation</a> (EN 16931 + German XRechnung CIUS) with a printable report: also 100% local.</p></div>
-    </div>
+    <dl class="funktionen">
+      <dt>XRechnung &amp; UBL</dt>
+      <dd>Reads both official XML syntaxes (UBL and UN/CEFACT CII) used across the EU under EN 16931, including German XRechnung and Peppol BIS style invoices.</dd>
+      <dt>ZUGFeRD / Factur-X PDFs</dt>
+      <dd>Extracts and displays the machine-readable XML embedded in hybrid invoice PDFs, so you see what accounting systems actually read.</dd>
+      <dt>Convert to PDF</dt>
+      <dd>Save the rendered view as a PDF via your browser's print dialog, handy for filing and forwarding.</dd>
+      <dt>Plausibility checks</dt>
+      <dd>Flags missing mandatory fields and inconsistent totals (net + VAT ≠ gross, line sums).</dd>
+      <dt>No upload, works offline</dt>
+      <dd>All processing happens in your browser. There are no third-party requests at all, and after the first load the page even works offline.</dd>
+      <dt>Validate against official rules</dt>
+      <dd><a href="validate.html">Full business-rule validation</a> (EN 16931 + German XRechnung CIUS) with a printable report, also fully local.</dd>
+    </dl>
   </section>
 
   <section class="content" id="faq">
@@ -165,7 +171,7 @@ ul.ratgeber li{border-top:1px solid var(--linie);padding:10px 0}
     <h2>Frequently asked questions</h2>
     <details class="faq"><summary>How do I open an XRechnung / Factur-X file?</summary><p>Drag the file into the area above or click “Choose file”. Double-clicking the XML itself usually opens a text editor full of angle brackets: that's what this viewer is for.</p></details>
     <details class="faq"><summary>Is my invoice uploaded anywhere?</summary><p>No. The page runs entirely in your browser and loads nothing from third-party servers. It's suitable for confidential invoices.</p></details>
-    <details class="faq"><summary>Why should I look at the XML inside a ZUGFeRD/Factur-X PDF?</summary><p>Because for profiles at EN 16931 level, the embedded XML is the authoritative invoice content: accounting software processes the data, not the PDF image. If they differ, you want to know.</p></details>
+    <details class="faq"><summary>Why should I look at the XML inside a ZUGFeRD/Factur-X PDF?</summary><p>Because for profiles at EN 16931 level, the embedded XML is the authoritative invoice content. Accounting software processes the data, not the PDF image. If they differ, you want to know.</p></details>
     <details class="faq"><summary>What does it cost?</summary><p>Nothing. Viewing, checking and printing are free, with no registration.</p></details>
   </section>
 </main>

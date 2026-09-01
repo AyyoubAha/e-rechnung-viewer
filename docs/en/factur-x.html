@@ -46,14 +46,14 @@ h2{font-size:1.25rem;margin:30px 0 8px}
 <main class="wrap">
   <h1>Factur-X: the invoice inside the PDF</h1>
   <p class="lead">A <strong>Factur-X</strong> invoice (known as <strong>ZUGFeRD</strong> in Germany) looks
-  like a normal PDF: but the real invoice travels inside it as an embedded
+  like a normal PDF, but the real invoice travels inside it as an embedded
   <strong>XML data file</strong> that accounting software reads. Here is how to see what's actually in
   there, and why you should.</p>
 
   <div class="steps">
     <ol>
       <li>Open the free <strong><a href="index.html">e-invoice viewer</a></strong> (no sign-up, runs in your browser)</li>
-      <li>Drop the Factur-X / ZUGFeRD PDF: the viewer extracts the embedded <code>factur-x.xml</code> and shows the structured data: amounts, line items, IBAN, due date</li>
+      <li>Drop the Factur-X or ZUGFeRD PDF. The viewer extracts the embedded <code>factur-x.xml</code> and shows the structured data: amounts, line items, IBAN, due date</li>
       <li>Optionally run the <strong><a href="validate.html">official-rules validation</a></strong> and print the report</li>
     </ol>
   </div>
@@ -61,17 +61,17 @@ h2{font-size:1.25rem;margin:30px 0 8px}
   <a class="cta" style="background:var(--surface);color:var(--ink);border:2px solid var(--accent)" href="validate.html">Validate it</a></p>
   <p style="text-align:center;font-size:.88rem;color:var(--ok);font-weight:600">✓ 100% local processing – your invoice never leaves your device</p>
 
-  <h2>Factur-X, ZUGFeRD, XRechnung, Peppol: quick map</h2>
+  <h2>Factur-X, ZUGFeRD, XRechnung and Peppol at a glance</h2>
   <p><strong>Factur-X / ZUGFeRD 2.x</strong>: hybrid PDF + embedded CII XML (identical Franco-German
   standard). <strong>XRechnung</strong>: pure XML, required by German public authorities.
   <strong>Peppol BIS Billing</strong>: UBL XML used across the EU network. All of them implement the
-  European semantic standard <strong>EN 16931</strong>: and all of them can be opened with the
+  European semantic standard <strong>EN 16931</strong>, and all of them can be opened with the
   <a href="index.html">viewer</a> on this site.</p>
 
   <h2>Why check the embedded XML?</h2>
-  <p>For profiles at EN 16931 level the XML is the <em>authoritative</em> content: automated payment,
+  <p>For profiles at EN 16931 level the XML is the <em>authoritative</em> content. Automated payment,
   approval and archiving processes consume the data, not the PDF image. A mismatch between the visible
-  PDF and the embedded data: whether a generator bug or manipulation: only becomes visible when you
+  PDF and the embedded data, whether from a generator bug or from manipulation, only becomes visible when you
   actually look at the XML. The viewer also flags missing mandatory fields and inconsistent totals.</p>
 
   <div class="notice"><strong>Retention:</strong> Keep the original PDF file unchanged in your records ;

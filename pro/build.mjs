@@ -9,7 +9,7 @@ const DIST = join(ROOT, 'dist');
 const PKG = join(DIST, 'paket');
 mkdirSync(PKG, { recursive: true });
 
-const VERSION = 'v1.2';
+const VERSION = 'v1.3';
 const DATE = new Date().toISOString().slice(0, 10);
 
 const strip = (src) => src.replace(/^export /gm, '').replace(/^import .*$/gm, '');

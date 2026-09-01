@@ -6,59 +6,65 @@
 <title>XRechnung Batch Pro – Excel zu XRechnung (offline)</title>
 <meta name="robots" content="noindex">
 <style>
+/* Gestaltung "Fachliteratur" wie auf der Website: Serifen-Titel, Urkundenblau,
+   Dokumentlinien, keine Kästen. Eine Datei, läuft offline; darum Systemschriften. */
 :root{
-  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
-  --accent:#1a4a8f; --accent-ink:#ffffff; --ok:#1d7a4f; --okbg:#e7f2ea;
-  --err-bg:#fbecec; --err-ink:#a03030; --warn-bg:#fdf3e3; --warn-ink:#7a5a1d;
-  --pro:#5b3fa8; --probg:#f0ecfb;
+  --grund:#f2f3f5; --flaeche:#ffffff; --tinte:#14181f; --grau:#556070; --linie:#ccd2db;
+  --blau:#1a4a8f; --blau-dunkel:#123663; --auf-blau:#ffffff;
+  --ok:#1d6b46; --rot:#9c2f2f; --rotflaeche:#f7e7e7;
+  --serif:Charter,"Bitstream Charter",Cambria,Georgia,"Times New Roman",serif;
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
-    --accent:#7aa5e0; --accent-ink:#0e1420; --ok:#5cc48f; --okbg:#1c2f24;
-    --err-bg:#341e1e; --err-ink:#e08a8a; --warn-bg:#2e2617; --warn-ink:#e0c070;
-    --pro:#b39ce8; --probg:#251d38;
+    --grund:#13161b; --flaeche:#1b1f26; --tinte:#e8ebef; --grau:#9aa3b1; --linie:#333a45;
+    --blau:#7aa5e0; --blau-dunkel:#a3c2ec; --auf-blau:#0f1521;
+    --ok:#63bd8e; --rot:#dd8f8f; --rotflaeche:#33211f;
   }
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{margin:0;background:var(--grund);color:var(--tinte);font:16px/1.6 "Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
 .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
-header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
-.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-weight:700;font-size:1.05rem}
-.logo span{color:var(--pro)}
-.badge{background:var(--probg);color:var(--pro);font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:0}
-.badge.green{background:var(--okbg);color:var(--ok)}
+a{color:var(--blau);text-decoration:underline;text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--blau);outline-offset:1px}
+header.top{border-bottom:2px solid var(--tinte)}
+.top .wrap{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-top:14px;padding-bottom:12px}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.15rem}
+.logo span{color:var(--blau)}
+.kopfzeile{color:var(--grau);font-size:.84rem;margin-left:auto}
 main{padding:28px 0 40px}
-h1{font-size:clamp(1.3rem,3vw,1.7rem);margin:0 0 6px}
-.sub{color:var(--ink-soft);max-width:56em;margin:0 0 20px}
-#drop{border:2px dashed var(--pro);border-radius:0;background:var(--probg);padding:34px 20px;text-align:center;cursor:pointer}
-#drop.over{border-style:solid;background:var(--surface)}
-#drop .big{font-weight:700;font-size:1.05rem}
-#drop .hint{color:var(--ink-soft);font-size:.88rem;margin-top:6px}
-#drop button{margin-top:12px;background:var(--pro);color:#fff;border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:0;cursor:pointer}
-.step{display:flex;gap:10px;align-items:baseline;margin:26px 0 10px;font-weight:700}
-.step .n{background:var(--pro);color:#fff;border-radius:0;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex:none}
-.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:0;padding:13px 16px;margin:14px 0;font-size:.9rem;display:none}
+h1{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.7rem);margin:0 0 6px}
+.sub{color:var(--grau);max-width:60em;margin:0 0 20px}
+#drop{border:1px solid var(--tinte);outline:1px solid var(--linie);outline-offset:-5px;background:var(--flaeche);padding:34px 20px;text-align:center;cursor:pointer}
+#drop.over{outline:2px solid var(--blau);outline-offset:-5px}
+#drop .big{font-weight:600;font-size:1.05rem}
+#drop .hint{color:var(--grau);font-size:.88rem;margin-top:6px}
+#drop button{margin-top:12px;background:var(--blau);color:var(--auf-blau);border:1px solid var(--blau);font:inherit;font-weight:600;padding:10px 22px;cursor:pointer}
+#drop button:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.step{margin:26px 0 10px;font-weight:700}
+.step .n{color:var(--ok);margin-right:8px}
+.errbox{border-left:3px solid var(--rot);background:var(--rotflaeche);color:var(--rot);padding:13px 16px;margin:14px 0;font-size:.9rem;display:none}
 .errbox.show{display:block}
 .errbox ul{margin:6px 0 0;padding-left:20px;max-height:220px;overflow:auto}
-.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:0;margin:14px 0}
+.tablewrap{overflow-x:auto;background:var(--flaeche);border:1px solid var(--linie);margin:14px 0}
 table{width:100%;border-collapse:collapse;font-size:.9rem}
-th{background:var(--bg);text-align:left;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);padding:9px 10px}
-td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:top}
+th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);padding:9px 10px;border-bottom:1px solid var(--tinte);font-weight:600}
+td{padding:9px 10px;border-top:1px solid var(--linie);vertical-align:top}
 td.r{text-align:right;white-space:nowrap}
 .st-ok{color:var(--ok);font-weight:700}
-.st-err{color:var(--err-ink);font-weight:700}
-.st-err small{display:block;font-weight:400;color:var(--err-ink)}
+.st-err{color:var(--rot);font-weight:700}
+.st-err small{display:block;font-weight:400;color:var(--rot)}
 .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0}
-.cta button{font:inherit;font-weight:700;border-radius:0;padding:12px 24px;cursor:pointer;border:0;background:var(--pro);color:#fff;font-size:1rem}
-.cta button.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.cta button{font:inherit;font-weight:600;padding:12px 24px;cursor:pointer;border:1px solid var(--blau);background:var(--blau);color:var(--auf-blau);font-size:1rem}
+.cta button:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.cta button.sec{background:var(--flaeche);color:var(--tinte);border:1px solid var(--tinte)}
+.cta button.sec:hover{background:var(--grund)}
 .cta button:disabled{opacity:.45;cursor:not-allowed}
 .okline{color:var(--ok);font-weight:600;font-size:.9rem}
-footer{border-top:1px solid var(--line);padding:18px 0 30px;color:var(--ink-soft);font-size:.83rem}
+.fmt input{accent-color:var(--blau)}
+footer{border-top:1px solid var(--tinte);padding:16px 0 28px;color:var(--grau);font-size:.83rem}
 footer .wrap{display:flex;gap:16px;flex-wrap:wrap}
-a{color:var(--accent)}
 #report{display:none}
+@media (prefers-reduced-motion: no-preference){a,button{transition:background-color .12s,color .12s,border-color .12s}}
 @media print{
   body{background:#fff}
   header.top,#drop,.step,.cta,.errbox,footer,.tablewrap.screen,.introline{display:none !important}
@@ -71,13 +77,12 @@ a{color:var(--accent)}
 <header class="top">
   <div class="wrap">
     <div class="logo">XRechnung <span>Batch Pro</span></div>
-    <span class="badge">Offline-Version {{VERSION}}</span>
-    <span class="badge green">Ihre Daten bleiben auf diesem Gerät</span>
+    <span class="kopfzeile">Offline-Version {{VERSION}}. Ihre Daten bleiben auf diesem Gerät.</span>
   </div>
 </header>
 
 <main class="wrap">
-  <h1>Excel rein → fertige XRechnungen raus</h1>
+  <h1>Aus einer Excel-Vorlage werden fertige XRechnungen</h1>
   <p class="sub introline">1. Die mitgelieferte <strong>Vorlage-Rechnungen.xlsx</strong> ausfüllen (Blatt „Absender" einmalig,
   Blatt „Rechnungen" eine Zeile pro Position). &nbsp;2. Datei hier ablegen. &nbsp;3. Alle Rechnungen als ZIP herunterladen.
   Diese App funktioniert komplett offline, auch ohne Internetverbindung.</p>
@@ -92,28 +97,28 @@ a{color:var(--accent)}
   <div class="errbox" id="errbox"></div>
 
   <div id="resultarea" style="display:none">
-    <div class="step"><span class="n">✓</span> <span id="summary"></span></div>
+    <div class="step"><span class="n">✓</span><span id="summary"></span></div>
     <div class="tablewrap screen">
       <table>
         <thead><tr><th>Rechnung</th><th>Datum</th><th>Empfänger</th><th class="r">Positionen</th><th class="r">Netto</th><th class="r">Brutto</th><th>Status</th></tr></thead>
         <tbody id="rows"></tbody>
       </table>
     </div>
-    <div style="margin:12px 0 4px;font-size:.92rem">
+    <div class="fmt" style="margin:12px 0 4px;font-size:.92rem">
       <b>Ausgabeformat:</b>
       <label style="margin-left:10px"><input type="radio" name="fmt" value="xml" checked> XRechnung (XML)</label>
       <label style="margin-left:14px"><input type="radio" name="fmt" value="pdf"> ZUGFeRD-PDF</label>
       <label style="margin-left:14px"><input type="radio" name="fmt" value="both"> beides</label>
     </div>
     <div class="cta">
-      <button type="button" id="zipbtn">⬇ <span id="zipcount"></span> Rechnungen als ZIP herunterladen</button>
-      <button type="button" class="sec" id="reportbtn">🖨 Prüfbericht drucken / als PDF</button>
+      <button type="button" id="zipbtn"><span id="zipcount"></span> Rechnungen als ZIP herunterladen</button>
+      <button type="button" class="sec" id="reportbtn">Prüfbericht drucken oder als PDF speichern</button>
       <span class="okline" id="doneline"></span>
     </div>
   </div>
 
   <div id="report">
-    <h1>Prüfbericht – XRechnung-Stapelerstellung</h1>
+    <h1>Prüfbericht: XRechnung-Stapelerstellung</h1>
     <p id="reportmeta"></p>
     <div class="tablewrap"><table>
       <thead><tr><th>Rechnung</th><th>Datum</th><th>Empfänger</th><th class="r">Netto</th><th class="r">USt</th><th class="r">Brutto</th><th>Ergebnis</th></tr></thead>
@@ -121,7 +126,7 @@ a{color:var(--accent)}
     </table></div>
     <p id="reporttotals" style="font-weight:700"></p>
     <p style="font-size:.8rem;color:#555">Format: XRechnung 3.0 (EN 16931, UBL). Plausibilität geprüft (Pflichtfelder, Summenlogik).
-    Erstellt mit XRechnung Batch Pro {{VERSION}} – Verarbeitung vollständig lokal, ohne Datenübertragung. Keine Steuer-/Rechtsberatung.</p>
+    Erstellt mit XRechnung Batch Pro {{VERSION}}. Verarbeitung vollständig lokal, ohne Datenübertragung. Keine Steuerberatung und keine Rechtsberatung.</p>
   </div>
 </main>
 
