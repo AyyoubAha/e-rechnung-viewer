@@ -92,7 +92,8 @@ section.content p{max-width:52em;margin:10px 0}
 dl.funktionen{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:14px 0}
 @media(max-width:700px){dl.funktionen{grid-template-columns:1fr}}
 dl.funktionen dt{font-weight:600;border-top:1px solid var(--linie);padding-top:12px;margin-top:12px}
-dl.funktionen dd{margin:4px 0 12px;color:var(--grau);font-size:.92rem}
+dl.funktionen dd{margin:0;color:var(--grau);font-size:.92rem;border-top:1px solid var(--linie);padding:12px 0 12px}
+@media(max-width:700px){dl.funktionen dd{border-top:0;padding-top:2px}}
 details.faq{border-top:1px solid var(--linie);padding:2px 0}
 details.faq:last-of-type{border-bottom:1px solid var(--linie)}
 details.faq summary{font-weight:600;padding:12px 0;cursor:pointer}
