@@ -401,7 +401,8 @@ async function doGenerate(kind) {
     download(generateUblInvoice(inv), filename, 'application/xml');
   }
   okbox.innerHTML = `✓ <strong>${filename}</strong> wurde erstellt (Zahlbetrag ${fmt(t.payable)}). ` +
-    `Sie können die Datei jetzt per E-Mail versenden – oder <a href="index.html">hier zur Kontrolle öffnen</a>.`;
+    `Sie können die Datei jetzt per E-Mail versenden – oder <a href="index.html">zur Kontrolle öffnen</a> ` +
+    `bzw. <a href="pruefen.html">mit den offiziellen Regeln prüfen</a>.`;
   okbox.classList.add('show');
 }
 $('generate').onclick = () => doGenerate('xml');

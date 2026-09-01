@@ -10,6 +10,9 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ayyoubaha.github.io/e-rechnung-viewer/">
 <link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/">
+<link rel="alternate" hreflang="de" href="https://ayyoubaha.github.io/e-rechnung-viewer/">
+<link rel="alternate" hreflang="en" href="https://ayyoubaha.github.io/e-rechnung-viewer/en/">
+<link rel="alternate" hreflang="x-default" href="https://ayyoubaha.github.io/e-rechnung-viewer/">
 <meta name="robots" content="index,follow">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"E-Rechnung Viewer","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"XRechnung und ZUGFeRD-Rechnungen im Browser öffnen, lesen und drucken – 100% lokal ohne Upload.","inLanguage":"de"}
@@ -144,6 +147,7 @@ a{color:var(--accent)}
       <a href="index.html" style="padding:6px 14px;border-radius:8px;text-decoration:none;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:.9rem">Lesen</a>
       <a href="erstellen.html" style="padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem">Erstellen</a>
       <a href="pruefen.html" style="padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem">Prüfen</a>
+      <a href="en/" style="padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem" title="English version">EN</a>
     </nav>
   </div>
 </header>
@@ -171,6 +175,7 @@ a{color:var(--accent)}
     <div class="actions">
       <button class="primary" id="printbtn" type="button">🖨 Drucken / als PDF speichern</button>
       <button id="resetbtn" type="button">Neue Datei laden</button>
+      <a href="pruefen.html" style="align-self:center;font-weight:600;font-size:.9rem">→ Diese Rechnung formal prüfen (offizielle Regeln)</a>
     </div>
     <div id="warnings"></div>
     <article class="sheet" id="sheet" aria-live="polite"></article>
