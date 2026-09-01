@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peppol invoice viewer – open and read Peppol BIS / UBL invoices (free, no upload)</title>
+<meta name="description" content="Open a Peppol BIS Billing 3.0 invoice (UBL XML) and read it as a normal document: totals, line items, payment details. Free, runs entirely in your browser – no upload, no registration.">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/en/peppol-invoice-viewer.html">
+<meta property="og:title" content="Peppol invoice viewer – free, no upload">
+<meta property="og:type" content="article">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I open a Peppol invoice?","acceptedAnswer":{"@type":"Answer","text":"A Peppol BIS Billing 3.0 invoice is a UBL XML file. Double-clicking shows raw code. To read it as a document, open the free E-Invoice Viewer in your browser and drop the XML in — it renders totals, line items, tax breakdown and payment details. Nothing is uploaded; the file stays on your device."}},
+{"@type":"Question","name":"What is the difference between Peppol BIS and EN 16931?","acceptedAnswer":{"@type":"Answer","text":"EN 16931 is the European semantic standard for electronic invoices. Peppol BIS Billing 3.0 is a widely used specification of it for exchange over the Peppol network, expressed as UBL XML. A viewer that understands EN 16931 UBL therefore reads Peppol BIS invoices."}},
+{"@type":"Question","name":"Can I check whether a Peppol invoice is valid?","acceptedAnswer":{"@type":"Answer","text":"You can validate the invoice against the official EN 16931 business rules directly in your browser with the free validator — it reports rule violations with their IDs (e.g. BR-CO-10) and locations, without uploading the file anywhere."}}
+]}
+</script>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#1a2332;--ink-soft:#5a6577;--line:#e3e7ee;--accent:#1d5fbf;--accent-ink:#fff;--ok:#1d7a4f;--badge-bg:#e7f2ea;--badge-ink:#1d7a4f;--warn-bg:#fdf3e3;--warn-ink:#7a5a1d}
+@media (prefers-color-scheme: dark){:root{--bg:#12161d;--surface:#1a2029;--ink:#e8ecf2;--ink-soft:#9aa5b5;--line:#2b3442;--accent:#5a95e8;--accent-ink:#0e1420;--ok:#5cc48f;--badge-bg:#1c2f24;--badge-ink:#5cc48f;--warn-bg:#2e2617;--warn-ink:#e0c070}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:980px}
+.logo{font-weight:700}.logo a{color:inherit;text-decoration:none}.logo span{color:var(--accent)}
+.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px}
+main{padding:34px 0 20px}
+h1{font-size:clamp(1.45rem,3.4vw,1.95rem);line-height:1.25;margin:0 0 12px}
+h2{font-size:1.2rem;margin:30px 0 8px}
+p{margin:10px 0}
+.lead{color:var(--ink-soft);font-size:1.05rem}
+.steps{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 20px;margin:18px 0}
+.steps ol{margin:12px 0;padding-left:22px}
+.steps li{margin:10px 0}
+.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:12px 26px;border-radius:10px;text-decoration:none;margin:8px 0}
+.notice{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 16px;font-size:.92rem;margin:16px 0}
+a{color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:46px;padding:20px 0 32px;color:var(--ink-soft);font-size:.85rem}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><a href="index.html">E-Invoice <span>Viewer</span></a></div>
+    <span class="badge">100 % local – no upload</span>
+  </div>
+</header>
+<main class="wrap">
+  <h1>Peppol invoice viewer: read Peppol BIS / UBL invoices as normal documents</h1>
+  <p class="lead">Invoices exchanged over the <strong>Peppol network</strong> arrive as
+  <strong>UBL XML</strong> (Peppol BIS Billing 3.0) — machine-readable data, not a document.
+  Double-clicking shows raw code. This free viewer renders the same file as a human-readable
+  invoice, <strong>entirely in your browser</strong>.</p>
+
+  <div class="steps">
+    <ol>
+      <li><strong><a href="index.html">Open the E-Invoice Viewer</a></strong> (free, no registration)</li>
+      <li>Drag the Peppol/UBL XML file in — the viewer parses the EN 16931 data model</li>
+      <li>Read totals, line items, VAT breakdown, payment terms and bank details — print or save as PDF</li>
+    </ol>
+  </div>
+  <a class="cta" href="index.html">Open a Peppol invoice now →</a>
+
+  <h2>Why it works: Peppol BIS is EN 16931</h2>
+  <p>Peppol BIS Billing 3.0 is a CIUS (specification) of <strong>EN 16931</strong>, the European
+  e-invoicing standard, using the UBL syntax. Any invoice that reached you via a Peppol access
+  point is therefore readable here — as are German <strong>XRechnung</strong> files and hybrid
+  <strong>Factur-X/ZUGFeRD</strong> PDFs (<a href="factur-x.html">how those work</a>).</p>
+
+  <h2>Validate against the official rules</h2>
+  <p>Need to know whether the invoice is actually compliant? The free
+  <a href="validate.html">EN 16931 validator</a> runs the official rule sets in your browser
+  and lists every violation with rule ID and location — again with no upload.</p>
+
+  <h2>Privacy by architecture</h2>
+  <p>Invoices contain bank details, prices and business data. This tool processes files
+  <strong>locally in your browser</strong>: no upload, no server, no account. Close the tab and
+  nothing remains.</p>
+
+  <div class="notice">Informational content, no legal or tax advice.</div>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Invoice Viewer</span>
+    <a href="index.html">Viewer</a>
+    <a href="validate.html">Validator</a>
+    <a href="factur-x.html">Factur-X guide</a>
+    <a href="../impressum.html">Legal notice (Impressum)</a>
+    <a href="../datenschutz.html">Privacy (German)</a>
+    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+  </div>
+</footer>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
