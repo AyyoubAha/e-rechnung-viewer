@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XRechnung Batch Pro – Excel zu XRechnung (offline)</title>
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
+  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --okbg:#e7f2ea;
+  --err-bg:#fbecec; --err-ink:#a03030; --warn-bg:#fdf3e3; --warn-ink:#7a5a1d;
+  --pro:#5b3fa8; --probg:#f0ecfb;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
+    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --okbg:#1c2f24;
+    --err-bg:#341e1e; --err-ink:#e08a8a; --warn-bg:#2e2617; --warn-ink:#e0c070;
+    --pro:#b39ce8; --probg:#251d38;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:1.05rem}
+.logo span{color:var(--pro)}
+.badge{background:var(--probg);color:var(--pro);font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px}
+.badge.green{background:var(--okbg);color:var(--ok)}
+main{padding:28px 0 40px}
+h1{font-size:clamp(1.3rem,3vw,1.7rem);margin:0 0 6px}
+.sub{color:var(--ink-soft);max-width:56em;margin:0 0 20px}
+#drop{border:2px dashed var(--pro);border-radius:14px;background:var(--probg);padding:34px 20px;text-align:center;cursor:pointer}
+#drop.over{border-style:solid;background:var(--surface)}
+#drop .big{font-weight:700;font-size:1.05rem}
+#drop .hint{color:var(--ink-soft);font-size:.88rem;margin-top:6px}
+#drop button{margin-top:12px;background:var(--pro);color:#fff;border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer}
+.step{display:flex;gap:10px;align-items:baseline;margin:26px 0 10px;font-weight:700}
+.step .n{background:var(--pro);color:#fff;border-radius:99px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex:none}
+.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:10px;padding:13px 16px;margin:14px 0;font-size:.9rem;display:none}
+.errbox.show{display:block}
+.errbox ul{margin:6px 0 0;padding-left:20px;max-height:220px;overflow:auto}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--bg);text-align:left;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);padding:9px 10px}
+td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:top}
+td.r{text-align:right;white-space:nowrap}
+.st-ok{color:var(--ok);font-weight:700}
+.st-err{color:var(--err-ink);font-weight:700}
+.st-err small{display:block;font-weight:400;color:var(--err-ink)}
+.cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.cta button{font:inherit;font-weight:700;border-radius:10px;padding:12px 24px;cursor:pointer;border:0;background:var(--pro);color:#fff;font-size:1rem}
+.cta button.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.cta button:disabled{opacity:.45;cursor:not-allowed}
+.okline{color:var(--ok);font-weight:600;font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:18px 0 30px;color:var(--ink-soft);font-size:.83rem}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap}
+a{color:var(--accent)}
+#report{display:none}
+@media print{
+  body{background:#fff}
+  header.top,#drop,.step,.cta,.errbox,footer,.tablewrap.screen,.introline{display:none !important}
+  #report{display:block !important}
+  #report .tablewrap{border:0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo">XRechnung <span>Batch Pro</span></div>
+    <span class="badge">Offline-Version {{VERSION}}</span>
+    <span class="badge green">Ihre Daten bleiben auf diesem Gerät</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Excel rein → fertige XRechnungen raus</h1>
+  <p class="sub introline">1. Die mitgelieferte <strong>Vorlage-Rechnungen.xlsx</strong> ausfüllen (Blatt „Absender" einmalig,
+  Blatt „Rechnungen" eine Zeile pro Position). &nbsp;2. Datei hier ablegen. &nbsp;3. Alle Rechnungen als ZIP herunterladen.
+  Diese App funktioniert komplett offline — auch ohne Internetverbindung.</p>
+
+  <div id="drop" role="button" tabindex="0">
+    <div class="big">Ausgefüllte Excel-Vorlage hierher ziehen</div>
+    <div class="hint">Vorlage-Rechnungen.xlsx (liegt neben dieser Datei) · .xlsx</div>
+    <button type="button" id="pick">Datei auswählen</button>
+    <input type="file" id="fileinput" accept=".xlsx" hidden>
+  </div>
+
+  <div class="errbox" id="errbox"></div>
+
+  <div id="resultarea" style="display:none">
+    <div class="step"><span class="n">✓</span> <span id="summary"></span></div>
+    <div class="tablewrap screen">
+      <table>
+        <thead><tr><th>Rechnung</th><th>Datum</th><th>Empfänger</th><th class="r">Positionen</th><th class="r">Netto</th><th class="r">Brutto</th><th>Status</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div style="margin:12px 0 4px;font-size:.92rem">
+      <b>Ausgabeformat:</b>
+      <label style="margin-left:10px"><input type="radio" name="fmt" value="xml" checked> XRechnung (XML)</label>
+      <label style="margin-left:14px"><input type="radio" name="fmt" value="pdf"> ZUGFeRD-PDF</label>
+      <label style="margin-left:14px"><input type="radio" name="fmt" value="both"> beides</label>
+    </div>
+    <div class="cta">
+      <button type="button" id="zipbtn">⬇ <span id="zipcount"></span> Rechnungen als ZIP herunterladen</button>
+      <button type="button" class="sec" id="reportbtn">🖨 Prüfbericht drucken / als PDF</button>
+      <span class="okline" id="doneline"></span>
+    </div>
+  </div>
+
+  <div id="report">
+    <h1>Prüfbericht – XRechnung-Stapelerstellung</h1>
+    <p id="reportmeta"></p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Rechnung</th><th>Datum</th><th>Empfänger</th><th class="r">Netto</th><th class="r">USt</th><th class="r">Brutto</th><th>Ergebnis</th></tr></thead>
+      <tbody id="reportrows"></tbody>
+    </table></div>
+    <p id="reporttotals" style="font-weight:700"></p>
+    <p style="font-size:.8rem;color:#555">Format: XRechnung 3.0 (EN 16931, UBL). Plausibilität geprüft (Pflichtfelder, Summenlogik).
+    Erstellt mit XRechnung Batch Pro {{VERSION}} – Verarbeitung vollständig lokal, ohne Datenübertragung. Keine Steuer-/Rechtsberatung.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>XRechnung Batch Pro {{VERSION}} · Stand {{DATE}}</span>
+    <span>Support: <a href="mailto:kontakt@ayyoubaharchi.de">kontakt@ayyoubaharchi.de</a></span>
+    <span style="margin-left:auto"><a href="https://ayyoubaha.github.io/e-rechnung-viewer/">Kostenloser Viewer &amp; Einzel-Generator</a></span>
+  </div>
+</footer>
+
+<script>{{XLSX_LIB}}</script>
+<script>{{JSZIP_LIB}}</script>
+<script>{{PDFLIB_JS}}</script>
+<script>{{FONTKIT_JS}}</script>
+<script>
+{{GENERATOR}}
+</script>
+<script>
+{{CII_GENERATOR}}
+</script>
+<script>
+{{ZF_PDF}}
+</script>
+<script>
+{{MAPPER}}
+</script>
+<script>
+var ZF_ASSETS_B64 = { fontRegular: "{{FONT_REG_B64}}", fontBold: "{{FONT_BOLD_B64}}", icc: "{{ICC_B64}}" };
+</script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { results: [], sourceName: '' };
+
+  function showError(html) {
+    var box = $('errbox');
+    box.innerHTML = html;
+    box.classList.add('show');
+  }
+
+  function fmt(n) { return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(n || 0); }
+  function escText(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  function findSheet(wb, needle) {
+    var name = wb.SheetNames.find(function (n) { return n.toLowerCase().indexOf(needle) !== -1; });
+    return name ? wb.Sheets[name] : null;
+  }
+
+  function handleFile(file) {
+    $('errbox').classList.remove('show');
+    $('resultarea').style.display = 'none';
+    $('doneline').textContent = '';
+    if (!/\.xlsx$/i.test(file.name)) { showError('Bitte eine .xlsx-Datei ablegen (die ausgefüllte Vorlage-Rechnungen.xlsx).'); return; }
+    var reader = new FileReader();
+    reader.onload = function () {
+      var wb;
+      try { wb = XLSX.read(new Uint8Array(reader.result), { type: 'array', cellDates: true }); }
+      catch (e) { showError('Die Excel-Datei konnte nicht gelesen werden (beschädigt?).'); return; }
+      var absSheet = findSheet(wb, 'absender');
+      var rSheet = findSheet(wb, 'rechnung');
+      if (!absSheet || !rSheet) {
+        showError('Die Datei enthält kein Blatt „Absender" bzw. „Rechnungen" — bitte die mitgelieferte Vorlage verwenden.');
+        return;
+      }
+      var absenderRows = XLSX.utils.sheet_to_json(absSheet, { header: 1, raw: true, defval: null });
+      var rechnungRows = XLSX.utils.sheet_to_json(rSheet, { header: 1, raw: true, defval: null });
+      var mapped = mapWorkbook({ absenderRows: absenderRows, rechnungRows: rechnungRows });
+      state.sourceName = file.name;
+      buildResults(mapped);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function buildResults(mapped) {
+    var globalErrs = mapped.errors.slice();
+    state.results = mapped.invoices.map(function (inv) {
+      var errs = validateInvoiceInput(inv);
+      var res = { input: inv, errors: errs, xml: null, totals: null };
+      if (!errs.length) {
+        try { res.xml = generateUblInvoice(inv); res.totals = computeTotals(inv); }
+        catch (e) { res.errors = [e.message]; }
+      }
+      return res;
+    });
+
+    if (globalErrs.length) {
+      showError('<strong>Hinweise aus der Excel-Datei:</strong><ul>' + globalErrs.map(function (e) { return '<li>' + escText(e) + '</li>'; }).join('') + '</ul>');
+    }
+    if (!state.results.length) {
+      if (!globalErrs.length) showError('Keine Rechnungen im Blatt „Rechnungen" gefunden.');
+      return;
+    }
+
+    var ok = state.results.filter(function (r) { return r.xml; }).length;
+    $('summary').textContent = state.results.length + ' Rechnung(en) gelesen aus „' + state.sourceName + '" — ' + ok + ' fehlerfrei.';
+    var rows = $('rows');
+    rows.innerHTML = '';
+    state.results.forEach(function (r) {
+      var tr = document.createElement('tr');
+      var status = r.xml
+        ? '<span class="st-ok">✓ bereit</span>'
+        : '<span class="st-err">✕ unvollständig<small>' + r.errors.map(escText).join('<br>') + '</small></span>';
+      tr.innerHTML = '<td>' + escText(r.input.number || '—') + '</td>' +
+        '<td>' + escText(r.input.issueDate || '—') + '</td>' +
+        '<td>' + escText(r.input.buyer.name || '—') + '</td>' +
+        '<td class="r">' + r.input.lines.length + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.net) : '—') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.gross) : '—') + '</td>' +
+        '<td>' + status + '</td>';
+      rows.appendChild(tr);
+    });
+    $('zipcount').textContent = ok;
+    $('zipbtn').disabled = ok === 0;
+    $('resultarea').style.display = '';
+    buildReport();
+  }
+
+  function buildReport() {
+    var tb = $('reportrows');
+    tb.innerHTML = '';
+    var sumNet = 0, sumVat = 0, sumGross = 0, ok = 0;
+    state.results.forEach(function (r) {
+      var tr = document.createElement('tr');
+      if (r.totals) { sumNet += r.totals.net; sumVat += r.totals.taxTotal; sumGross += r.totals.gross; ok++; }
+      tr.innerHTML = '<td>' + escText(r.input.number || '—') + '</td>' +
+        '<td>' + escText(r.input.issueDate || '—') + '</td>' +
+        '<td>' + escText(r.input.buyer.name || '—') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.net) : '—') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.taxTotal) : '—') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.gross) : '—') + '</td>' +
+        '<td>' + (r.xml ? 'XRechnung erstellt' : 'NICHT erstellt: ' + r.errors.map(escText).join('; ')) + '</td>';
+      tb.appendChild(tr);
+    });
+    $('reportmeta').textContent = 'Quelle: ' + state.sourceName + ' · erstellt am ' + new Date().toLocaleString('de-DE') + ' · ' + ok + ' von ' + state.results.length + ' Rechnungen erstellt';
+    $('reporttotals').textContent = 'Summen (erstellte Rechnungen): Netto ' + fmt(sumNet) + ' · USt ' + fmt(sumVat) + ' · Brutto ' + fmt(sumGross);
+  }
+
+  var zfAssets = null;
+  function b64ToBytes(b64) {
+    var bin = atob(b64), out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  function getZfAssets() {
+    if (!zfAssets) {
+      zfAssets = {
+        PDFLib: window.PDFLib, fontkit: window.fontkit,
+        fontRegular: b64ToBytes(ZF_ASSETS_B64.fontRegular),
+        fontBold: b64ToBytes(ZF_ASSETS_B64.fontBold),
+        icc: b64ToBytes(ZF_ASSETS_B64.icc),
+      };
+    }
+    return zfAssets;
+  }
+
+  $('zipbtn').onclick = async function () {
+    var fmt = (document.querySelector('input[name="fmt"]:checked') || {}).value || 'xml';
+    var btn = $('zipbtn');
+    btn.disabled = true;
+    var zip = new JSZip();
+    var ok = 0, pdfErrs = [];
+    for (var i = 0; i < state.results.length; i++) {
+      var r = state.results[i];
+      if (!r.xml) continue;
+      var safe = String(r.input.number).replace(/[^A-Za-z0-9._-]+/g, '_');
+      if (fmt === 'xml' || fmt === 'both') zip.file('xrechnung_' + safe + '.xml', r.xml);
+      if (fmt === 'pdf' || fmt === 'both') {
+        $('doneline').textContent = 'Erzeuge PDF ' + (i + 1) + '/' + state.results.length + ' …';
+        try {
+          var pdfBytes = await generateZugferdPdf(r.input, getZfAssets());
+          zip.file('zugferd_' + safe + '.pdf', pdfBytes);
+        } catch (e) { pdfErrs.push(safe + ': ' + e.message); }
+      }
+      ok++;
+    }
+    zip.generateAsync({ type: 'blob' }).then(function (blob) {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'rechnungen_' + new Date().toISOString().slice(0, 10) + '.zip';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+      $('doneline').textContent = '✓ ' + ok + ' Rechnung(en) im ZIP' + (pdfErrs.length ? ' – ' + pdfErrs.length + ' PDF-Fehler' : '');
+      if (pdfErrs.length) showError('PDF-Probleme:<br>' + pdfErrs.map(escText).join('<br>'));
+      btn.disabled = false;
+    });
+  };
+  $('reportbtn').onclick = function () { window.print(); };
+
+  var drop = $('drop'), input = $('fileinput');
+  $('pick').onclick = function (e) { e.stopPropagation(); input.click(); };
+  drop.onclick = function () { input.click(); };
+  drop.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') input.click(); };
+  input.onchange = function () { if (input.files[0]) handleFile(input.files[0]); input.value = ''; };
+  ['dragover', 'dragenter'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function (e) { if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+})();
+</script>
+</body>
+</html>

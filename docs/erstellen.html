@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XRechnung &amp; ZUGFeRD erstellen – kostenlos, ohne Anmeldung, im Browser</title>
+<meta name="description" content="XRechnung (XML) oder ZUGFeRD-PDF kostenlos erstellen: Formular ausfüllen, gültige E-Rechnung herunterladen. Für Behörden und Unternehmen, auch für Kleinunternehmer (§ 19 UStG). 100 % lokal – ohne Upload, ohne Registrierung.">
+<meta property="og:title" content="XRechnung erstellen – kostenlos im Browser">
+<meta property="og:description" content="Formular ausfüllen, gültige XRechnung (XML) herunterladen. 100 % lokal, ohne Anmeldung.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ayyoubaha.github.io/e-rechnung-viewer/erstellen.html">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/erstellen.html">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XRechnung-Generator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"XRechnung kostenlos im Browser erstellen – ohne Upload, ohne Registrierung. Erzeugt Rechnungen im XRechnung-3.0-Format (EN 16931).","inLanguage":"de"}
+</script>
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
+  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --warn-bg:#fdf3e3; --warn-line:#e8c987; --warn-ink:#7a5a1d;
+  --err-bg:#fbecec; --err-ink:#a03030; --badge-bg:#e7f2ea; --badge-ink:#1d7a4f; --pro-bg:#f0ecfb; --pro-ink:#5b3fa8;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
+    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --warn-bg:#2e2617; --warn-line:#6b5a2e; --warn-ink:#e0c070;
+    --err-bg:#341e1e; --err-ink:#e08a8a; --badge-bg:#1c2f24; --badge-ink:#5cc48f; --pro-bg:#251d38; --pro-ink:#b39ce8;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:1.05rem}
+.logo a{color:inherit;text-decoration:none}
+.logo span{color:var(--accent)}
+.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px;white-space:nowrap}
+nav.tabs{margin-left:auto;display:flex;gap:4px}
+nav.tabs a{padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem}
+nav.tabs a.active{background:var(--accent);color:var(--accent-ink)}
+main{padding:30px 0 10px}
+h1{font-size:clamp(1.4rem,3.4vw,1.9rem);line-height:1.25;margin:0 0 8px}
+.sub{color:var(--ink-soft);max-width:50em;margin:0 0 22px}
+fieldset{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 18px 8px;margin:0 0 18px;min-width:0}
+legend{font-weight:700;font-size:.95rem;padding:0 6px}
+.grid{display:grid;gap:12px 14px;grid-template-columns:repeat(12,1fr)}
+.f{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.f label{font-size:.8rem;font-weight:600;color:var(--ink-soft)}
+.f label .req{color:var(--err-ink)}
+.f input,.f select,.f textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+.f input:focus,.f select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.f .hint{font-size:.75rem;color:var(--ink-soft)}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c6{grid-column:span 6}.c8{grid-column:span 8}.c12{grid-column:span 12}
+@media(max-width:720px){.c3,.c4,.c6,.c8{grid-column:span 12}}
+.check{display:flex;gap:8px;align-items:center;font-size:.92rem;margin:2px 0 10px}
+.check input{width:17px;height:17px}
+table.lines{width:100%;border-collapse:collapse;font-size:.9rem}
+table.lines th{text-align:left;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);padding:4px 6px}
+table.lines td{padding:4px 6px;vertical-align:top}
+table.lines input,table.lines select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:7px 8px}
+table.lines .num{text-align:right}
+.rowdel{background:none;border:0;color:var(--err-ink);font-size:1.1rem;cursor:pointer;padding:6px}
+.addline{background:var(--surface);border:1px dashed var(--accent);color:var(--accent);font:inherit;font-weight:600;border-radius:8px;padding:8px 16px;cursor:pointer;margin:10px 0 6px}
+.tablewrap{overflow-x:auto}
+.sumbar{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:4px 0 18px;font-size:.95rem}
+.sumbar b{font-size:1.05rem}
+.cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:10px 0 22px}
+.cta button{font:inherit;font-weight:700;border-radius:10px;padding:12px 26px;cursor:pointer;border:0;background:var(--accent);color:var(--accent-ink);font-size:1.02rem}
+.cta button:hover{filter:brightness(1.07)}
+.cta .note{font-size:.83rem;color:var(--ok);font-weight:600}
+.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:10px;padding:14px 16px;margin:0 0 18px;display:none;font-size:.9rem}
+.errbox.show{display:block}
+.errbox ul{margin:6px 0 0;padding-left:20px}
+.okbox{background:var(--badge-bg);color:var(--badge-ink);border-radius:10px;padding:14px 16px;margin:0 0 18px;display:none;font-size:.92rem}
+.okbox.show{display:block}
+.probox{background:var(--pro-bg);color:var(--pro-ink);border-radius:12px;padding:16px 18px;margin:26px 0;font-size:.92rem}
+.probox b{font-size:.98rem}
+section.content{margin:44px 0}
+section.content h2{font-size:1.25rem}
+section.content p{max-width:52em;color:var(--ink-soft)}
+details.faq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin:8px 0}
+details.faq summary{font-weight:600;padding:11px 0;cursor:pointer}
+details.faq p{color:var(--ink-soft);margin:0 0 13px}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:22px 0 34px;color:var(--ink-soft);font-size:.85rem}
+footer .wrap{display:flex;gap:18px;flex-wrap:wrap}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><a href="index.html">E-Rechnung <span>Viewer</span></a></div>
+    <span class="badge">100 % lokal – ohne Upload</span>
+    <nav class="tabs">
+      <a href="index.html">Lesen</a>
+      <a href="erstellen.html" class="active">Erstellen</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>XRechnung erstellen – kostenlos &amp; ohne Anmeldung</h1>
+  <p class="sub">Formular ausfüllen → gültige <strong>XRechnung (XML)</strong> herunterladen. Geeignet für Rechnungen an Behörden
+  (Leitweg-ID) und Unternehmen, inklusive <strong>Kleinunternehmer-Modus (§ 19 UStG)</strong>. Ihre Daten bleiben auf Ihrem
+  Gerät – kein Upload, keine Registrierung. Absenderdaten werden optional nur lokal in Ihrem Browser gespeichert.</p>
+
+  <form id="form" novalidate>
+    <fieldset>
+      <legend>Ihre Daten (Rechnungssteller)</legend>
+      <div class="grid">
+        <div class="f c6"><label for="s_name">Name / Firma <span class="req">*</span></label><input id="s_name" autocomplete="organization"></div>
+        <div class="f c6"><label for="s_contact">Ansprechpartner <span class="req">*</span></label><input id="s_contact" autocomplete="name"></div>
+        <div class="f c6"><label for="s_street">Straße &amp; Hausnummer <span class="req">*</span></label><input id="s_street"></div>
+        <div class="f c3"><label for="s_plz">PLZ <span class="req">*</span></label><input id="s_plz" inputmode="numeric"></div>
+        <div class="f c3"><label for="s_city">Ort <span class="req">*</span></label><input id="s_city"></div>
+        <div class="f c6"><label for="s_email">E-Mail <span class="req">*</span></label><input id="s_email" type="email"></div>
+        <div class="f c6"><label for="s_phone">Telefon <span class="req">*</span> <span class="hint">(Pflicht in XRechnung)</span></label><input id="s_phone"></div>
+        <div class="f c6"><label for="s_vat">USt-IdNr. <span class="hint">(z. B. DE123456789)</span></label><input id="s_vat"></div>
+        <div class="f c6"><label for="s_tax">Steuernummer <span class="hint">(falls keine USt-IdNr.)</span></label><input id="s_tax"></div>
+      </div>
+      <div class="check"><input type="checkbox" id="klein"><label for="klein"><b>Kleinunternehmer (§ 19 UStG)</b> – Rechnung ohne Umsatzsteuer</label></div>
+      <div class="f c12" id="exemptwrap" style="display:none"><label for="exempt">Hinweistext auf der Rechnung</label><input id="exempt" value="Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."></div>
+      <div class="check"><input type="checkbox" id="remember" checked><label for="remember">Meine Absender- &amp; Bankdaten für das nächste Mal <b>lokal im Browser</b> merken</label></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Empfänger (Rechnungsempfänger)</legend>
+      <div class="grid">
+        <div class="f c6"><label for="b_name">Name / Firma <span class="req">*</span></label><input id="b_name"></div>
+        <div class="f c6"><label for="b_email">E-Mail <span class="hint">(empfohlen)</span></label><input id="b_email" type="email"></div>
+        <div class="f c6"><label for="b_street">Straße &amp; Hausnummer <span class="req">*</span></label><input id="b_street"></div>
+        <div class="f c3"><label for="b_plz">PLZ <span class="req">*</span></label><input id="b_plz" inputmode="numeric"></div>
+        <div class="f c3"><label for="b_city">Ort <span class="req">*</span></label><input id="b_city"></div>
+        <div class="f c12"><label for="leitweg">Käufer-Referenz / Leitweg-ID <span class="req">*</span></label><input id="leitweg" placeholder="Behörde: Leitweg-ID · Unternehmen: z. B. Kundennummer oder Bestellzeichen">
+          <span class="hint">Pflichtfeld der XRechnung. Bei Behörden steht die Leitweg-ID im Auftrag; bei Firmen genügt z. B. Ihre Kundennummer beim Empfänger.</span></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Rechnungsdaten</legend>
+      <div class="grid">
+        <div class="f c4"><label for="rnum">Rechnungsnummer <span class="req">*</span></label><input id="rnum" placeholder="z. B. RE-2026-001"></div>
+        <div class="f c4"><label for="rdate">Rechnungsdatum <span class="req">*</span></label><input id="rdate" type="date"></div>
+        <div class="f c4"><label for="ddate">Fällig am</label><input id="ddate" type="date"></div>
+        <div class="f c12"><label for="terms">Zahlungsbedingungen <span class="hint">(Pflicht, falls kein Fälligkeitsdatum)</span></label><input id="terms" placeholder="z. B. Zahlbar innerhalb von 14 Tagen ohne Abzug."></div>
+        <div class="f c12"><label for="note">Bemerkung <span class="hint">(optional, erscheint auf der Rechnung)</span></label><input id="note"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Positionen</legend>
+      <div class="tablewrap">
+      <table class="lines" id="linestable">
+        <thead><tr><th style="width:34%">Bezeichnung <span class="req">*</span></th><th style="width:12%">Menge</th><th style="width:14%">Einheit</th><th style="width:16%">Einzelpreis&nbsp;€ (netto)</th><th style="width:12%" class="vatcol">USt&nbsp;%</th><th style="width:12%" class="num">Betrag</th><th></th></tr></thead>
+        <tbody id="lines"></tbody>
+      </table>
+      </div>
+      <button type="button" class="addline" id="addline">+ Position hinzufügen</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Zahlung</legend>
+      <div class="grid">
+        <div class="f c6"><label for="iban">IBAN <span class="hint">(empfohlen – für SEPA-Überweisung)</span></label><input id="iban" placeholder="DE.."></div>
+        <div class="f c3"><label for="bic">BIC</label><input id="bic"></div>
+        <div class="f c3"><label for="accname">Kontoinhaber</label><input id="accname"></div>
+        <div class="f c6"><label for="payref">Verwendungszweck</label><input id="payref" placeholder="z. B. Rechnungsnummer"></div>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="sumbar" aria-live="polite">
+    <span>Netto: <b id="sum_net">0,00 €</b></span>
+    <span id="sum_vat_wrap">USt: <b id="sum_vat">0,00 €</b></span>
+    <span>Gesamt: <b id="sum_gross">0,00 €</b></span>
+  </div>
+
+  <div class="errbox" id="errbox"></div>
+  <div class="okbox" id="okbox"></div>
+
+  <div class="cta">
+    <button type="button" id="generate">⬇ XRechnung (XML) erstellen</button>
+    <button type="button" id="generatezf" style="background:var(--surface);color:var(--ink);border:2px solid var(--accent)">⬇ ZUGFeRD-PDF erstellen</button>
+    <span class="note">✓ kostenlos · ohne Upload · XRechnung 3.0 &amp; ZUGFeRD/Factur-X (EN 16931)</span>
+  </div>
+
+  <div class="probox" id="probox">
+    <b>Viele Rechnungen auf einmal?</b> <b>XRechnung Batch Pro</b> erstellt XRechnungen <b>und
+    ZUGFeRD-PDFs im Stapel</b> direkt aus einer Excel-Tabelle (Vorlage inklusive), funktioniert komplett
+    offline und druckt Prüfberichte — gleicher geprüfter Generator wie hier, ohne Abo.
+    <div style="margin-top:12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <a id="probuy" href="https://buy.polar.sh/polar_cl_qEeLe1lpkVM3aD0yL3wSXEp8B2E0nU9ssTTAA2koqW0"
+         style="display:inline-block;background:var(--pro-ink);color:var(--pro-bg);font-weight:700;padding:10px 22px;border-radius:9px;text-decoration:none">
+        Jetzt kaufen – 39 € einmalig</a>
+      <span style="font-size:.82rem">Sofort-Download (ZIP) · Zahlung &amp; Rechnung über Polar ·
+      <a href="batch-pro.html" style="color:inherit;font-weight:700">alle Details &amp; Screenshots →</a></span>
+    </div>
+  </div>
+
+  <section class="content">
+    <h2>Häufige Fragen</h2>
+    <details class="faq"><summary>Ist die erstellte Datei eine „richtige" XRechnung?</summary><p>Ja. Die Datei entspricht dem Standard XRechnung 3.0 (EN 16931, UBL-Syntax). Der zugrunde liegende Generator wird in unserer Testsuite gegen den offiziellen KoSIT-Validator geprüft. Wichtig bleibt: Die inhaltliche Richtigkeit Ihrer Angaben (Beträge, Steuersätze) liegt bei Ihnen.</p></details>
+    <details class="faq"><summary>Was ist die Leitweg-ID und was trage ich als Firma ein?</summary><p>Die Leitweg-ID identifiziert Behörden als Rechnungsempfänger – Sie bekommen sie vom Auftraggeber. Bei Rechnungen an Unternehmen ist das Feld trotzdem Pflicht (Käufer-Referenz): Tragen Sie z. B. Ihre Kundennummer, ein Bestellzeichen oder die E-Mail des Empfängers ein.</p></details>
+    <details class="faq"><summary>Ich bin Kleinunternehmer – muss ich überhaupt E-Rechnungen schreiben?</summary><p>Nein, Kleinunternehmer nach § 19 UStG sind vom Ausstellen dauerhaft befreit (§ 34a UStDV) – empfangen können müssen Sie E-Rechnungen aber. Viele Auftraggeber (v. a. Behörden und größere Firmen) wünschen trotzdem eine XRechnung: Mit dem Kleinunternehmer-Modus oben erstellen Sie eine korrekte Rechnung ohne Umsatzsteuer samt Pflichthinweis.</p></details>
+    <details class="faq"><summary>Wo landen meine Daten?</summary><p>Nirgends. Die Rechnung wird komplett in Ihrem Browser erzeugt; nichts wird hochgeladen. Wenn Sie das Häkchen „lokal merken" setzen, speichert Ihr Browser Ihre Absenderdaten auf Ihrem Gerät (localStorage) – löschbar jederzeit über das Häkchen oder Ihre Browserdaten.</p></details>
+    <details class="faq"><summary>XRechnung oder ZUGFeRD-PDF – was soll ich nehmen?</summary><p>Beides ist hier kostenlos: <strong>XRechnung (XML)</strong> ist der Standard für Behörden und E-Rechnungs-Systeme. <strong>ZUGFeRD</strong> ist ein normales, ansehnliches PDF mit denselben Daten unsichtbar eingebettet – ideal, wenn der Empfänger „eine normale Rechnung" erwartet, sie aber trotzdem maschinell verarbeiten können soll. Die erzeugten PDFs sind PDF/A-3-konform (Profil EN 16931) und werden in unserer Testsuite mit der Referenzimplementierung Mustang validiert.</p></details>
+  </section>
+
+  <p style="font-size:.85rem;color:var(--ink-soft)">Hinweis: Dieses Tool ersetzt keine Steuer- oder Rechtsberatung.
+  Prüfen Sie erzeugte Rechnungen vor dem Versand. <a href="index.html">Zur Ansicht/Prüfung geht's hier</a>.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Rechnung Viewer</span>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+  </div>
+</footer>
+
+<script type="module">
+import { generateUblInvoice, validateInvoiceInput, computeTotals } from './ubl-generator.mjs';
+import { generateZugferdPdf } from './zugferd-pdf.mjs';
+
+const $ = (id) => document.getElementById(id);
+const linesBody = $('lines');
+const UNITS = [['C62','Stück'],['HUR','Stunde'],['DAY','Tag'],['MON','Monat'],['LS','pauschal'],['KGM','kg'],['MTR','m'],['MTK','m²'],['LTR','Liter'],['KMT','km'],['SET','Set']];
+const fmt = (n) => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n||0);
+const num = (v) => { const n = Number(String(v).replace(',', '.')); return Number.isFinite(n) ? n : NaN; };
+
+function addLine(data = {}) {
+  const tr = document.createElement('tr');
+  const unitOpts = UNITS.map(([c,l]) => `<option value="${c}"${c===(data.unit||'C62')?' selected':''}>${l}</option>`).join('');
+  tr.innerHTML = `
+    <td><input class="l_name" value=""></td>
+    <td><input class="l_qty num" inputmode="decimal" value="${data.quantity ?? 1}"></td>
+    <td><select class="l_unit">${unitOpts}</select></td>
+    <td><input class="l_price num" inputmode="decimal" value="${data.unitPrice ?? ''}"></td>
+    <td class="vatcol"><input class="l_vat num" inputmode="decimal" value="${data.vatRate ?? 19}"></td>
+    <td class="num l_total">–</td>
+    <td><button type="button" class="rowdel" title="Position entfernen">✕</button></td>`;
+  tr.querySelector('.l_name').value = data.name || '';
+  tr.querySelector('.rowdel').onclick = () => { if (linesBody.children.length > 1) { tr.remove(); recalc(); } };
+  tr.querySelectorAll('input,select').forEach((el) => el.addEventListener('input', recalc));
+  linesBody.append(tr);
+  applyKleinVisibility();
+}
+
+function readLines() {
+  return [...linesBody.querySelectorAll('tr')].map((tr) => ({
+    name: tr.querySelector('.l_name').value.trim(),
+    quantity: num(tr.querySelector('.l_qty').value),
+    unit: tr.querySelector('.l_unit').value,
+    unitPrice: num(tr.querySelector('.l_price').value),
+    vatRate: num(tr.querySelector('.l_vat').value),
+  }));
+}
+
+function readInvoice() {
+  const klein = $('klein').checked;
+  return {
+    number: $('rnum').value.trim(),
+    issueDate: $('rdate').value,
+    dueDate: $('ddate').value || undefined,
+    buyerReference: $('leitweg').value.trim(),
+    note: $('note').value.trim() || undefined,
+    paymentTerms: $('terms').value.trim() || undefined,
+    taxCategory: klein ? 'E' : 'S',
+    exemptionReason: klein ? ($('exempt').value.trim() || 'Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.') : undefined,
+    seller: {
+      name: $('s_name').value.trim(), contactName: $('s_contact').value.trim(),
+      street: $('s_street').value.trim(), postcode: $('s_plz').value.trim(), city: $('s_city').value.trim(),
+      email: $('s_email').value.trim(), phone: $('s_phone').value.trim(),
+      vatId: $('s_vat').value.trim() || undefined, taxNumber: $('s_tax').value.trim() || undefined,
+    },
+    buyer: {
+      name: $('b_name').value.trim(), street: $('b_street').value.trim(),
+      postcode: $('b_plz').value.trim(), city: $('b_city').value.trim(),
+      email: $('b_email').value.trim() || undefined,
+    },
+    iban: $('iban').value.trim() || undefined, bic: $('bic').value.trim() || undefined,
+    accountName: $('accname').value.trim() || undefined,
+    paymentReference: $('payref').value.trim() || undefined,
+    lines: readLines(),
+  };
+}
+
+function recalc() {
+  const klein = $('klein').checked;
+  let net = 0, vat = 0;
+  for (const tr of linesBody.querySelectorAll('tr')) {
+    const q = num(tr.querySelector('.l_qty').value), p = num(tr.querySelector('.l_price').value);
+    const lt = (Number.isFinite(q) && Number.isFinite(p)) ? Math.round(q * p * 100) / 100 : 0;
+    tr.querySelector('.l_total').textContent = lt ? fmt(lt) : '–';
+    net += lt;
+    if (!klein) {
+      const r = num(tr.querySelector('.l_vat').value);
+      if (Number.isFinite(r)) vat += Math.round(lt * r) / 100;
+    }
+  }
+  net = Math.round(net * 100) / 100; vat = Math.round(vat * 100) / 100;
+  $('sum_net').textContent = fmt(net);
+  $('sum_vat').textContent = fmt(vat);
+  $('sum_gross').textContent = fmt(Math.round((net + vat) * 100) / 100);
+}
+
+function applyKleinVisibility() {
+  const klein = $('klein').checked;
+  document.querySelectorAll('.vatcol').forEach((el) => { el.style.display = klein ? 'none' : ''; });
+  $('exemptwrap').style.display = klein ? '' : 'none';
+  $('sum_vat_wrap').style.display = klein ? 'none' : '';
+}
+$('klein').addEventListener('change', () => { applyKleinVisibility(); recalc(); });
+
+// Absenderdaten lokal merken (nur auf diesem Gerät)
+const STORE_KEY = 'erv-absender-v1';
+const STORE_FIELDS = ['s_name','s_contact','s_street','s_plz','s_city','s_email','s_phone','s_vat','s_tax','iban','bic','accname','terms'];
+function saveSender() {
+  try {
+    if (!$('remember').checked) { localStorage.removeItem(STORE_KEY); return; }
+    const data = Object.fromEntries(STORE_FIELDS.map((id) => [id, $(id).value]));
+    data._klein = $('klein').checked;
+    localStorage.setItem(STORE_KEY, JSON.stringify(data));
+  } catch { /* privater Modus o. ä. – Komfortfunktion einfach aus */ }
+}
+function loadSender() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    for (const id of STORE_FIELDS) if (data[id] != null) $(id).value = data[id];
+    if (data._klein) $('klein').checked = true;
+  } catch { /* ignorieren */ }
+}
+$('remember').addEventListener('change', saveSender);
+
+// Erstellen (XML sofort; ZUGFeRD lädt PDF-Bausteine einmalig lokal nach)
+async function ensureZfAssets() {
+  if (window.__zf) return window.__zf;
+  const loadScript = (src) => new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = () => rej(new Error('Baustein konnte nicht geladen werden: ' + src));
+    document.head.append(s);
+  });
+  await loadScript('vendor/pdf-lib.min.js');
+  await loadScript('vendor/fontkit.umd.min.js');
+  const bin = async (u) => { const r = await fetch(u); if (!r.ok) throw new Error('Asset fehlt: ' + u); return new Uint8Array(await r.arrayBuffer()); };
+  const [fontRegular, fontBold, icc] = await Promise.all([
+    bin('assets/DejaVuSans.ttf'), bin('assets/DejaVuSans-Bold.ttf'), bin('assets/sRGB.icc'),
+  ]);
+  window.__zf = { PDFLib: window.PDFLib, fontkit: window.fontkit, fontRegular, fontBold, icc };
+  return window.__zf;
+}
+
+function download(bytesOrString, filename, mime) {
+  const blob = new Blob([bytesOrString], { type: mime });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+
+async function doGenerate(kind) {
+  const errbox = $('errbox'), okbox = $('okbox');
+  errbox.classList.remove('show'); okbox.classList.remove('show');
+  const inv = readInvoice();
+  const errs = validateInvoiceInput(inv);
+  if (errs.length) {
+    errbox.innerHTML = '<strong>Bitte noch vervollständigen:</strong><ul>' +
+      errs.map((e) => `<li>${e.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</li>`).join('') + '</ul>';
+    errbox.classList.add('show');
+    errbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  saveSender();
+  const t = computeTotals(inv);
+  const safeName = inv.number.replace(/[^A-Za-z0-9._-]+/g, '_');
+  let filename;
+  if (kind === 'zugferd') {
+    const btn = $('generatezf');
+    const old = btn.textContent;
+    btn.disabled = true; btn.textContent = 'PDF wird erstellt …';
+    try {
+      const assets = await ensureZfAssets();
+      const pdfBytes = await generateZugferdPdf(inv, assets);
+      filename = `zugferd_${safeName}.pdf`;
+      download(pdfBytes, filename, 'application/pdf');
+    } catch (e) {
+      errbox.textContent = '⚠ ' + (e && e.message ? e.message : 'PDF-Erstellung fehlgeschlagen.');
+      errbox.classList.add('show');
+      return;
+    } finally {
+      btn.disabled = false; btn.textContent = old;
+    }
+  } else {
+    filename = `xrechnung_${safeName}.xml`;
+    download(generateUblInvoice(inv), filename, 'application/xml');
+  }
+  okbox.innerHTML = `✓ <strong>${filename}</strong> wurde erstellt (Zahlbetrag ${fmt(t.payable)}). ` +
+    `Sie können die Datei jetzt per E-Mail versenden – oder <a href="index.html">hier zur Kontrolle öffnen</a>.`;
+  okbox.classList.add('show');
+}
+$('generate').onclick = () => doGenerate('xml');
+$('generatezf').onclick = () => doGenerate('zugferd');
+
+// Init
+addLine();
+loadSender();
+const today = new Date();
+$('rdate').value = today.toISOString().slice(0, 10);
+applyKleinVisibility();
+recalc();
+document.querySelectorAll('#form input, #form select').forEach((el) => el.addEventListener('input', recalc));
+$('addline').onclick = () => addLine();
+</script>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

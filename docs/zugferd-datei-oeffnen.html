@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUGFeRD-Datei öffnen &amp; prüfen – kostenlos im Browser (ohne Upload)</title>
+<meta name="description" content="ZUGFeRD-Rechnung öffnen und die eingebetteten XML-Daten anzeigen – kostenlos, direkt im Browser, ohne Upload. Erklärt, warum das XML zählt und wie Sie Abweichungen zum PDF-Bild erkennen.">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/zugferd-datei-oeffnen.html">
+<meta property="og:title" content="ZUGFeRD-Datei öffnen – kostenlos im Browser">
+<meta property="og:type" content="article">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie öffne ich eine ZUGFeRD-Datei?","acceptedAnswer":{"@type":"Answer","text":"Eine ZUGFeRD-Rechnung ist ein normales PDF mit eingebettetem Rechnungs-XML. Das PDF können Sie mit jedem PDF-Programm ansehen – die eigentlichen Rechnungsdaten (das XML) zeigt der E-Rechnung Viewer im Browser an: Datei hineinziehen, fertig. Ohne Upload, ohne Registrierung."}},
+{"@type":"Question","name":"Warum sollte ich das eingebettete XML anschauen?","acceptedAnswer":{"@type":"Answer","text":"Weil Buchhaltungssoftware und Finanzverwaltung den XML-Datensatz verarbeiten, nicht das PDF-Bild. Bei Profilen ab EN 16931 ist das XML der maßgebliche Rechnungsinhalt. Weichen PDF-Optik und XML voneinander ab, zahlen Sie im Zweifel nach den falschen Daten – der Viewer macht das XML sichtbar."}},
+{"@type":"Question","name":"Was ist der Unterschied zwischen ZUGFeRD und Factur-X?","acceptedAnswer":{"@type":"Answer","text":"Technisch dasselbe hybride Format: ZUGFeRD ist der deutsche, Factur-X der französisch-internationale Name. Ab ZUGFeRD 2.x sind beide identisch aufgebaut (eingebettete Datei factur-x.xml)."}}
+]}
+</script>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#1a2332;--ink-soft:#5a6577;--line:#e3e7ee;--accent:#1d5fbf;--accent-ink:#fff;--ok:#1d7a4f;--badge-bg:#e7f2ea;--badge-ink:#1d7a4f;--warn-bg:#fdf3e3;--warn-ink:#7a5a1d}
+@media (prefers-color-scheme: dark){:root{--bg:#12161d;--surface:#1a2029;--ink:#e8ecf2;--ink-soft:#9aa5b5;--line:#2b3442;--accent:#5a95e8;--accent-ink:#0e1420;--ok:#5cc48f;--badge-bg:#1c2f24;--badge-ink:#5cc48f;--warn-bg:#2e2617;--warn-ink:#e0c070}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:980px}
+.logo{font-weight:700}.logo a{color:inherit;text-decoration:none}.logo span{color:var(--accent)}
+.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px}
+main{padding:34px 0 20px}
+h1{font-size:clamp(1.45rem,3.4vw,1.95rem);line-height:1.25;margin:0 0 12px}
+h2{font-size:1.2rem;margin:30px 0 8px}
+p{margin:10px 0}
+.lead{color:var(--ink-soft);font-size:1.05rem}
+.steps{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 20px;margin:18px 0}
+.steps ol{margin:12px 0;padding-left:22px}
+.steps li{margin:10px 0}
+.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:12px 26px;border-radius:10px;text-decoration:none;margin:8px 0}
+.notice{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 16px;font-size:.92rem;margin:16px 0}
+a{color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:46px;padding:20px 0 32px;color:var(--ink-soft);font-size:.85rem}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><a href="index.html">E-Rechnung <span>Viewer</span></a></div>
+    <span class="badge">100 % lokal – ohne Upload</span>
+  </div>
+</header>
+<main class="wrap">
+  <h1>ZUGFeRD-Datei öffnen: das steckt wirklich in der Rechnung</h1>
+  <p class="lead">Eine <strong>ZUGFeRD-Rechnung</strong> (auch <strong>Factur-X</strong>) sieht aus wie ein
+  normales PDF – aber die eigentliche Rechnung steckt als <strong>XML-Datensatz im PDF</strong>. Genau den
+  liest Ihre Buchhaltungssoftware. Hier sehen Sie in Sekunden, was wirklich drinsteht.</p>
+
+  <div class="steps">
+    <ol>
+      <li><strong><a href="index.html">E-Rechnung Viewer öffnen</a></strong> (kostenlos, ohne Registrierung)</li>
+      <li>ZUGFeRD-PDF hineinziehen – der Viewer extrahiert das eingebettete XML (z.&nbsp;B. <code>factur-x.xml</code>) und zeigt die Daten als übersichtliche Rechnung</li>
+      <li>Beträge, IBAN, Fälligkeit und USt prüfen – bei Bedarf über den Druckdialog als PDF der Datenansicht sichern</li>
+    </ol>
+  </div>
+  <p style="text-align:center"><a class="cta" href="index.html">→ ZUGFeRD-Datei jetzt öffnen</a></p>
+  <p style="text-align:center;font-size:.88rem;color:var(--ok);font-weight:600">✓ Verarbeitung komplett auf Ihrem Gerät – kein Upload auf fremde Server</p>
+
+  <h2>Warum das XML zählt – nicht das PDF-Bild</h2>
+  <p>Bei ZUGFeRD-Profilen ab EN&nbsp;16931 ist der strukturierte XML-Teil der maßgebliche Rechnungsinhalt.
+  Automatische Verarbeitung, Prüfung und Archivierung laufen über diese Daten. Enthält das XML eine andere
+  IBAN oder andere Beträge als das PDF-Bild (Fehler oder Manipulation), fällt das nur auf, wenn man das
+  XML sichtbar macht. Der Viewer weist zusätzlich auf fehlende Pflichtangaben und unstimmige Summen hin.</p>
+
+  <div class="notice"><strong>Aufbewahrung:</strong> Bewahren Sie die Original-PDF-Datei unverändert
+  elektronisch auf (GoBD) – sie enthält das maßgebliche XML.</div>
+
+  <h2>ZUGFeRD, Factur-X, XRechnung – kurz sortiert</h2>
+  <p><strong>ZUGFeRD/Factur-X</strong>: PDF mit eingebettetem XML (hybrid). <strong>XRechnung</strong>: reine
+  XML-Datei, Standard für Rechnungen an deutsche Behörden. Beide erfüllen die
+  <a href="e-rechnung-pflicht-2027-2028.html">E-Rechnungspflicht</a>; beide liest der
+  <a href="index.html">Viewer</a>. Reine XML-Rechnungen lassen sich
+  <a href="xml-rechnung-in-pdf-umwandeln.html">hier in ein lesbares PDF umwandeln</a>.</p>
+
+  <h2>Selbst ZUGFeRD-Rechnungen schreiben?</h2>
+  <p>Einzelne Rechnungen erstellen Sie <a href="erstellen.html">kostenlos per Formular</a> — wahlweise als
+  XRechnung-XML oder direkt als <strong>ZUGFeRD-PDF</strong> (PDF/A-3, EN 16931). Viele auf einmal aus
+  Excel erzeugt <a href="batch-pro.html">XRechnung Batch Pro</a> (offline, 39&nbsp;€ einmalig).</p>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Rechnung Viewer</span>
+    <a href="index.html">Viewer</a>
+    <a href="erstellen.html">XRechnung erstellen</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-Rechnung im Verein: Was Kassenwarte jetzt wissen müssen (2026)</title>
+<meta name="description" content="Vereine mit wirtschaftlichem Geschäftsbetrieb müssen seit 2025 E-Rechnungen empfangen können. Was das für Kassenwarte bedeutet, wie man XML-Rechnungen kostenlos liest und bei Bedarf selbst XRechnungen erstellt.">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/e-rechnung-verein.html">
+<meta property="og:title" content="E-Rechnung im Verein – Pflichten &amp; kostenlose Werkzeuge">
+<meta property="og:type" content="article">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Müssen Vereine E-Rechnungen empfangen können?","acceptedAnswer":{"@type":"Answer","text":"Ja, sobald der Verein unternehmerisch tätig ist – etwa mit Vereinsheim-Bewirtung, Sponsoring, Trikotverkauf oder Eintrittsgeldern (wirtschaftlicher Geschäftsbetrieb). Dann gilt seit dem 1. Januar 2025 die Empfangspflicht wie für jedes Unternehmen: E-Mail-Postfach genügt, die Dateien sind elektronisch aufzubewahren."}},
+{"@type":"Question","name":"Muss unser Verein selbst E-Rechnungen ausstellen?","acceptedAnswer":{"@type":"Answer","text":"Oft nicht: Viele Vereine fallen unter die Kleinunternehmerregelung (§ 19 UStG) und sind damit dauerhaft vom Ausstellen befreit. Verlangt ein Sponsor oder eine Kommune trotzdem eine XRechnung (z. B. für Zuschüsse oder Sponsoring-Rechnungen), lässt sie sich kostenlos im Browser erstellen – inklusive Kleinunternehmer-Hinweis."}},
+{"@type":"Question","name":"Wie liest der Kassenwart eine XML-Rechnung?","acceptedAnswer":{"@type":"Answer","text":"Mit dem kostenlosen E-Rechnung Viewer: Datei in den Browser ziehen, die Rechnung erscheint lesbar mit Beträgen, IBAN und Fälligkeit. Es wird nichts hochgeladen – wichtig für Vereinsdaten. Für den Kassenbericht kann die Ansicht als PDF gedruckt werden; das XML-Original wird archiviert."}}
+]}
+</script>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#1a2332;--ink-soft:#5a6577;--line:#e3e7ee;--accent:#1d5fbf;--accent-ink:#fff;--ok:#1d7a4f;--badge-bg:#e7f2ea;--badge-ink:#1d7a4f;--warn-bg:#fdf3e3;--warn-ink:#7a5a1d}
+@media (prefers-color-scheme: dark){:root{--bg:#12161d;--surface:#1a2029;--ink:#e8ecf2;--ink-soft:#9aa5b5;--line:#2b3442;--accent:#5a95e8;--accent-ink:#0e1420;--ok:#5cc48f;--badge-bg:#1c2f24;--badge-ink:#5cc48f;--warn-bg:#2e2617;--warn-ink:#e0c070}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:980px}
+.logo{font-weight:700}.logo a{color:inherit;text-decoration:none}.logo span{color:var(--accent)}
+.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px}
+main{padding:34px 0 20px}
+h1{font-size:clamp(1.45rem,3.4vw,1.95rem);line-height:1.25;margin:0 0 12px}
+h2{font-size:1.2rem;margin:30px 0 8px}
+p,li{margin:10px 0}
+.lead{color:var(--ink-soft);font-size:1.05rem}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 20px;margin:18px 0}
+.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:11px 24px;border-radius:10px;text-decoration:none;margin:6px 8px 6px 0}
+a{color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:46px;padding:20px 0 32px;color:var(--ink-soft);font-size:.85rem}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><a href="index.html">E-Rechnung <span>Viewer</span></a></div>
+    <span class="badge">Ratgeber Verein</span>
+  </div>
+</header>
+<main class="wrap">
+  <h1>E-Rechnung im Verein: der 5-Minuten-Überblick für Kassenwarte</h1>
+  <p class="lead">Vereinsheim-Bewirtung, Sponsoring, Trikotverkauf? Dann hat Ihr Verein einen
+  <strong>wirtschaftlichen Geschäftsbetrieb</strong> — und damit gilt seit 01.01.2025 die
+  E-Rechnungs-Empfangspflicht. Klingt nach Bürokratie, ist mit den richtigen (kostenlosen) Werkzeugen
+  aber in Minuten erledigt.</p>
+
+  <div class="box">
+    <p><strong>Empfangen (Pflicht):</strong> Rechnungen von Getränkelieferanten, Druckereien oder
+    Handwerkern kommen zunehmend als XML/ZUGFeRD. Ein E-Mail-Postfach genügt; die Original-Dateien
+    werden elektronisch archiviert (GoBD) — ein Ausdruck im Ordner reicht nicht.</p>
+    <p><strong>Ausstellen (meist freiwillig):</strong> Viele Vereine sind Kleinunternehmer (§ 19 UStG)
+    und dauerhaft vom Ausstellen befreit. Für Sponsoring-Rechnungen an Firmen oder Zuschuss-Abrechnungen
+    mit Kommunen wird trotzdem oft eine XRechnung gewünscht — die gibt es hier kostenlos.</p>
+  </div>
+
+  <h2>Werkzeugkasten für die Vereinskasse (alles kostenlos, ohne Registrierung)</h2>
+  <p><strong>1. Erhaltene E-Rechnung lesen:</strong> Datei in den Viewer ziehen — Beträge, IBAN,
+  Fälligkeit sofort sichtbar. Läuft komplett im Browser, Vereinsdaten bleiben auf dem Vereinsrechner.
+  Für den Kassenbericht als <a href="xml-rechnung-in-pdf-umwandeln.html">PDF drucken</a>.</p>
+  <p><a class="cta" href="index.html">E-Rechnung öffnen</a></p>
+  <p><strong>2. Sponsoring-/Zuschuss-Rechnung als XRechnung erstellen:</strong> Formular ausfüllen
+  (mit Kleinunternehmer-Modus), als XML oder ansehnliches ZUGFeRD-PDF herunterladen. Die Leitweg-ID
+  der Kommune gehört ins Feld „Käufer-Referenz".</p>
+  <p><a class="cta" href="erstellen.html">XRechnung für den Verein erstellen</a></p>
+
+  <h2>Viele Rechnungen (Mitgliedsbeiträge, Sponsoren)?</h2>
+  <p><a href="batch-pro.html">XRechnung Batch Pro</a> erstellt aus einer Excel-Liste beliebig viele
+  Rechnungen auf einmal — offline, 39 € einmalig aus der Vereinskasse, kein Abo.</p>
+
+  <p style="font-size:.85rem;color:var(--ink-soft)">Stand 2026, ohne Gewähr. Ob Ihr Verein im Einzelfall
+  betroffen ist (ideeller Bereich vs. wirtschaftlicher Geschäftsbetrieb), klärt die Steuerberatung.</p>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Rechnung Viewer</span>
+    <a href="index.html">Viewer</a>
+    <a href="erstellen.html">XRechnung erstellen</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

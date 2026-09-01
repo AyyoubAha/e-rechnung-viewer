@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XRechnung &amp; ZUGFeRD aus Excel erstellen – Batch Pro: viele Rechnungen auf einmal (offline)</title>
+<meta name="description" content="XRechnungen und ZUGFeRD-PDFs im Stapel direkt aus einer Excel-Tabelle erstellen: Vorlage ausfüllen, App öffnen, ZIP herunterladen. Offline, ohne Abo, ohne Cloud – 39 € einmalig. KoSIT-/Mustang-getestet.">
+<link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/batch-pro.html">
+<meta property="og:title" content="XRechnung Batch Pro – Excel zu XRechnung, offline">
+<meta property="og:description" content="Viele XRechnungen auf einmal aus Excel. Offline, ohne Abo. 39 € einmalig.">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://ayyoubaha.github.io/e-rechnung-viewer/batch-pro.html">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XRechnung Batch Pro","applicationCategory":"BusinessApplication","operatingSystem":"Windows, macOS, Linux (Browser, offline)","offers":{"@type":"Offer","price":"39.00","priceCurrency":"EUR","url":"https://buy.polar.sh/polar_cl_qEeLe1lpkVM3aD0yL3wSXEp8B2E0nU9ssTTAA2koqW0","availability":"https://schema.org/InStock"},"description":"Erstellt XRechnungen (XRechnung 3.0, EN 16931) im Stapel aus einer Excel-Vorlage. Läuft komplett offline im Browser, Einmalkauf ohne Abo.","inLanguage":"de"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie erstelle ich XRechnungen aus Excel?","acceptedAnswer":{"@type":"Answer","text":"Mit XRechnung Batch Pro: Die mitgelieferte Excel-Vorlage ausfüllen (Absenderdaten einmalig, eine Zeile pro Rechnungsposition), die Offline-App im Browser öffnen, Datei hineinziehen – alle XRechnungen kommen als ZIP heraus, inklusive druckbarem Prüfbericht."}},
+{"@type":"Question","name":"Ist das ein Abo?","acceptedAnswer":{"@type":"Answer","text":"Nein. 39 € einmalig, keine laufenden Kosten. Die App gehört Ihnen als Datei und funktioniert dauerhaft offline."}},
+{"@type":"Question","name":"Sind die erzeugten Rechnungen gültige XRechnungen?","acceptedAnswer":{"@type":"Answer","text":"Die App erzeugt XRechnung 3.0 (EN 16931, UBL-Syntax). Der zugrunde liegende Generator wird in der Testsuite gegen den offiziellen KoSIT-Validator geprüft – derselbe Generator treibt auch den kostenlosen Einzel-Generator dieser Website an."}},
+{"@type":"Question","name":"Funktioniert es für Kleinunternehmer nach § 19 UStG?","acceptedAnswer":{"@type":"Answer","text":"Ja. Im Blatt „Absender" der Vorlage einfach Kleinunternehmer auf „ja" setzen – alle Rechnungen werden ohne Umsatzsteuer und mit dem Pflichthinweis erstellt."}},
+{"@type":"Question","name":"Wohin werden meine Rechnungsdaten übertragen?","acceptedAnswer":{"@type":"Answer","text":"Nirgendwohin. Die App verarbeitet alles lokal auf Ihrem Gerät und funktioniert auch komplett ohne Internetverbindung. Keine Cloud, keine Registrierung."}},
+{"@type":"Question","name":"Läuft die App auf dem Mac?","acceptedAnswer":{"@type":"Answer","text":"Ja – auf Windows, macOS und Linux. Es ist eine einzelne HTML-Datei, die per Doppelklick in jedem modernen Browser läuft. Keine Installation nötig."}}
+]}
+</script>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#1a2332;--ink-soft:#5a6577;--line:#e3e7ee;--accent:#1d5fbf;--accent-ink:#fff;--ok:#1d7a4f;--badge-bg:#e7f2ea;--badge-ink:#1d7a4f;--pro:#5b3fa8;--probg:#f0ecfb}
+@media (prefers-color-scheme: dark){:root{--bg:#12161d;--surface:#1a2029;--ink:#e8ecf2;--ink-soft:#9aa5b5;--line:#2b3442;--accent:#5a95e8;--accent-ink:#0e1420;--ok:#5cc48f;--badge-bg:#1c2f24;--badge-ink:#5cc48f;--pro:#b39ce8;--probg:#251d38}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:980px}
+.logo{font-weight:700}.logo a{color:inherit;text-decoration:none}.logo span{color:var(--accent)}
+.badge{background:var(--probg);color:var(--pro);font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px}
+main{padding:36px 0 20px}
+h1{font-size:clamp(1.5rem,3.6vw,2.05rem);line-height:1.22;margin:0 0 12px}
+h2{font-size:1.25rem;margin:34px 0 10px}
+p{margin:10px 0}
+.lead{color:var(--ink-soft);font-size:1.07rem;max-width:46em}
+.buy{display:inline-block;background:var(--pro);color:#fff;font-weight:700;font-size:1.05rem;padding:14px 30px;border-radius:11px;text-decoration:none}
+.buy:hover{filter:brightness(1.08)}
+.buyrow{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0 8px}
+.buyrow .sub{font-size:.85rem;color:var(--ink-soft)}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 6px}
+.trust span{background:var(--badge-bg);color:var(--badge-ink);font-size:.8rem;font-weight:600;padding:4px 12px;border-radius:99px}
+.shot{width:100%;max-width:860px;border:1px solid var(--line);border-radius:14px;margin:26px 0 6px;box-shadow:0 2px 14px rgba(10,20,40,.08)}
+.shotcap{font-size:.82rem;color:var(--ink-soft);text-align:center;margin:0 0 10px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.step .n{background:var(--pro);color:#fff;border-radius:99px;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;margin-bottom:8px}
+.step h3{margin:0 0 6px;font-size:1rem}
+.step p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+.tablewrap{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.93rem}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{background:var(--bg);font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
+td.c{text-align:center}
+details.faq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin:8px 0}
+details.faq summary{font-weight:600;padding:11px 0;cursor:pointer}
+details.faq p{color:var(--ink-soft);margin:0 0 13px}
+a{color:var(--accent)}
+.finalcta{background:var(--probg);border-radius:14px;padding:26px;text-align:center;margin:36px 0}
+.finalcta h2{margin:0 0 8px}
+footer{border-top:1px solid var(--line);margin-top:46px;padding:20px 0 32px;color:var(--ink-soft);font-size:.85rem}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><a href="index.html">E-Rechnung <span>Viewer</span></a></div>
+    <span class="badge">XRechnung Batch Pro</span>
+  </div>
+</header>
+<main class="wrap">
+  <h1>XRechnungen &amp; ZUGFeRD-PDFs aus Excel – alle auf einmal, komplett offline</h1>
+  <p class="lead">Sie schreiben Ihre Rechnungen in Excel? Dann sind Sie 3 Minuten von fertigen
+  E-Rechnungen entfernt: <strong>Vorlage ausfüllen → App öffnen → ZIP mit allen Rechnungen
+  herunterladen</strong> – wahlweise als XRechnung (XML), als ansehnliches ZUGFeRD-PDF oder beides.
+  Kein Abo-Programm, keine Cloud, keine Umgewöhnung.</p>
+
+  <div class="buyrow">
+    <a class="buy" href="https://buy.polar.sh/polar_cl_qEeLe1lpkVM3aD0yL3wSXEp8B2E0nU9ssTTAA2koqW0">Jetzt kaufen – 39 € einmalig</a>
+    <span class="sub">Sofort-Download (ZIP) · Zahlung, Rechnung &amp; EU-USt über Polar · Einführungspreis</span>
+  </div>
+  <div class="trust">
+    <span>✓ XRechnung + ZUGFeRD-PDF (neu in v1.1)</span>
+    <span>✓ KoSIT- &amp; Mustang-getestet</span>
+    <span>✓ 100 % offline – Daten bleiben bei Ihnen</span>
+    <span>✓ Einmalkauf, kein Abo</span>
+    <span>✓ Windows · macOS · Linux</span>
+    <span>✓ Kleinunternehmer-Modus (§ 19)</span>
+  </div>
+
+  <img class="shot" src="assets/batch-pro-screenshot.png" width="1100" height="836" alt="XRechnung Batch Pro: Excel-Vorlage wurde eingelesen, zwei Rechnungen fehlerfrei erkannt, bereit für ZIP-Download" loading="lazy">
+  <p class="shotcap">Die App nach dem Einlesen einer Excel-Vorlage: Rechnungen geprüft, Summen berechnet, bereit als ZIP.</p>
+
+  <h2>So funktioniert es</h2>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Excel-Vorlage ausfüllen</h3><p>Mitgelieferte Vorlage: Absenderdaten einmalig im Blatt „Absender", dann eine Zeile pro Rechnungsposition. Mehrere Positionen = gleiche Rechnungsnummer. Mit Beispielen und Anleitung.</p></div>
+    <div class="step"><span class="n">2</span><h3>In die App ziehen</h3><p>XRechnung-Batch-Pro.html per Doppelklick öffnen (läuft im Browser, auch ohne Internet), Excel-Datei hineinziehen. Die App prüft jede Rechnung und zeigt Fehler mit Excel-Zeilennummer.</p></div>
+    <div class="step"><span class="n">3</span><h3>Format wählen &amp; ZIP laden</h3><p>XRechnung 3.0 (XML), ZUGFeRD-PDF (PDF/A-3 mit eingebetteten Daten) oder beides – plus druckbarer Prüfbericht mit Summenübersicht für Ihre Ablage.</p></div>
+  </div>
+
+  <h2>Kostenlos vs. Batch Pro</h2>
+  <div class="tablewrap">
+  <table>
+    <tr><th></th><th>Kostenloser <a href="erstellen.html">Einzel-Generator</a></th><th>Batch Pro (39 €)</th></tr>
+    <tr><td>XRechnung 3.0 erstellen (KoSIT-getesteter Generator)</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td>Kleinunternehmer-Modus, gemischte USt-Sätze</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td>ZUGFeRD-PDF erzeugen (PDF/A-3, Mustang-validiert)</td><td class="c">✓ einzeln</td><td class="c"><strong>✓ im Stapel</strong></td></tr>
+    <tr><td>Rechnungen pro Durchlauf</td><td class="c">1 (Formular)</td><td class="c"><strong>unbegrenzt aus Excel</strong></td></tr>
+    <tr><td>Excel-Vorlage mit Anleitung</td><td class="c">–</td><td class="c">✓</td></tr>
+    <tr><td>Prüfbericht (druckbar/PDF)</td><td class="c">–</td><td class="c">✓</td></tr>
+    <tr><td>Funktioniert komplett offline</td><td class="c">nach 1. Laden</td><td class="c">✓ (eigene Datei)</td></tr>
+    <tr><td>Preis</td><td class="c">0 €</td><td class="c">39 € einmalig</td></tr>
+  </table>
+  </div>
+
+  <h2>Für wen ist das?</h2>
+  <p>Für Selbstständige, kleine Betriebe, Vereine und Buchhaltungs-Zuarbeit, die regelmäßig mehrere
+  Rechnungen schreiben und <strong>kein monatliches Abo-Programm</strong> dafür wollen. Vergleichbare
+  Excel-Add-ins kosten 120–400 €; Cloud-Lösungen 10–30 € <em>pro Monat</em>. Ab 2027/2028 wird die
+  XRechnung im B2B schrittweise Pflicht — <a href="e-rechnung-pflicht-2027-2028.html">hier der Zeitplan</a>.</p>
+
+  <h2>Häufige Fragen</h2>
+  <details class="faq"><summary>Bekomme ich Updates?</summary><p>Ja. Käufer laden über ihren Kaufzugang jederzeit die aktuelle Version herunter — die ZUGFeRD-PDF-Ausgabe kam so bereits als kostenloses Update in v1.1 dazu.</p></details>
+  <details class="faq"><summary>Kann ich vorher testen, ob mir der Ansatz liegt?</summary><p>Ja – der <a href="erstellen.html">kostenlose Einzel-Generator</a> nutzt denselben Generator und zeigt Ihnen das Ergebnisformat. Wenn Ihnen der gefällt, ist Batch Pro derselbe Ablauf in Serie.</p></details>
+  <details class="faq"><summary>Was brauche ich dafür?</summary><p>Nur Excel (oder LibreOffice) und einen modernen Browser. Keine Installation, keine Admin-Rechte, kein Konto.</p></details>
+  <details class="faq"><summary>Wie läuft der Kauf ab?</summary><p>Über Polar (Merchant of Record): Karte oder weitere Zahlarten, Rechnung inklusive, EU-Umsatzsteuer wird korrekt abgewickelt. Direkt nach dem Kauf erhalten Sie den Download-Link (ZIP mit App, Excel-Vorlage und Anleitung).</p></details>
+  <details class="faq"><summary>Support?</summary><p>E-Mail an <a href="mailto:kontakt@ayyoubaharchi.de">kontakt@ayyoubaharchi.de</a> – Antwort in der Regel innerhalb von 1–2 Werktagen.</p></details>
+
+  <div class="finalcta">
+    <h2>Viele Rechnungen? Ein Kauf.</h2>
+    <p style="color:var(--ink-soft)">XRechnung Batch Pro – Offline-App + Excel-Vorlage + Prüfbericht</p>
+    <a class="buy" href="https://buy.polar.sh/polar_cl_qEeLe1lpkVM3aD0yL3wSXEp8B2E0nU9ssTTAA2koqW0">Jetzt kaufen – 39 € einmalig</a>
+  </div>
+
+  <p style="font-size:.85rem;color:var(--ink-soft)">Hinweis: keine Steuer- oder Rechtsberatung. Prüfen Sie erzeugte Rechnungen vor dem Versand.</p>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 E-Rechnung Viewer</span>
+    <a href="index.html">Viewer</a>
+    <a href="erstellen.html">XRechnung erstellen</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+<script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
