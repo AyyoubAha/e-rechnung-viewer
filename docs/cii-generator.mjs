@@ -1,6 +1,6 @@
 /**
  * CII-Generator: Rechnungsdaten → UN/CEFACT CrossIndustryInvoice (CII).
- * Zweite E-Rechnungs-Syntax neben UBL (ubl-generator.mjs) — Grundlage für ZUGFeRD/Factur-X,
+ * Zweite E-Rechnungs-Syntax neben UBL (ubl-generator.mjs); Grundlage für ZUGFeRD/Factur-X,
  * denn dort MUSS das eingebettete XML CII sein.
  *
  * Profile:
@@ -76,7 +76,7 @@ export function generateCiiInvoice(inv, profile = 'xrechnung') {
 
   x.push('  <rsm:SupplyChainTradeTransaction>');
 
-  // --- Positionen (BG-25) — in CII ZUERST ---
+  // --- Positionen (BG-25), in CII ZUERST ---
   t.lines.forEach((l, i) => {
     x.push('    <ram:IncludedSupplyChainTradeLineItem>');
     x.push('      <ram:AssociatedDocumentLineDocument>');

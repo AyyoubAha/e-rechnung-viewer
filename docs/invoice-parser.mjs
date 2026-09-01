@@ -348,7 +348,7 @@ export function parseInvoiceDocument(xmlDoc) {
   let inv;
   if (local === 'CrossIndustryInvoice') inv = parseCii(root);
   else if (local === 'Invoice' || local === 'CreditNote') inv = parseUbl(root);
-  else throw new Error(`Unbekanntes Wurzelelement: ${local} — keine XRechnung/ZUGFeRD-Datei?`);
+  else throw new Error(`Unbekanntes Wurzelelement: ${local}. Keine XRechnung- oder ZUGFeRD-Datei?`);
   return plausibilityChecks(inv);
 }
 

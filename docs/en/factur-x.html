@@ -20,56 +20,40 @@
 {"@type":"Question","name":"How can I validate a Factur-X invoice?","acceptedAnswer":{"@type":"Answer","text":"Use the free validator on this site: it checks the embedded XML against the official EN 16931 Schematron business rules (and German XRechnung rules where declared) locally in your browser and produces a printable report."}}
 ]}
 </script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a4a8f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23fff' text-anchor='middle'%3EER%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../stil.css">
 <style>
-:root{--bg:#f6f7f9;--surface:#fff;--ink:#1a2332;--ink-soft:#5a6577;--line:#e3e7ee;--accent:#1d5fbf;--accent-ink:#fff;--ok:#1d7a4f;--badge-bg:#e7f2ea;--badge-ink:#1d7a4f;--warn-bg:#fdf3e3;--warn-ink:#7a5a1d}
-@media (prefers-color-scheme: dark){:root{--bg:#12161d;--surface:#1a2029;--ink:#e8ecf2;--ink-soft:#9aa5b5;--line:#2b3442;--accent:#5a95e8;--accent-ink:#0e1420;--ok:#5cc48f;--badge-bg:#1c2f24;--badge-ink:#5cc48f;--warn-bg:#2e2617;--warn-ink:#e0c070}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:780px;margin:0 auto;padding:0 20px}
-header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
-.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:980px}
-.logo{font-weight:700}.logo a{color:inherit;text-decoration:none}.logo span{color:var(--accent)}
-.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px}
-nav.tabs{margin-left:auto;display:flex;gap:4px}
-nav.tabs a{padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem}
-main{padding:34px 0 20px}
-h1{font-size:clamp(1.45rem,3.4vw,1.95rem);line-height:1.25;margin:0 0 12px}
-h2{font-size:1.2rem;margin:30px 0 8px}
-p,li{margin:10px 0}
-.lead{color:var(--ink-soft);font-size:1.05rem}
-.steps{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 20px;margin:18px 0}
-.steps ol{margin:12px 0;padding-left:22px}
-.steps li{margin:10px 0}
-.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:11px 24px;border-radius:10px;text-decoration:none;margin:6px 8px 6px 0}
-.notice{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 16px;font-size:.92rem;margin:16px 0}
-a{color:var(--accent)}
-footer{border-top:1px solid var(--line);margin-top:46px;padding:20px 0 32px;color:var(--ink-soft);font-size:.85rem}
-footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
+.wrap{max-width:780px}
+.lead{color:var(--grau);font-size:1.05rem;max-width:56em}
+.box,.beispiel{border-left:3px solid var(--blau);padding:4px 0 4px 16px;margin:16px 0}
+main table{width:100%;border-collapse:collapse;font-size:.92rem}
+main table th,main table td{padding:9px 11px;border-bottom:1px solid var(--linie);text-align:left;vertical-align:top}
+main table th{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);border-bottom:1px solid var(--tinte);font-weight:600}
+h2{font-size:1.25rem;margin:30px 0 8px}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="logo"><a href="index.html">E-Invoice <span>Viewer</span></a></div>
-    <span class="badge">Guide</span>
-    <nav class="tabs">
-      <a href="index.html">View</a>
+    <a class="logo" href="./">E-Invoice <em>Viewer</em></a>
+    <nav class="tabs" aria-label="Tools">
+      <a href="index.html">Read</a>
       <a href="validate.html">Validate</a>
-      <a href="../zugferd-datei-oeffnen.html">Deutsch 🇩🇪</a>
+      <a href="../" hreflang="de" title="Deutsche Version">DE</a>
     </nav>
   </div>
 </header>
 <main class="wrap">
   <h1>Factur-X: the invoice inside the PDF</h1>
   <p class="lead">A <strong>Factur-X</strong> invoice (known as <strong>ZUGFeRD</strong> in Germany) looks
-  like a normal PDF — but the real invoice travels inside it as an embedded
+  like a normal PDF: but the real invoice travels inside it as an embedded
   <strong>XML data file</strong> that accounting software reads. Here is how to see what's actually in
   there, and why you should.</p>
 
   <div class="steps">
     <ol>
       <li>Open the free <strong><a href="index.html">e-invoice viewer</a></strong> (no sign-up, runs in your browser)</li>
-      <li>Drop the Factur-X / ZUGFeRD PDF — the viewer extracts the embedded <code>factur-x.xml</code> and shows the structured data: amounts, line items, IBAN, due date</li>
+      <li>Drop the Factur-X / ZUGFeRD PDF: the viewer extracts the embedded <code>factur-x.xml</code> and shows the structured data: amounts, line items, IBAN, due date</li>
       <li>Optionally run the <strong><a href="validate.html">official-rules validation</a></strong> and print the report</li>
     </ol>
   </div>
@@ -77,20 +61,20 @@ footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
   <a class="cta" style="background:var(--surface);color:var(--ink);border:2px solid var(--accent)" href="validate.html">Validate it</a></p>
   <p style="text-align:center;font-size:.88rem;color:var(--ok);font-weight:600">✓ 100% local processing – your invoice never leaves your device</p>
 
-  <h2>Factur-X, ZUGFeRD, XRechnung, Peppol — quick map</h2>
+  <h2>Factur-X, ZUGFeRD, XRechnung, Peppol: quick map</h2>
   <p><strong>Factur-X / ZUGFeRD 2.x</strong>: hybrid PDF + embedded CII XML (identical Franco-German
   standard). <strong>XRechnung</strong>: pure XML, required by German public authorities.
   <strong>Peppol BIS Billing</strong>: UBL XML used across the EU network. All of them implement the
-  European semantic standard <strong>EN 16931</strong> — and all of them can be opened with the
+  European semantic standard <strong>EN 16931</strong>: and all of them can be opened with the
   <a href="index.html">viewer</a> on this site.</p>
 
   <h2>Why check the embedded XML?</h2>
   <p>For profiles at EN 16931 level the XML is the <em>authoritative</em> content: automated payment,
   approval and archiving processes consume the data, not the PDF image. A mismatch between the visible
-  PDF and the embedded data — whether a generator bug or manipulation — only becomes visible when you
+  PDF and the embedded data: whether a generator bug or manipulation: only becomes visible when you
   actually look at the XML. The viewer also flags missing mandatory fields and inconsistent totals.</p>
 
-  <div class="notice"><strong>Retention:</strong> Keep the original PDF file unchanged in your records —
+  <div class="notice"><strong>Retention:</strong> Keep the original PDF file unchanged in your records ;
   it contains the authoritative XML. A printout is not a substitute.</div>
 
   <h2>Creating Factur-X invoices?</h2>
@@ -103,7 +87,7 @@ footer .wrap{display:flex;gap:16px;flex-wrap:wrap;max-width:980px}
     <span>© 2026 E-Invoice Viewer</span>
     <a href="../impressum.html">Legal notice (Impressum)</a>
     <a href="../datenschutz.html">Privacy (German)</a>
-    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+    <span style="margin-left:auto">Made in Germany</span>
   </div>
 </footer>
 <script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

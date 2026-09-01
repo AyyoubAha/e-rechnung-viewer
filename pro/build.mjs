@@ -9,7 +9,7 @@ const DIST = join(ROOT, 'dist');
 const PKG = join(DIST, 'paket');
 mkdirSync(PKG, { recursive: true });
 
-const VERSION = 'v1.1';
+const VERSION = 'v1.2';
 const DATE = new Date().toISOString().slice(0, 10);
 
 const strip = (src) => src.replace(/^export /gm, '').replace(/^import .*$/gm, '');
@@ -23,7 +23,7 @@ const generator = wrapModule('docs/ubl-generator.mjs', ['generateUblInvoice', 'v
 const ciiGenerator = wrapModule('docs/cii-generator.mjs', ['generateCiiInvoice']);
 const zfPdf = wrapModule('docs/zugferd-pdf.mjs', ['generateZugferdPdf']);
 const mapper = wrapModule('pro/mapper.mjs', ['mapWorkbook']);
-const xlsxLib = readFileSync(join(ROOT, 'node_modules/xlsx/dist/xlsx.full.min.js'), 'utf8');
+const xlsxLib = readFileSync(join(ROOT, 'pro/vendor/xlsx.full.min.js'), 'utf8');
 const jszipLib = readFileSync(join(ROOT, 'node_modules/jszip/dist/jszip.min.js'), 'utf8');
 const pdfLibJs = readFileSync(join(ROOT, 'node_modules/pdf-lib/dist/pdf-lib.min.js'), 'utf8');
 const fontkitJs = readFileSync(join(ROOT, 'node_modules/@pdf-lib/fontkit/dist/fontkit.umd.min.js'), 'utf8');

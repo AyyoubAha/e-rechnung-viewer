@@ -43,7 +43,7 @@ export function validateInvoiceInput(inv) {
   need(inv.number, 'Rechnungsnummer fehlt (BT-1)');
   need(isDate(inv.issueDate), `Rechnungsdatum fehlt oder nicht im Format JJJJ-MM-TT (BT-2): "${inv.issueDate ?? ''}"`);
   if (inv.dueDate) need(isDate(inv.dueDate), 'Fälligkeitsdatum nicht im Format JJJJ-MM-TT (BT-9)');
-  need(inv.buyerReference, 'Käufer-Referenz fehlt (BT-10; bei Behörden die Leitweg-ID, sonst z. B. Kundennummer oder E-Mail des Empfängers) — Pflicht in XRechnung (BR-DE-15)');
+  need(inv.buyerReference, 'Käufer-Referenz fehlt (BT-10; bei Behörden die Leitweg-ID, sonst z. B. Kundennummer oder E-Mail des Empfängers): Pflicht in XRechnung (BR-DE-15)');
 
   const s = inv.seller || {};
   need(s.name, 'Verkäufer: Name fehlt (BT-27)');

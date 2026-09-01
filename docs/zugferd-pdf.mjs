@@ -6,7 +6,7 @@
  *   generateZugferdPdf(inv, { PDFLib, fontkit, fontRegular, fontBold, icc })  → Uint8Array
  *
  * Qualitäts-Schranke: test/e2e-zugferd.mjs validiert die Ausgabe mit Mustang
- * (Referenzimplementierung) — XML-Ebene läuft dabei durch die XRechnung-/EN16931-Schematron-Prüfung.
+ * (Referenzimplementierung); die XML-Ebene läuft dabei durch die XRechnung-/EN16931-Schematron-Prüfung.
  */
 
 import { validateInvoiceInput, computeTotals } from './ubl-generator.mjs';
@@ -155,7 +155,7 @@ export async function generateZugferdPdf(inv, assets) {
 
   // Absenderzeile + Empfängerblock (Fensterposition)
   y -= 8;
-  text(`${s.name} · ${s.street} · ${s.postcode} ${s.city}`, M, 7.5, { color: soft });
+  text(`${s.name}, ${s.street}, ${s.postcode} ${s.city}`, M, 7.5, { color: soft });
   y -= 26;
   const buyerTop = y;
   text(b.name, M, 11);
@@ -257,9 +257,9 @@ export async function generateZugferdPdf(inv, assets) {
   pages.forEach((p, i) => {
     page = p;
     y = M - 14;
-    text(`${s.name} · ${s.street} · ${s.postcode} ${s.city} · ${taxLine} · ${s.email} · ${s.phone}`, M, 7, { color: soft });
+    text(`${s.name}, ${s.street}, ${s.postcode} ${s.city}, ${taxLine}, ${s.email}, ${s.phone}`, M, 7, { color: soft });
     y -= 9;
-    text(`Seite ${i + 1}/${pages.length} · Dieses PDF enthält die Rechnungsdaten als eingebettete Factur-X/ZUGFeRD-Datei (factur-x.xml).`, M, 7, { color: soft });
+    text(`Seite ${i + 1}/${pages.length}. Dieses PDF enthält die Rechnungsdaten als eingebettete Factur-X/ZUGFeRD-Datei (factur-x.xml).`, M, 7, { color: soft });
   });
 
   // --- Metadaten / PDF/A-3-Ausstattung ---
@@ -319,7 +319,7 @@ export async function generateZugferdPdf(inv, assets) {
   af.push(fsRef);
   doc.catalog.set(PDFName.of('AF'), af);
 
-  // Trailer-ID (PDF/A-Pflicht, ISO 19005 6.1.3 — pdf-lib setzt sie nicht selbst)
+  // Trailer-ID (PDF/A-Pflicht, ISO 19005 6.1.3; pdf-lib setzt sie nicht selbst)
   const idHex = [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, '0')).join('').toUpperCase();
   const idArr = PDFArray.withContext(ctx);
   idArr.push(PDFHexString.of(idHex));

@@ -2,7 +2,7 @@
  * Prüf-Engine: XRechnung-/EN-16931-Validierung mit den offiziellen KoSIT-Prüfregeln
  * (Schematron, kompiliert als SEF), ausgeführt lokal via SaxonJS.
  *
- * Geprüft werden die Geschäftsregeln (EN 16931 + ggf. XRechnung-CIUS) — dieselbe Regelbasis,
+ * Geprüft werden die Geschäftsregeln (EN 16931 + ggf. XRechnung-CIUS): dieselbe Regelbasis,
  * die auch der offizielle Validator nutzt. Keine XSD-Schemaprüfung (transparent kommunizieren).
  *
  * Umgebungsneutral: SaxonJS und der SEF-Pfad-Resolver werden übergeben.

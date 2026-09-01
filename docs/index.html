@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>E-Rechnung öffnen &amp; lesen – XRechnung &amp; ZUGFeRD Viewer (kostenlos, ohne Upload)</title>
-<meta name="description" content="XRechnung (XML) und ZUGFeRD-PDF kostenlos öffnen, lesen, prüfen und als PDF drucken – direkt im Browser. 100 % lokal: Ihre Rechnung wird nicht hochgeladen. Ohne Registrierung, auch für Mac.">
-<meta property="og:title" content="E-Rechnung öffnen &amp; lesen – kostenlos im Browser">
-<meta property="og:description" content="XRechnung &amp; ZUGFeRD anzeigen, prüfen und drucken. 100 % lokal, ohne Upload, ohne Registrierung.">
+<title>E-Rechnung öffnen und lesen: XRechnung und ZUGFeRD kostenlos im Browser</title>
+<meta name="description" content="XRechnung (XML) und ZUGFeRD-PDF öffnen, lesen, prüfen und als PDF drucken, direkt im Browser. Die Datei wird nicht hochgeladen, die Verarbeitung bleibt auf Ihrem Gerät. Ohne Registrierung, auch für den Mac.">
+<meta property="og:title" content="E-Rechnung öffnen und lesen: XRechnung und ZUGFeRD kostenlos im Browser">
+<meta property="og:description" content="E-Rechnungen anzeigen, prüfen und drucken. Die Datei bleibt auf Ihrem Gerät, ohne Upload und ohne Registrierung.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ayyoubaha.github.io/e-rechnung-viewer/">
 <link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/">
@@ -15,224 +15,213 @@
 <link rel="alternate" hreflang="x-default" href="https://ayyoubaha.github.io/e-rechnung-viewer/">
 <meta name="robots" content="index,follow">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"E-Rechnung Viewer","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"XRechnung und ZUGFeRD-Rechnungen im Browser öffnen, lesen und drucken – 100% lokal ohne Upload.","inLanguage":"de"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"E-Rechnung Viewer","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"XRechnung und ZUGFeRD-Rechnungen im Browser öffnen, lesen und drucken. Die Verarbeitung bleibt vollständig auf dem Gerät, ohne Upload.","inLanguage":"de"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Wie kann ich eine XRechnung (XML-Datei) öffnen und lesen?","acceptedAnswer":{"@type":"Answer","text":"Ziehen Sie die XML-Datei einfach in den E-Rechnung Viewer im Browser. Das Tool zeigt die Rechnung sofort menschenlesbar an – mit Beträgen, Positionen, Bankverbindung und Fälligkeit. Es funktioniert auf Windows, Mac und Linux, ohne Installation und ohne Upload."}},
-{"@type":"Question","name":"Wie wandle ich eine XML-Rechnung in ein PDF um?","acceptedAnswer":{"@type":"Answer","text":"Öffnen Sie die XML-Datei im Viewer und klicken Sie auf „Drucken / als PDF speichern". Über den Druckdialog Ihres Browsers können Sie die aufbereitete Rechnung kostenlos als PDF speichern."}},
-{"@type":"Question","name":"Was ist der Unterschied zwischen XRechnung und ZUGFeRD?","acceptedAnswer":{"@type":"Answer","text":"Eine XRechnung ist eine reine XML-Datei. ZUGFeRD (ab Version 2 auch Factur-X genannt) ist ein PDF, in dem dieselben Rechnungsdaten als XML eingebettet sind – man sieht also ein normales PDF, die Maschine liest das XML. Beide erfüllen die E-Rechnungspflicht, beide kann dieser Viewer anzeigen."}},
-{"@type":"Question","name":"Muss ich E-Rechnungen empfangen können?","acceptedAnswer":{"@type":"Answer","text":"Ja. Seit dem 1. Januar 2025 müssen alle inländischen Unternehmer E-Rechnungen empfangen können – auch Kleinunternehmer, Vermieter mit umsatzsteuerpflichtigen oder unternehmerischen Vermietungen und Vereine mit wirtschaftlichem Geschäftsbetrieb. Ein E-Mail-Postfach genügt für den Empfang; die Datei muss aber GoBD-konform aufbewahrt werden."}},
-{"@type":"Question","name":"Werden meine Rechnungsdaten hochgeladen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Dieser Viewer verarbeitet Ihre Datei ausschließlich lokal in Ihrem Browser (JavaScript). Ihre Rechnung verlässt Ihren Rechner nicht – im Gegensatz zu vielen Online-Viewern, die Dateien auf ihre Server hochladen."}},
-{"@type":"Question","name":"Funktioniert der Viewer auf dem Mac?","acceptedAnswer":{"@type":"Answer","text":"Ja. Der Viewer läuft in jedem modernen Browser – auf Mac, Windows, Linux, iPad und Android. Eine Installation ist nicht nötig."}}
+{"@type":"Question","name":"Wie kann ich eine XRechnung (XML-Datei) öffnen und lesen?","acceptedAnswer":{"@type":"Answer","text":"Ziehen Sie die XML-Datei in den E-Rechnung Viewer im Browser. Das Werkzeug zeigt die Rechnung sofort menschenlesbar an, mit Beträgen, Positionen, Bankverbindung und Fälligkeit. Es funktioniert auf Windows, Mac und Linux, ohne Installation und ohne Upload."}},
+{"@type":"Question","name":"Wie wandle ich eine XML-Rechnung in ein PDF um?","acceptedAnswer":{"@type":"Answer","text":"Öffnen Sie die XML-Datei im Viewer und klicken Sie auf „Drucken oder als PDF speichern". Über den Druckdialog Ihres Browsers speichern Sie die aufbereitete Rechnung kostenlos als PDF."}},
+{"@type":"Question","name":"Was ist der Unterschied zwischen XRechnung und ZUGFeRD?","acceptedAnswer":{"@type":"Answer","text":"Eine XRechnung ist eine reine XML-Datei. ZUGFeRD (ab Version 2 auch Factur-X genannt) ist ein PDF, in dem dieselben Rechnungsdaten als XML eingebettet sind. Man sieht ein normales PDF, die Maschine liest das XML. Beide erfüllen die E-Rechnungspflicht, beide zeigt dieser Viewer an."}},
+{"@type":"Question","name":"Muss ich E-Rechnungen empfangen können?","acceptedAnswer":{"@type":"Answer","text":"Ja. Seit dem 1. Januar 2025 müssen alle inländischen Unternehmer E-Rechnungen empfangen können, auch Kleinunternehmer, Vermieter mit unternehmerischer Vermietung und Vereine mit wirtschaftlichem Geschäftsbetrieb. Ein E-Mail-Postfach genügt für den Empfang; die Datei muss aber GoBD-konform aufbewahrt werden."}},
+{"@type":"Question","name":"Werden meine Rechnungsdaten hochgeladen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Dieser Viewer verarbeitet Ihre Datei ausschließlich lokal in Ihrem Browser. Ihre Rechnung verlässt Ihren Rechner nicht. Viele Online-Viewer laden Dateien dagegen auf ihre Server hoch."}},
+{"@type":"Question","name":"Funktioniert der Viewer auf dem Mac?","acceptedAnswer":{"@type":"Answer","text":"Ja. Der Viewer läuft in jedem modernen Browser auf Mac, Windows, Linux, iPad und Android. Eine Installation ist nicht nötig."}}
 ]}
 </script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a4a8f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23fff' text-anchor='middle'%3EER%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="stil.css">
 <style>
-:root{
-  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
-  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --warn-bg:#fdf3e3; --warn-line:#e8c987; --warn-ink:#7a5a1d;
-  --err-bg:#fbecec; --err-ink:#a03030; --badge-bg:#e7f2ea; --badge-ink:#1d7a4f;
-  --drop-bg:#eef3fb; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
-    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --warn-bg:#2e2617; --warn-line:#6b5a2e; --warn-ink:#e0c070;
-    --err-bg:#341e1e; --err-ink:#e08a8a; --badge-bg:#1c2f24; --badge-ink:#5cc48f; --drop-bg:#1c2635;
-  }
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px}
-header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
-.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-weight:700;font-size:1.05rem;letter-spacing:.2px}
-.logo span{color:var(--accent)}
-.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px;white-space:nowrap}
-main{padding:34px 0 10px}
-h1{font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.25;margin:0 0 10px}
-.sub{color:var(--ink-soft);max-width:46em;margin:0 0 24px}
-.sub strong{color:var(--ink)}
-/* Dropzone */
-#drop{border:2px dashed var(--accent);border-radius:14px;background:var(--drop-bg);padding:38px 20px;text-align:center;cursor:pointer;transition:background .15s}
-#drop.over{background:var(--surface);border-style:solid}
-#drop .big{font-weight:600;font-size:1.08rem}
-#drop .hint{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
-#drop button{margin-top:14px;background:var(--accent);color:var(--accent-ink);border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer}
-#drop button:hover{filter:brightness(1.07)}
-.local-note{display:flex;gap:8px;justify-content:center;align-items:center;color:var(--ok);font-size:.85rem;font-weight:600;margin-top:14px}
-/* File list */
-#filelist{display:none;margin:18px 0 0;gap:8px;flex-wrap:wrap}
+/* Werkzeug-spezifisch: Ablagefeld, Dateileiste, Rechnungsblatt */
+#drop{border:1px solid var(--tinte);outline:1px solid var(--linie);outline-offset:-5px;
+  background:var(--flaeche);padding:36px 20px;text-align:center;cursor:pointer}
+#drop.over{outline:2px solid var(--blau);outline-offset:-5px}
+#drop .big{font-weight:600;font-size:1.05rem}
+#drop .hint{color:var(--grau);font-size:.9rem;margin-top:6px}
+#drop button{margin-top:14px;background:var(--blau);color:var(--auf-blau);border:1px solid var(--blau);font:inherit;font-weight:600;padding:10px 24px;cursor:pointer}
+#drop button:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.local-note{color:var(--ok);font-size:.85rem;font-weight:600;margin-top:14px}
+#filelist{display:none;margin:16px 0 0;gap:6px;flex-wrap:wrap}
 #filelist.show{display:flex}
-.fchip{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 12px;font-size:.85rem;cursor:pointer;display:flex;gap:8px;align-items:center}
-.fchip.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-.fchip .st-ok{color:var(--ok)} .fchip .st-err{color:var(--err-ink)}
-/* Result area */
+.fchip{border:1px solid var(--linie);background:var(--flaeche);padding:6px 12px;font-size:.85rem;cursor:pointer;display:flex;gap:8px;align-items:center}
+.fchip:hover{border-color:var(--grau)}
+.fchip.active{border-color:var(--blau);outline:1px solid var(--blau);outline-offset:-2px}
+.fchip .st-ok{color:var(--ok)} .fchip .st-err{color:var(--rot)}
 #result{display:none;margin-top:26px}
 #result.show{display:block}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.actions button{font:inherit;font-weight:600;border-radius:9px;padding:9px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
-.actions button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.actions button:hover{filter:brightness(1.05)}
-.warnbox{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:.9rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.actions button{font:inherit;font-weight:600;padding:9px 18px;cursor:pointer;border:1px solid var(--tinte);background:var(--flaeche);color:var(--tinte)}
+.actions button:hover{background:var(--grund)}
+.actions button.primary{background:var(--blau);color:var(--auf-blau);border-color:var(--blau)}
+.actions button.primary:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.warnbox{border-left:3px solid var(--warnlinie);background:var(--warnflaeche);color:var(--warn);padding:11px 15px;margin-bottom:14px;font-size:.9rem}
 .warnbox ul{margin:6px 0 0;padding-left:20px}
-.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:10px;padding:14px 16px;margin-top:20px;display:none}
+.errbox{border-left:3px solid var(--rot);background:var(--rotflaeche);color:var(--rot);padding:12px 15px;margin-top:20px;display:none}
 .errbox.show{display:block}
-/* Invoice sheet */
-.sheet{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:34px;box-shadow:0 1px 4px rgba(10,20,40,.05)}
-.sheet h2.docline{margin:0 0 2px;font-size:1.3rem}
-.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 22px;margin:18px 0 6px;padding:14px 16px;background:var(--bg);border-radius:10px}
+/* Rechnungsblatt: Dokument mit Kopf-Doppellinie */
+.sheet{background:var(--flaeche);border:1px solid var(--linie);padding:34px}
+.sheet h2.docline{margin:0 0 2px;font-size:1.35rem}
+.skel{color:var(--grau);font-size:.9rem}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 22px;margin:16px 0 0;padding:12px 0 14px;border-top:1px solid var(--linie);border-bottom:3px double var(--tinte)}
 .meta-grid div{font-size:.92rem}
-.meta-grid .k{display:block;color:var(--ink-soft);font-size:.76rem;text-transform:uppercase;letter-spacing:.4px}
+.meta-grid .k{display:block;color:var(--grau);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
 .parties{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:20px 0}
 @media(max-width:640px){.parties{grid-template-columns:1fr}.sheet{padding:22px}}
-.party h3{margin:0 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft)}
+.party h3{margin:0 0 6px;font-size:.74rem;font-family:inherit;text-transform:uppercase;letter-spacing:.1em;color:var(--grau)}
 .party .pname{font-weight:600}
 .party div{font-size:.95rem}
-.party .pdetail{color:var(--ink-soft);font-size:.85rem;margin-top:4px}
+.party .pdetail{color:var(--grau);font-size:.85rem;margin-top:4px}
 table.lines{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:.92rem}
-table.lines th{text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);border-bottom:2px solid var(--line);padding:8px 8px}
-table.lines td{border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:top}
+table.lines th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);border-bottom:1px solid var(--tinte);padding:8px 8px;font-weight:600}
+table.lines td{border-bottom:1px solid var(--linie);padding:9px 8px;vertical-align:top}
 table.lines .r{text-align:right;white-space:nowrap}
-table.lines td.desc{color:var(--ink-soft);font-size:.84rem}
-.tablewrap{overflow-x:auto}
+table.lines td.desc{color:var(--grau);font-size:.84rem}
 .totals{margin:14px 0 0;margin-left:auto;max-width:340px;font-size:.95rem}
 .totals div{display:flex;justify-content:space-between;padding:5px 8px}
-.totals .grand{border-top:2px solid var(--ink);font-weight:700;font-size:1.05rem;margin-top:4px;padding-top:9px}
-.totals .soft{color:var(--ink-soft)}
-.vat-note{color:var(--ink-soft);font-size:.84rem;text-align:right;margin-top:6px}
-.payblock{margin-top:24px;padding:16px;background:var(--bg);border-radius:10px;font-size:.93rem}
-.payblock h3{margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft)}
+.totals .grand{border-top:3px double var(--tinte);font-weight:700;font-size:1.05rem;margin-top:4px;padding-top:9px}
+.totals .soft{color:var(--grau)}
+.vat-note{color:var(--grau);font-size:.84rem;text-align:right;margin-top:6px}
+.payblock{margin-top:24px;padding-top:14px;border-top:1px solid var(--tinte);font-size:.93rem}
+.payblock h3{margin:0 0 8px;font-size:.74rem;font-family:inherit;text-transform:uppercase;letter-spacing:.1em;color:var(--grau)}
 .payblock .iban{font-family:var(--mono);font-size:.95rem}
-.notes{margin-top:18px;font-size:.88rem;color:var(--ink-soft);white-space:pre-wrap}
-.syntaxline{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.78rem}
-/* Content sections */
-section.content{margin:56px 0}
-section.content h2{font-size:1.35rem;margin:0 0 12px}
+.notes{margin-top:18px;font-size:.88rem;color:var(--grau);white-space:pre-wrap}
+.syntaxline{margin-top:22px;padding-top:12px;border-top:1px solid var(--linie);color:var(--grau);font-size:.78rem}
+/* Inhaltsteile */
+section.content{margin:52px 0}
+section.content h2{font-size:1.4rem;margin:0 0 12px}
 section.content h3{font-size:1.05rem;margin:22px 0 6px}
 section.content p{max-width:52em;margin:10px 0}
-section.content .cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:18px 0}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
-.card h3{margin:0 0 6px;font-size:1rem}
-.card p{margin:0;font-size:.9rem;color:var(--ink-soft)}
-table.plain{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-table.plain th,table.plain td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-table.plain th{background:var(--bg);font-size:.8rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
-details.faq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin:8px 0}
+dl.funktionen{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:14px 0}
+@media(max-width:700px){dl.funktionen{grid-template-columns:1fr}}
+dl.funktionen dt{font-weight:600;border-top:1px solid var(--linie);padding-top:12px;margin-top:12px}
+dl.funktionen dd{margin:4px 0 12px;color:var(--grau);font-size:.92rem}
+details.faq{border-top:1px solid var(--linie);padding:2px 0}
+details.faq:last-of-type{border-bottom:1px solid var(--linie)}
 details.faq summary{font-weight:600;padding:12px 0;cursor:pointer}
-details.faq p{color:var(--ink-soft);margin:0 0 14px}
-footer{border-top:1px solid var(--line);margin-top:60px;padding:22px 0 34px;color:var(--ink-soft);font-size:.85rem}
-footer .wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-footer a{color:var(--ink-soft)}
-a{color:var(--accent)}
-.skel{color:var(--ink-soft);font-size:.9rem}
-/* Print: nur die Rechnung */
+details.faq summary:hover{color:var(--blau)}
+details.faq p{color:var(--grau);margin:0 0 14px;max-width:60em}
+ul.ratgeber{list-style:none;padding:0;margin:10px 0}
+ul.ratgeber li{border-top:1px solid var(--linie);padding:10px 0}
 @media print{
   body{background:#fff}
   header.top,#drop,.local-note,#filelist,.actions,section.content,footer,.errbox,.warnbox.print-hide{display:none !important}
   #result{display:block !important;margin:0}
-  .sheet{border:0;box-shadow:none;border-radius:0;padding:0}
-  .meta-grid,.payblock{background:#f2f2f2}
+  .sheet{border:0;padding:0}
 }
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="logo">E-Rechnung <span>Viewer</span></div>
-    <span class="badge">100 % lokal – ohne Upload</span>
-    <span class="badge" style="background:var(--bg);color:var(--ink-soft)">kostenlos · ohne Registrierung</span>
-    <nav class="tabs" style="margin-left:auto;display:flex;gap:4px">
-      <a href="index.html" style="padding:6px 14px;border-radius:8px;text-decoration:none;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:.9rem">Lesen</a>
-      <a href="erstellen.html" style="padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem">Erstellen</a>
-      <a href="pruefen.html" style="padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem">Prüfen</a>
-      <a href="en/" style="padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem" title="English version">EN</a>
+    <a class="logo" href="./">E-Rechnung <em>Viewer</em></a>
+    <nav class="tabs" aria-label="Werkzeuge">
+      <a href="index.html" aria-current="page">Lesen</a>
+      <a href="erstellen.html">Erstellen</a>
+      <a href="pruefen.html">Prüfen</a>
+      <a href="en/" hreflang="en" title="English version">EN</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <h1>E-Rechnung öffnen &amp; lesen – direkt im Browser</h1>
-  <p class="sub"><strong>XRechnung</strong> (XML) und <strong>ZUGFeRD-PDF</strong> anzeigen, prüfen und als PDF drucken.
-  Ihre Datei wird dabei <strong>nicht hochgeladen</strong> – die Verarbeitung passiert komplett auf Ihrem Gerät.
-  Funktioniert auf Windows, Mac und Linux.</p>
+  <h1>E-Rechnung öffnen und lesen, direkt im Browser</h1>
+  <p class="sub"><strong>XRechnung</strong> (XML) und <strong>ZUGFeRD-PDF</strong> anzeigen, prüfen
+  und als PDF drucken. Die Datei wird nicht hochgeladen: Die Verarbeitung bleibt vollständig auf
+  Ihrem Gerät. Kostenlos, ohne Registrierung, auf Windows, Mac und Linux.</p>
 
   <div id="drop" role="button" tabindex="0" aria-label="E-Rechnung auswählen oder hierher ziehen">
     <div class="big">E-Rechnung hierher ziehen</div>
-    <div class="hint">XRechnung (.xml) oder ZUGFeRD / Factur-X (.pdf) · auch mehrere Dateien</div>
+    <div class="hint">XRechnung (.xml) oder ZUGFeRD/Factur-X (.pdf), auch mehrere Dateien</div>
     <button type="button" id="pick">Datei auswählen</button>
     <input type="file" id="fileinput" accept=".xml,.pdf,application/xml,text/xml,application/pdf" multiple hidden>
-    <div class="local-note">✓ Datenschutz: Ihre Rechnung verlässt Ihren Rechner nicht</div>
+    <div class="local-note">Ihre Rechnung verlässt Ihren Rechner nicht.</div>
   </div>
   <p style="margin:14px 0 0;font-size:.95rem">Sie wollen selbst eine E-Rechnung schreiben?
-  → <a href="erstellen.html"><strong>XRechnung kostenlos erstellen</strong></a> (auch für Kleinunternehmer § 19 UStG)</p>
+  <a href="erstellen.html"><strong>XRechnung kostenlos erstellen</strong></a>, auch für Kleinunternehmer nach § 19 UStG.</p>
 
   <div id="filelist" aria-label="Geladene Dateien"></div>
-  <div class="errbox" id="errbox"></div>
+  <div class="errbox" id="errbox" role="alert"></div>
 
   <div id="result">
     <div class="actions">
-      <button class="primary" id="printbtn" type="button">🖨 Drucken / als PDF speichern</button>
+      <button class="primary" id="printbtn" type="button">Drucken oder als PDF speichern</button>
       <button id="resetbtn" type="button">Neue Datei laden</button>
-      <a href="pruefen.html" style="align-self:center;font-weight:600;font-size:.9rem">→ Diese Rechnung formal prüfen (offizielle Regeln)</a>
+      <a href="pruefen.html" style="font-weight:600;font-size:.9rem">Diese Rechnung formal prüfen (offizielle Regeln)</a>
     </div>
     <div id="warnings"></div>
     <article class="sheet" id="sheet" aria-live="polite"></article>
   </div>
 
   <section class="content">
-    <h2>Was dieses Tool kann</h2>
-    <div class="cardgrid">
-      <div class="card"><h3>XRechnung anzeigen</h3><p>XML-Rechnungen (UBL und UN/CEFACT-Syntax) werden als übersichtliche, menschenlesbare Rechnung dargestellt – mit Positionen, Beträgen, Bankverbindung und Fälligkeit.</p></div>
-      <div class="card"><h3>ZUGFeRD-PDF lesen</h3><p>Bei ZUGFeRD/Factur-X-PDFs wird das eingebettete Rechnungs-XML extrahiert und angezeigt – Sie sehen, was die Maschine liest.</p></div>
-      <div class="card"><h3>In PDF umwandeln</h3><p>Die aufbereitete Ansicht lässt sich über den Druckdialog kostenlos als PDF speichern – praktisch für Ablage und Weitergabe.</p></div>
-      <div class="card"><h3>Plausibilität prüfen</h3><p>Das Tool weist auf fehlende Pflichtangaben und unstimmige Summen hin (Netto + USt ≠ Brutto, Positionssummen).</p></div>
-      <div class="card"><h3>Ohne Upload</h3><p>Anders als viele Online-Viewer lädt dieses Tool nichts auf einen Server. Auch für vertrauliche Rechnungen geeignet.</p></div>
-      <div class="card"><h3>Auch für Mac</h3><p>Läuft in jedem modernen Browser – keine Installation, kein Windows-Zwang.</p></div>
-      <div class="card"><h3>E-Rechnungen erstellen</h3><p><a href="erstellen.html">XRechnung oder ZUGFeRD-PDF kostenlos erstellen</a> – oder viele auf einmal aus Excel mit <a href="batch-pro.html">XRechnung Batch Pro (39&nbsp;€)</a>.</p></div>
-    </div>
+    <h2>Funktionsumfang</h2>
+    <dl class="funktionen">
+      <dt>XRechnung anzeigen</dt>
+      <dd>XML-Rechnungen in UBL- und UN/CEFACT-Syntax werden als menschenlesbare Rechnung
+      dargestellt, mit Positionen, Beträgen, Bankverbindung und Fälligkeit.</dd>
+      <dt>ZUGFeRD-PDF lesen</dt>
+      <dd>Bei ZUGFeRD- und Factur-X-PDFs wird das eingebettete Rechnungs-XML extrahiert und
+      angezeigt. Sie sehen, was die Maschine liest.</dd>
+      <dt>In PDF umwandeln</dt>
+      <dd>Die aufbereitete Ansicht lässt sich über den Druckdialog als PDF speichern, etwa für
+      Ablage und Weitergabe.</dd>
+      <dt>Plausibilität prüfen</dt>
+      <dd>Das Werkzeug weist auf fehlende Pflichtangaben und unstimmige Summen hin, zum Beispiel
+      wenn Netto plus Umsatzsteuer nicht dem Bruttobetrag entspricht.</dd>
+      <dt>Ohne Upload</dt>
+      <dd>Es gibt keinen Server, der Ihre Rechnungen sieht. Damit eignet sich der Viewer auch
+      für vertrauliche Eingangsrechnungen.</dd>
+      <dt>Auch für den Mac</dt>
+      <dd>Läuft in jedem modernen Browser, ohne Installation und ohne Windows-Software.</dd>
+      <dt>E-Rechnungen erstellen</dt>
+      <dd><a href="erstellen.html">Einzelne XRechnung oder ZUGFeRD-PDF kostenlos erstellen</a>,
+      viele auf einmal aus Excel mit <a href="batch-pro.html">XRechnung Batch Pro (39&nbsp;Euro)</a>.</dd>
+    </dl>
   </section>
 
   <section class="content" id="pflicht">
     <h2>E-Rechnungspflicht: die Termine</h2>
     <div class="tablewrap">
     <table class="plain">
-      <tr><th>Seit / ab</th><th>Was gilt</th></tr>
-      <tr><td><strong>1.&nbsp;Januar&nbsp;2025</strong></td><td><strong>Empfangspflicht für alle inländischen Unternehmer</strong> – auch Kleinunternehmer, Vermieter (unternehmerische Vermietung) und Vereine mit wirtschaftlichem Geschäftsbetrieb. Ein E-Mail-Postfach genügt; die Datei ist elektronisch aufzubewahren (GoBD).</td></tr>
-      <tr><td><strong>1.&nbsp;Januar&nbsp;2027</strong></td><td><strong>Ausstellungspflicht</strong> für inländische B2B-Umsätze bei Unternehmen mit mehr als 800.000&nbsp;€ Vorjahresumsatz.</td></tr>
-      <tr><td><strong>1.&nbsp;Januar&nbsp;2028</strong></td><td><strong>Ausstellungspflicht für alle</strong> inländischen B2B-Umsätze – Ende der Übergangsregelungen.</td></tr>
-      <tr><td>dauerhaft</td><td>Kleinunternehmer (§&nbsp;19 UStG) müssen selbst <em>keine</em> E-Rechnungen ausstellen (§&nbsp;34a UStDV), aber empfangen können. Ausnahmen u.&nbsp;a.: Kleinbetragsrechnungen bis 250&nbsp;€, Fahrausweise, B2C.</td></tr>
+      <tr><th>Seit oder ab</th><th>Was gilt</th></tr>
+      <tr><td><strong>1.&nbsp;Januar&nbsp;2025</strong></td><td><strong>Empfangspflicht für alle inländischen Unternehmer</strong>, auch Kleinunternehmer, Vermieter mit unternehmerischer Vermietung und Vereine mit wirtschaftlichem Geschäftsbetrieb. Ein E-Mail-Postfach genügt; die Datei ist elektronisch aufzubewahren (GoBD).</td></tr>
+      <tr><td><strong>1.&nbsp;Januar&nbsp;2027</strong></td><td><strong>Ausstellungspflicht</strong> für inländische B2B-Umsätze bei Unternehmen mit mehr als 800.000&nbsp;Euro Vorjahresumsatz.</td></tr>
+      <tr><td><strong>1.&nbsp;Januar&nbsp;2028</strong></td><td><strong>Ausstellungspflicht für alle</strong> inländischen B2B-Umsätze. Die Übergangsregelungen enden.</td></tr>
+      <tr><td>dauerhaft</td><td>Kleinunternehmer (§&nbsp;19 UStG) müssen selbst <em>keine</em> E-Rechnungen ausstellen (§&nbsp;34a UStDV), aber empfangen können. Ausnahmen sind unter anderem Kleinbetragsrechnungen bis 250&nbsp;Euro, Fahrausweise und B2C-Umsätze.</td></tr>
     </table>
     </div>
-    <p style="font-size:.85rem;color:var(--ink-soft)">Stand: 2026. Hinweise ohne Gewähr, keine Steuer- oder Rechtsberatung – im Zweifel Steuerberatung fragen.</p>
+    <p style="font-size:.85rem;color:var(--grau)">Stand 2026. Hinweise ohne Gewähr, keine Steuerberatung und keine Rechtsberatung.</p>
   </section>
 
   <section class="content" id="formate">
-    <h2>XRechnung vs. ZUGFeRD – kurz erklärt</h2>
-    <p><strong>XRechnung</strong> ist eine reine XML-Datei nach der europäischen Norm EN&nbsp;16931. Sie ist für Maschinen gemacht – ohne Viewer sieht man nur Spitzklammern. Es gibt zwei technische „Dialekte" (UBL und UN/CEFACT&nbsp;CII); dieses Tool liest beide.</p>
-    <p><strong>ZUGFeRD</strong> (international: <strong>Factur-X</strong>) ist ein hybrides Format: ein normales PDF mit eingebettetem XML. Menschen sehen das PDF, Buchhaltungssoftware liest das XML. Rechtlich zählt bei Profilen ab EN&nbsp;16931 der XML-Inhalt – deshalb lohnt der Blick darauf, was tatsächlich „drinsteht": genau das zeigt dieser Viewer.</p>
+    <h2>XRechnung und ZUGFeRD, kurz erklärt</h2>
+    <p><strong>XRechnung</strong> ist eine reine XML-Datei nach der europäischen Norm EN&nbsp;16931.
+    Sie ist für Maschinen gemacht; ohne Viewer sieht man nur Spitzklammern. Es gibt zwei technische
+    Ausprägungen (UBL und UN/CEFACT&nbsp;CII), dieses Werkzeug liest beide.</p>
+    <p><strong>ZUGFeRD</strong> (international <strong>Factur-X</strong>) ist ein hybrides Format:
+    ein normales PDF mit eingebettetem XML. Menschen sehen das PDF, Buchhaltungssoftware liest das
+    XML. Rechtlich zählt bei Profilen ab EN&nbsp;16931 der XML-Inhalt. Deshalb lohnt der Blick
+    darauf, was tatsächlich in der Datei steht; genau das zeigt dieser Viewer.</p>
   </section>
 
   <section class="content" id="faq">
     <h2>Häufige Fragen</h2>
-    <details class="faq"><summary>Wie öffne ich eine XRechnung (XML-Datei)?</summary><p>Datei oben in die Fläche ziehen oder „Datei auswählen" klicken. Die Rechnung wird sofort lesbar angezeigt. Ein Doppelklick auf die XML-Datei selbst öffnet dagegen meist nur einen Texteditor oder Browser mit Roh-XML – daraus wird niemand schlau, dafür ist dieser Viewer da.</p></details>
-    <details class="faq"><summary>Wie wandle ich eine XML-Rechnung in ein PDF um?</summary><p>XML hier öffnen → „Drucken / als PDF speichern" → im Druckdialog „Als PDF speichern" wählen. Fertig, kostenlos, ohne Upload.</p></details>
-    <details class="faq"><summary>Ich habe ein ZUGFeRD-PDF bekommen – warum sollte ich es hier öffnen?</summary><p>Weil rechtlich und buchhalterisch der eingebettete XML-Datensatz zählt, nicht das PDF-Bild. Dieser Viewer zeigt Ihnen den tatsächlichen Dateninhalt inklusive Bankverbindung – so erkennen Sie auch Abweichungen zwischen PDF-Optik und Datensatz.</p></details>
-    <details class="faq"><summary>Werden meine Daten hochgeladen?</summary><p>Nein. Alles läuft lokal in Ihrem Browser. Die Seite funktioniert nach dem Laden sogar offline. Es gibt keinen Server, der Ihre Rechnungen sieht.</p></details>
-    <details class="faq"><summary>Prüft das Tool, ob meine Rechnung „gültig" ist?</summary><p>Es prüft Plausibilität: Pflichtangaben (Rechnungsnummer, Datum, Parteien, Beträge) und Summenlogik. Eine vollständige formale Validierung nach XRechnung-Prüfregeln (Schematron) ist in Arbeit – für die meisten Alltagsfälle reichen die Plausibilitätshinweise, um Probleme zu erkennen.</p></details>
-    <details class="faq"><summary>Was kostet das?</summary><p>Nichts. Das Tool ist kostenlos und ohne Registrierung nutzbar.</p></details>
+    <details class="faq"><summary>Wie öffne ich eine XRechnung (XML-Datei)?</summary><p>Datei oben in die Fläche ziehen oder „Datei auswählen" klicken. Die Rechnung wird sofort lesbar angezeigt. Ein Doppelklick auf die XML-Datei selbst öffnet meist nur einen Texteditor mit Roh-XML; dafür ist dieser Viewer da.</p></details>
+    <details class="faq"><summary>Wie wandle ich eine XML-Rechnung in ein PDF um?</summary><p>Die XML-Datei hier öffnen, dann „Drucken oder als PDF speichern" wählen und im Druckdialog „Als PDF speichern" auswählen. Das ist kostenlos und läuft ohne Upload.</p></details>
+    <details class="faq"><summary>Ich habe ein ZUGFeRD-PDF bekommen. Warum sollte ich es hier öffnen?</summary><p>Weil rechtlich und buchhalterisch der eingebettete XML-Datensatz zählt, nicht das PDF-Bild. Der Viewer zeigt den tatsächlichen Dateninhalt einschließlich Bankverbindung. So erkennen Sie auch Abweichungen zwischen PDF-Optik und Datensatz.</p></details>
+    <details class="faq"><summary>Werden meine Daten hochgeladen?</summary><p>Nein. Alles läuft lokal in Ihrem Browser; die Seite funktioniert nach dem Laden sogar offline. Es gibt keinen Server, der Ihre Rechnungen sieht.</p></details>
+    <details class="faq"><summary>Prüft das Werkzeug, ob meine Rechnung gültig ist?</summary><p>Diese Seite prüft Plausibilität: Pflichtangaben wie Rechnungsnummer, Datum, Parteien und Beträge sowie die Summenlogik. Die vollständige formale Prüfung gegen die offiziellen Regeln übernimmt der <a href="pruefen.html">Validator</a>.</p></details>
+    <details class="faq"><summary>Was kostet das?</summary><p>Nichts. Das Werkzeug ist kostenlos und ohne Registrierung nutzbar.</p></details>
   </section>
 
   <section class="content" id="ratgeber">
     <h2>Ratgeber</h2>
-    <p style="margin:6px 0"><a href="xml-rechnung-in-pdf-umwandeln.html">XML-Rechnung in PDF umwandeln – Schritt für Schritt</a></p>
-    <p style="margin:6px 0"><a href="zugferd-datei-oeffnen.html">ZUGFeRD-Datei öffnen: warum das eingebettete XML zählt</a></p>
-    <p style="margin:6px 0"><a href="xrechnung-oeffnen-mac.html">XRechnung auf dem Mac öffnen – ohne Windows-Software</a></p>
-    <p style="margin:6px 0"><a href="e-rechnung-pflicht-2027-2028.html">E-Rechnungspflicht 2027/2028: Zeitplan &amp; Pflichten kompakt</a></p>
-    <p style="margin:6px 0"><a href="e-rechnung-kleinunternehmer.html">E-Rechnung für Kleinunternehmer (§ 19): was wirklich gilt</a></p>
-    <p style="margin:6px 0"><a href="e-rechnung-vermieter.html">E-Rechnung für Vermieter: Empfangspflicht seit 2025</a></p>
-    <p style="margin:6px 0"><a href="e-rechnung-verein.html">E-Rechnung im Verein: Überblick für Kassenwarte</a></p>
+    <ul class="ratgeber">
+      <li><a href="xml-rechnung-in-pdf-umwandeln.html">XML-Rechnung in PDF umwandeln, Schritt für Schritt</a></li>
+      <li><a href="zugferd-datei-oeffnen.html">ZUGFeRD-Datei öffnen: warum das eingebettete XML zählt</a></li>
+      <li><a href="xrechnung-oeffnen-mac.html">XRechnung auf dem Mac öffnen, ohne Windows-Software</a></li>
+      <li><a href="e-rechnung-pflicht-2027-2028.html">E-Rechnungspflicht 2027 und 2028: Zeitplan und Pflichten</a></li>
+      <li><a href="e-rechnung-kleinunternehmer.html">E-Rechnung für Kleinunternehmer (§ 19): was wirklich gilt</a></li>
+      <li><a href="e-rechnung-vermieter.html">E-Rechnung für Vermieter: Empfangspflicht seit 2025</a></li>
+      <li><a href="e-rechnung-verein.html">E-Rechnung im Verein: Überblick für Kassenwarte</a></li>
+    </ul>
   </section>
 </main>
 
@@ -242,7 +231,7 @@ a{color:var(--accent)}
     <a href="https://ayyoubaha.github.io/nebenkosten-abrechnung/">Nebenkosten-Rechner</a>
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
-    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+    <span style="margin-left:auto">Entwickelt und betrieben in Deutschland</span>
   </div>
 </footer>
 
@@ -252,6 +241,7 @@ import { parseInvoiceXml } from './invoice-parser.mjs';
 const $ = (id) => document.getElementById(id);
 const drop = $('drop'), fileinput = $('fileinput'), filelist = $('filelist'),
       result = $('result'), sheet = $('sheet'), warnings = $('warnings'), errbox = $('errbox');
+const ruhig = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 
 const files = []; // {name, invoice|null, error|null}
 let activeIdx = -1;
@@ -279,7 +269,7 @@ function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.
 async function handleFiles(list) {
   errbox.classList.remove('show');
   const incoming = [...list].filter(f => /\.(xml|pdf)$/i.test(f.name) || /xml|pdf/.test(f.type));
-  if (!incoming.length) { showError('Bitte eine .xml- (XRechnung) oder .pdf-Datei (ZUGFeRD/Factur-X) auswählen.'); return; }
+  if (!incoming.length) { showError('Bitte eine .xml-Datei (XRechnung) oder .pdf-Datei (ZUGFeRD/Factur-X) auswählen.'); return; }
   for (const f of incoming) {
     const entry = { name: f.name, invoice: null, error: null };
     files.push(entry);
@@ -306,7 +296,7 @@ async function parsePdf(file) {
   try { pdf = await pdfjs.getDocument({ data }).promise; }
   catch { throw new Error('PDF konnte nicht geöffnet werden (beschädigt oder passwortgeschützt?).'); }
   const att = await pdf.getAttachments();
-  if (!att) throw new Error('In diesem PDF ist keine E-Rechnung eingebettet – es scheint ein normales PDF ohne ZUGFeRD-Daten zu sein.');
+  if (!att) throw new Error('In diesem PDF ist keine E-Rechnung eingebettet; es scheint ein normales PDF ohne ZUGFeRD-Daten zu sein.');
   const names = Object.keys(att);
   const preferred = ['factur-x.xml','zugferd-invoice.xml','xrechnung.xml','ZUGFeRD-invoice.xml'];
   const key = preferred.find(p => names.some(n => n.toLowerCase() === p.toLowerCase()))
@@ -339,11 +329,11 @@ function show(idx) {
   errbox.classList.remove('show');
   renderInvoice(f.invoice);
   result.classList.add('show');
-  result.scrollIntoView({ behavior:'smooth', block:'start' });
+  result.scrollIntoView({ behavior: ruhig, block:'start' });
 }
 
 function showError(msg) {
-  errbox.textContent = '⚠ ' + msg;
+  errbox.textContent = 'Fehler: ' + msg;
   errbox.classList.add('show');
 }
 
@@ -421,7 +411,7 @@ function renderInvoice(inv) {
       const base = `${v.rate != null ? fmtNum(v.rate) + ' % ' : ''}${cat}: ${fmtMoney(v.tax, cur)} auf ${fmtMoney(v.taxable, cur)}`;
       return v.exemptionReason ? `${base} (${v.exemptionReason})` : base;
     });
-    sheet.append(el('div', 'vat-note', 'USt-Aufschlüsselung: ' + parts.join(' · ')));
+    sheet.append(el('div', 'vat-note', 'USt-Aufschlüsselung: ' + parts.join('; ')));
   }
 
   const pay = inv.payment;
@@ -439,8 +429,8 @@ function renderInvoice(inv) {
 
   if (inv.notes.length) sheet.append(el('div', 'notes', inv.notes.join('\n\n')));
 
-  const syn = inv.syntax === 'UBL' ? 'XRechnung (UBL-Syntax)' : 'UN/CEFACT CII' + (inv.embeddedFile ? ` – eingebettet als „${inv.embeddedFile}"` : '');
-  sheet.append(el('div', 'syntaxline', `Technisches Format: ${syn}${inv.profile ? ' · Profil: ' + inv.profile : ''} · Dargestellt mit E-Rechnung Viewer (lokale Verarbeitung, kein Upload)`));
+  const syn = inv.syntax === 'UBL' ? 'XRechnung (UBL-Syntax)' : 'UN/CEFACT CII' + (inv.embeddedFile ? `, eingebettet als „${inv.embeddedFile}"` : '');
+  sheet.append(el('div', 'syntaxline', `Technisches Format: ${syn}${inv.profile ? '; Profil: ' + inv.profile : ''}. Dargestellt mit E-Rechnung Viewer, lokale Verarbeitung ohne Upload.`));
 }
 
 function renderParty(title, p) {
@@ -449,14 +439,14 @@ function renderParty(title, p) {
   d.append(el('div', 'pname', p.name || '–'));
   if (p.street) d.append(el('div', null, p.street));
   const cityline = [p.postcode, p.city].filter(Boolean).join(' ');
-  if (cityline) d.append(el('div', null, cityline + (p.country && p.country !== 'DE' ? ' · ' + p.country : '')));
+  if (cityline) d.append(el('div', null, cityline + (p.country && p.country !== 'DE' ? ', ' + p.country : '')));
   const details = [];
   if (p.vatId) details.push('USt-IdNr.: ' + p.vatId);
   if (p.taxNumber) details.push('Steuernr.: ' + p.taxNumber);
   if (p.email) details.push(p.email);
   if (p.phone) details.push(p.phone);
   if (p.contact) details.push('Ansprechpartner: ' + p.contact);
-  if (details.length) d.append(el('div', 'pdetail', details.join(' · ')));
+  if (details.length) d.append(el('div', 'pdetail', details.join(', ')));
   return d;
 }
 
@@ -469,7 +459,7 @@ fileinput.onchange = () => { handleFiles(fileinput.files); fileinput.value = '';
 ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
 drop.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
 $('printbtn').onclick = () => window.print();
-$('resetbtn').onclick = () => { files.length = 0; activeIdx = -1; renderFileList(); result.classList.remove('show'); errbox.classList.remove('show'); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+$('resetbtn').onclick = () => { files.length = 0; activeIdx = -1; renderFileList(); result.classList.remove('show'); errbox.classList.remove('show'); window.scrollTo({ top: 0, behavior: ruhig }); };
 </script>
 <script data-goatcounter="https://ayyoubaha.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

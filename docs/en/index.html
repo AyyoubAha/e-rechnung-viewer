@@ -25,115 +25,95 @@
 {"@type":"Question","name":"Can I convert the XML invoice to a PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes – open the invoice and click Print / Save as PDF. Your browser's print dialog lets you save the rendered invoice as a PDF free of charge. Note that for accounting purposes the XML file remains the original document."}}
 ]}
 </script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a4a8f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23fff' text-anchor='middle'%3EER%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../stil.css">
 <style>
-:root{
-  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
-  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --warn-bg:#fdf3e3; --warn-line:#e8c987; --warn-ink:#7a5a1d;
-  --err-bg:#fbecec; --err-ink:#a03030; --badge-bg:#e7f2ea; --badge-ink:#1d7a4f;
-  --drop-bg:#eef3fb; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
-    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --warn-bg:#2e2617; --warn-line:#6b5a2e; --warn-ink:#e0c070;
-    --err-bg:#341e1e; --err-ink:#e08a8a; --badge-bg:#1c2f24; --badge-ink:#5cc48f; --drop-bg:#1c2635;
-  }
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px}
-header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
-.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-weight:700;font-size:1.05rem}
-.logo span{color:var(--accent)}
-.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px;white-space:nowrap}
-nav.tabs{margin-left:auto;display:flex;gap:4px}
-nav.tabs a{padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem}
-nav.tabs a.active{background:var(--accent);color:var(--accent-ink)}
-main{padding:34px 0 10px}
-h1{font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.25;margin:0 0 10px}
-.sub{color:var(--ink-soft);max-width:46em;margin:0 0 24px}
-.sub strong{color:var(--ink)}
-#drop{border:2px dashed var(--accent);border-radius:14px;background:var(--drop-bg);padding:38px 20px;text-align:center;cursor:pointer;transition:background .15s}
-#drop.over{background:var(--surface);border-style:solid}
-#drop .big{font-weight:600;font-size:1.08rem}
-#drop .hint{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
-#drop button{margin-top:14px;background:var(--accent);color:var(--accent-ink);border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer}
-.local-note{display:flex;gap:8px;justify-content:center;align-items:center;color:var(--ok);font-size:.85rem;font-weight:600;margin-top:14px}
-#filelist{display:none;margin:18px 0 0;gap:8px;flex-wrap:wrap}
+/* Werkzeug-spezifisch: Ablagefeld, Dateileiste, Rechnungsblatt */
+#drop{border:1px solid var(--tinte);outline:1px solid var(--linie);outline-offset:-5px;
+  background:var(--flaeche);padding:36px 20px;text-align:center;cursor:pointer}
+#drop.over{outline:2px solid var(--blau);outline-offset:-5px}
+#drop .big{font-weight:600;font-size:1.05rem}
+#drop .hint{color:var(--grau);font-size:.9rem;margin-top:6px}
+#drop button{margin-top:14px;background:var(--blau);color:var(--auf-blau);border:1px solid var(--blau);font:inherit;font-weight:600;padding:10px 24px;cursor:pointer}
+#drop button:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.local-note{color:var(--ok);font-size:.85rem;font-weight:600;margin-top:14px}
+#filelist{display:none;margin:16px 0 0;gap:6px;flex-wrap:wrap}
 #filelist.show{display:flex}
-.fchip{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 12px;font-size:.85rem;cursor:pointer;display:flex;gap:8px;align-items:center}
-.fchip.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-.fchip .st-ok{color:var(--ok)} .fchip .st-err{color:var(--err-ink)}
+.fchip{border:1px solid var(--linie);background:var(--flaeche);padding:6px 12px;font-size:.85rem;cursor:pointer;display:flex;gap:8px;align-items:center}
+.fchip:hover{border-color:var(--grau)}
+.fchip.active{border-color:var(--blau);outline:1px solid var(--blau);outline-offset:-2px}
+.fchip .st-ok{color:var(--ok)} .fchip .st-err{color:var(--rot)}
 #result{display:none;margin-top:26px}
 #result.show{display:block}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.actions button{font:inherit;font-weight:600;border-radius:9px;padding:9px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
-.actions button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.warnbox{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:.9rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.actions button{font:inherit;font-weight:600;padding:9px 18px;cursor:pointer;border:1px solid var(--tinte);background:var(--flaeche);color:var(--tinte)}
+.actions button:hover{background:var(--grund)}
+.actions button.primary{background:var(--blau);color:var(--auf-blau);border-color:var(--blau)}
+.actions button.primary:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.warnbox{border-left:3px solid var(--warnlinie);background:var(--warnflaeche);color:var(--warn);padding:11px 15px;margin-bottom:14px;font-size:.9rem}
 .warnbox ul{margin:6px 0 0;padding-left:20px}
-.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:10px;padding:14px 16px;margin-top:20px;display:none}
+.errbox{border-left:3px solid var(--rot);background:var(--rotflaeche);color:var(--rot);padding:12px 15px;margin-top:20px;display:none}
 .errbox.show{display:block}
-.sheet{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:34px;box-shadow:0 1px 4px rgba(10,20,40,.05)}
-.sheet h2.docline{margin:0 0 2px;font-size:1.3rem}
-.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 22px;margin:18px 0 6px;padding:14px 16px;background:var(--bg);border-radius:10px}
+/* Rechnungsblatt: Dokument mit Kopf-Doppellinie */
+.sheet{background:var(--flaeche);border:1px solid var(--linie);padding:34px}
+.sheet h2.docline{margin:0 0 2px;font-size:1.35rem}
+.skel{color:var(--grau);font-size:.9rem}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 22px;margin:16px 0 0;padding:12px 0 14px;border-top:1px solid var(--linie);border-bottom:3px double var(--tinte)}
 .meta-grid div{font-size:.92rem}
-.meta-grid .k{display:block;color:var(--ink-soft);font-size:.76rem;text-transform:uppercase;letter-spacing:.4px}
+.meta-grid .k{display:block;color:var(--grau);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
 .parties{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:20px 0}
 @media(max-width:640px){.parties{grid-template-columns:1fr}.sheet{padding:22px}}
-.party h3{margin:0 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft)}
+.party h3{margin:0 0 6px;font-size:.74rem;font-family:inherit;text-transform:uppercase;letter-spacing:.1em;color:var(--grau)}
 .party .pname{font-weight:600}
 .party div{font-size:.95rem}
-.party .pdetail{color:var(--ink-soft);font-size:.85rem;margin-top:4px}
+.party .pdetail{color:var(--grau);font-size:.85rem;margin-top:4px}
 table.lines{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:.92rem}
-table.lines th{text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);border-bottom:2px solid var(--line);padding:8px 8px}
-table.lines td{border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:top}
+table.lines th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);border-bottom:1px solid var(--tinte);padding:8px 8px;font-weight:600}
+table.lines td{border-bottom:1px solid var(--linie);padding:9px 8px;vertical-align:top}
 table.lines .r{text-align:right;white-space:nowrap}
-table.lines td.desc{color:var(--ink-soft);font-size:.84rem}
-.tablewrap{overflow-x:auto}
+table.lines td.desc{color:var(--grau);font-size:.84rem}
 .totals{margin:14px 0 0;margin-left:auto;max-width:340px;font-size:.95rem}
 .totals div{display:flex;justify-content:space-between;padding:5px 8px}
-.totals .grand{border-top:2px solid var(--ink);font-weight:700;font-size:1.05rem;margin-top:4px;padding-top:9px}
-.totals .soft{color:var(--ink-soft)}
-.vat-note{color:var(--ink-soft);font-size:.84rem;text-align:right;margin-top:6px}
-.payblock{margin-top:24px;padding:16px;background:var(--bg);border-radius:10px;font-size:.93rem}
-.payblock h3{margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft)}
+.totals .grand{border-top:3px double var(--tinte);font-weight:700;font-size:1.05rem;margin-top:4px;padding-top:9px}
+.totals .soft{color:var(--grau)}
+.vat-note{color:var(--grau);font-size:.84rem;text-align:right;margin-top:6px}
+.payblock{margin-top:24px;padding-top:14px;border-top:1px solid var(--tinte);font-size:.93rem}
+.payblock h3{margin:0 0 8px;font-size:.74rem;font-family:inherit;text-transform:uppercase;letter-spacing:.1em;color:var(--grau)}
 .payblock .iban{font-family:var(--mono);font-size:.95rem}
-.notes{margin-top:18px;font-size:.88rem;color:var(--ink-soft);white-space:pre-wrap}
-.syntaxline{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.78rem}
-section.content{margin:56px 0}
-section.content h2{font-size:1.35rem;margin:0 0 12px}
+.notes{margin-top:18px;font-size:.88rem;color:var(--grau);white-space:pre-wrap}
+.syntaxline{margin-top:22px;padding-top:12px;border-top:1px solid var(--linie);color:var(--grau);font-size:.78rem}
+/* Inhaltsteile */
+section.content{margin:52px 0}
+section.content h2{font-size:1.4rem;margin:0 0 12px}
+section.content h3{font-size:1.05rem;margin:22px 0 6px}
 section.content p{max-width:52em;margin:10px 0}
-section.content .cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:18px 0}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
-.card h3{margin:0 0 6px;font-size:1rem}
-.card p{margin:0;font-size:.9rem;color:var(--ink-soft)}
-details.faq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin:8px 0}
+dl.funktionen{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:14px 0}
+@media(max-width:700px){dl.funktionen{grid-template-columns:1fr}}
+dl.funktionen dt{font-weight:600;border-top:1px solid var(--linie);padding-top:12px;margin-top:12px}
+dl.funktionen dd{margin:4px 0 12px;color:var(--grau);font-size:.92rem}
+details.faq{border-top:1px solid var(--linie);padding:2px 0}
+details.faq:last-of-type{border-bottom:1px solid var(--linie)}
 details.faq summary{font-weight:600;padding:12px 0;cursor:pointer}
-details.faq p{color:var(--ink-soft);margin:0 0 14px}
-footer{border-top:1px solid var(--line);margin-top:60px;padding:22px 0 34px;color:var(--ink-soft);font-size:.85rem}
-footer .wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-footer a{color:var(--ink-soft)}
-a{color:var(--accent)}
-.skel{color:var(--ink-soft);font-size:.9rem}
+details.faq summary:hover{color:var(--blau)}
+details.faq p{color:var(--grau);margin:0 0 14px;max-width:60em}
+ul.ratgeber{list-style:none;padding:0;margin:10px 0}
+ul.ratgeber li{border-top:1px solid var(--linie);padding:10px 0}
 @media print{
   body{background:#fff}
-  header.top,#drop,.local-note,#filelist,.actions,section.content,footer,.errbox{display:none !important}
+  header.top,#drop,.local-note,#filelist,.actions,section.content,footer,.errbox,.warnbox.print-hide{display:none !important}
   #result{display:block !important;margin:0}
-  .sheet{border:0;box-shadow:none;border-radius:0;padding:0}
-  .meta-grid,.payblock{background:#f2f2f2}
+  .sheet{border:0;padding:0}
 }
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="logo">E-Invoice <span>Viewer</span></div>
-    <span class="badge">100% local – no upload</span>
-    <nav class="tabs">
-      <a href="index.html" class="active">View</a>
+    <a class="logo" href="./">E-Invoice <em>Viewer</em></a>
+    <nav class="tabs" aria-label="Tools">
+      <a href="index.html" aria-current="page">Read</a>
       <a href="validate.html">Validate</a>
-      <a href="../index.html">Deutsch 🇩🇪</a>
+      <a href="../" hreflang="de" title="Deutsche Version">DE</a>
     </nav>
   </div>
 </header>
@@ -141,13 +121,13 @@ a{color:var(--accent)}
 <main class="wrap">
   <h1>Open &amp; read e-invoices – right in your browser</h1>
   <p class="sub">View <strong>XRechnung</strong> (XML), <strong>ZUGFeRD / Factur-X</strong> PDFs and
-  <strong>EN 16931 UBL</strong> invoices (incl. Peppol BIS style) in a clean, human-readable layout —
+  <strong>EN 16931 UBL</strong> invoices (incl. Peppol BIS style) in a clean, human-readable layout;
   and print them to PDF. Your file is <strong>never uploaded</strong>: everything runs locally on your
   device. Works on Windows, macOS and Linux.</p>
 
   <div id="drop" role="button" tabindex="0" aria-label="Select or drop an e-invoice">
     <div class="big">Drop your e-invoice here</div>
-    <div class="hint">XRechnung / UBL / CII (.xml) or ZUGFeRD / Factur-X (.pdf) · multiple files supported</div>
+    <div class="hint">XRechnung / UBL / CII (.xml) or ZUGFeRD / Factur-X (.pdf); multiple files supported</div>
     <button type="button" id="pick">Choose file</button>
     <input type="file" id="fileinput" accept=".xml,.pdf,application/xml,text/xml,application/pdf" multiple hidden>
     <div class="local-note">✓ Privacy: your invoice never leaves your device</div>
@@ -169,12 +149,12 @@ a{color:var(--accent)}
   <section class="content">
     <h2>What this tool does</h2>
     <div class="cardgrid">
-      <div class="card"><h3>XRechnung &amp; UBL</h3><p>Reads both official XML syntaxes (UBL and UN/CEFACT CII) used across the EU under EN 16931 — including German XRechnung and Peppol-BIS-style invoices.</p></div>
-      <div class="card"><h3>ZUGFeRD / Factur-X PDFs</h3><p>Extracts and displays the machine-readable XML embedded in hybrid invoice PDFs — so you see what accounting systems actually read.</p></div>
-      <div class="card"><h3>Convert to PDF</h3><p>Save the rendered view as a PDF via your browser's print dialog — handy for filing and forwarding.</p></div>
+      <div class="card"><h3>XRechnung &amp; UBL</h3><p>Reads both official XML syntaxes (UBL and UN/CEFACT CII) used across the EU under EN 16931: including German XRechnung and Peppol-BIS-style invoices.</p></div>
+      <div class="card"><h3>ZUGFeRD / Factur-X PDFs</h3><p>Extracts and displays the machine-readable XML embedded in hybrid invoice PDFs: so you see what accounting systems actually read.</p></div>
+      <div class="card"><h3>Convert to PDF</h3><p>Save the rendered view as a PDF via your browser's print dialog, handy for filing and forwarding.</p></div>
       <div class="card"><h3>Plausibility checks</h3><p>Flags missing mandatory fields and inconsistent totals (net + VAT ≠ gross, line sums).</p></div>
-      <div class="card"><h3>No upload, works offline</h3><p>All processing happens in your browser. No third-party requests at all — after the first load the page even works offline.</p></div>
-      <div class="card"><h3>Validate against official rules</h3><p><a href="validate.html">Full business-rule validation</a> (EN 16931 + German XRechnung CIUS) with a printable report — also 100% local.</p></div>
+      <div class="card"><h3>No upload, works offline</h3><p>All processing happens in your browser. No third-party requests at all: after the first load the page even works offline.</p></div>
+      <div class="card"><h3>Validate against official rules</h3><p><a href="validate.html">Full business-rule validation</a> (EN 16931 + German XRechnung CIUS) with a printable report: also 100% local.</p></div>
     </div>
   </section>
 
@@ -183,9 +163,9 @@ a{color:var(--accent)}
     <p style="margin:6px 0"><a href="factur-x.html">Factur-X explained: the invoice inside the PDF</a></p>
     <p style="margin:6px 0"><a href="peppol-invoice-viewer.html">Peppol invoice viewer: read Peppol BIS / UBL invoices</a></p>
     <h2>Frequently asked questions</h2>
-    <details class="faq"><summary>How do I open an XRechnung / Factur-X file?</summary><p>Drag the file into the area above or click “Choose file”. Double-clicking the XML itself usually opens a text editor full of angle brackets — that's what this viewer is for.</p></details>
+    <details class="faq"><summary>How do I open an XRechnung / Factur-X file?</summary><p>Drag the file into the area above or click “Choose file”. Double-clicking the XML itself usually opens a text editor full of angle brackets: that's what this viewer is for.</p></details>
     <details class="faq"><summary>Is my invoice uploaded anywhere?</summary><p>No. The page runs entirely in your browser and loads nothing from third-party servers. It's suitable for confidential invoices.</p></details>
-    <details class="faq"><summary>Why should I look at the XML inside a ZUGFeRD/Factur-X PDF?</summary><p>Because for profiles at EN 16931 level, the embedded XML is the authoritative invoice content — accounting software processes the data, not the PDF image. If they differ, you want to know.</p></details>
+    <details class="faq"><summary>Why should I look at the XML inside a ZUGFeRD/Factur-X PDF?</summary><p>Because for profiles at EN 16931 level, the embedded XML is the authoritative invoice content: accounting software processes the data, not the PDF image. If they differ, you want to know.</p></details>
     <details class="faq"><summary>What does it cost?</summary><p>Nothing. Viewing, checking and printing are free, with no registration.</p></details>
   </section>
 </main>
@@ -195,7 +175,7 @@ a{color:var(--accent)}
     <span>© 2026 E-Invoice Viewer</span>
     <a href="../impressum.html">Legal notice (Impressum)</a>
     <a href="../datenschutz.html">Privacy (German)</a>
-    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+    <span style="margin-left:auto">Made in Germany</span>
   </div>
 </footer>
 
@@ -257,7 +237,7 @@ async function parsePdf(file) {
   try { pdf = await pdfjs.getDocument({ data }).promise; }
   catch { throw new Error('Could not open the PDF (corrupted or password-protected?).'); }
   const att = await pdf.getAttachments();
-  if (!att) throw new Error('No e-invoice is embedded in this PDF — it appears to be a regular PDF without ZUGFeRD/Factur-X data.');
+  if (!att) throw new Error('No e-invoice is embedded in this PDF; it appears to be a regular PDF without ZUGFeRD/Factur-X data.');
   const names = Object.keys(att);
   const preferred = ['factur-x.xml','zugferd-invoice.xml','xrechnung.xml','ZUGFeRD-invoice.xml'];
   const key = preferred.find(p => names.some(n => n.toLowerCase() === p.toLowerCase()))
@@ -372,7 +352,7 @@ function renderInvoice(inv) {
       const base = `${v.rate != null ? fmtNum(v.rate) + '% ' : ''}${cat}: ${fmtMoney(v.tax, cur)} on ${fmtMoney(v.taxable, cur)}`;
       return v.exemptionReason ? `${base} (${v.exemptionReason})` : base;
     });
-    sheet.append(el('div', 'vat-note', 'VAT breakdown: ' + parts.join(' · ')));
+    sheet.append(el('div', 'vat-note', 'VAT breakdown: ' + parts.join('; ')));
   }
 
   const pay = inv.payment;
@@ -391,7 +371,7 @@ function renderInvoice(inv) {
   if (inv.notes.length) sheet.append(el('div', 'notes', inv.notes.join('\n\n')));
 
   const syn = inv.syntax === 'UBL' ? 'UBL syntax' : 'UN/CEFACT CII' + (inv.embeddedFile ? ` – embedded as “${inv.embeddedFile}”` : '');
-  sheet.append(el('div', 'syntaxline', `Technical format: ${syn}${inv.profile ? ' · Profile: ' + inv.profile : ''} · Rendered with E-Invoice Viewer (local processing, no upload)`));
+  sheet.append(el('div', 'syntaxline', `Technical format: ${syn}${inv.profile ? '; Profile: ' + inv.profile : ''}. Rendered with E-Invoice Viewer (local processing, no upload)`));
 }
 
 function renderParty(title, p) {
@@ -400,14 +380,14 @@ function renderParty(title, p) {
   d.append(el('div', 'pname', p.name || '–'));
   if (p.street) d.append(el('div', null, p.street));
   const cityline = [p.postcode, p.city].filter(Boolean).join(' ');
-  if (cityline) d.append(el('div', null, cityline + (p.country ? ' · ' + p.country : '')));
+  if (cityline) d.append(el('div', null, cityline + (p.country ? ', ' + p.country : '')));
   const details = [];
   if (p.vatId) details.push('VAT ID: ' + p.vatId);
   if (p.taxNumber) details.push('Tax no.: ' + p.taxNumber);
   if (p.email) details.push(p.email);
   if (p.phone) details.push(p.phone);
   if (p.contact) details.push('Contact: ' + p.contact);
-  if (details.length) d.append(el('div', 'pdetail', details.join(' · ')));
+  if (details.length) d.append(el('div', 'pdetail', details.join(', ')));
   return d;
 }
 

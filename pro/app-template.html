@@ -8,14 +8,14 @@
 <style>
 :root{
   --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
-  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --okbg:#e7f2ea;
+  --accent:#1a4a8f; --accent-ink:#ffffff; --ok:#1d7a4f; --okbg:#e7f2ea;
   --err-bg:#fbecec; --err-ink:#a03030; --warn-bg:#fdf3e3; --warn-ink:#7a5a1d;
   --pro:#5b3fa8; --probg:#f0ecfb;
 }
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
-    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --okbg:#1c2f24;
+    --accent:#7aa5e0; --accent-ink:#0e1420; --ok:#5cc48f; --okbg:#1c2f24;
     --err-bg:#341e1e; --err-ink:#e08a8a; --warn-bg:#2e2617; --warn-ink:#e0c070;
     --pro:#b39ce8; --probg:#251d38;
   }
@@ -27,22 +27,22 @@ header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--s
 .top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .logo{font-weight:700;font-size:1.05rem}
 .logo span{color:var(--pro)}
-.badge{background:var(--probg);color:var(--pro);font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px}
+.badge{background:var(--probg);color:var(--pro);font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:0}
 .badge.green{background:var(--okbg);color:var(--ok)}
 main{padding:28px 0 40px}
 h1{font-size:clamp(1.3rem,3vw,1.7rem);margin:0 0 6px}
 .sub{color:var(--ink-soft);max-width:56em;margin:0 0 20px}
-#drop{border:2px dashed var(--pro);border-radius:14px;background:var(--probg);padding:34px 20px;text-align:center;cursor:pointer}
+#drop{border:2px dashed var(--pro);border-radius:0;background:var(--probg);padding:34px 20px;text-align:center;cursor:pointer}
 #drop.over{border-style:solid;background:var(--surface)}
 #drop .big{font-weight:700;font-size:1.05rem}
 #drop .hint{color:var(--ink-soft);font-size:.88rem;margin-top:6px}
-#drop button{margin-top:12px;background:var(--pro);color:#fff;border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer}
+#drop button{margin-top:12px;background:var(--pro);color:#fff;border:0;font:inherit;font-weight:600;padding:10px 22px;border-radius:0;cursor:pointer}
 .step{display:flex;gap:10px;align-items:baseline;margin:26px 0 10px;font-weight:700}
-.step .n{background:var(--pro);color:#fff;border-radius:99px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex:none}
-.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:10px;padding:13px 16px;margin:14px 0;font-size:.9rem;display:none}
+.step .n{background:var(--pro);color:#fff;border-radius:0;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex:none}
+.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:0;padding:13px 16px;margin:14px 0;font-size:.9rem;display:none}
 .errbox.show{display:block}
 .errbox ul{margin:6px 0 0;padding-left:20px;max-height:220px;overflow:auto}
-.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:14px 0}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:0;margin:14px 0}
 table{width:100%;border-collapse:collapse;font-size:.9rem}
 th{background:var(--bg);text-align:left;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);padding:9px 10px}
 td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:top}
@@ -51,7 +51,7 @@ td.r{text-align:right;white-space:nowrap}
 .st-err{color:var(--err-ink);font-weight:700}
 .st-err small{display:block;font-weight:400;color:var(--err-ink)}
 .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0}
-.cta button{font:inherit;font-weight:700;border-radius:10px;padding:12px 24px;cursor:pointer;border:0;background:var(--pro);color:#fff;font-size:1rem}
+.cta button{font:inherit;font-weight:700;border-radius:0;padding:12px 24px;cursor:pointer;border:0;background:var(--pro);color:#fff;font-size:1rem}
 .cta button.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .cta button:disabled{opacity:.45;cursor:not-allowed}
 .okline{color:var(--ok);font-weight:600;font-size:.9rem}
@@ -80,11 +80,11 @@ a{color:var(--accent)}
   <h1>Excel rein → fertige XRechnungen raus</h1>
   <p class="sub introline">1. Die mitgelieferte <strong>Vorlage-Rechnungen.xlsx</strong> ausfüllen (Blatt „Absender" einmalig,
   Blatt „Rechnungen" eine Zeile pro Position). &nbsp;2. Datei hier ablegen. &nbsp;3. Alle Rechnungen als ZIP herunterladen.
-  Diese App funktioniert komplett offline — auch ohne Internetverbindung.</p>
+  Diese App funktioniert komplett offline, auch ohne Internetverbindung.</p>
 
   <div id="drop" role="button" tabindex="0">
     <div class="big">Ausgefüllte Excel-Vorlage hierher ziehen</div>
-    <div class="hint">Vorlage-Rechnungen.xlsx (liegt neben dieser Datei) · .xlsx</div>
+    <div class="hint">Vorlage-Rechnungen.xlsx (liegt neben dieser Datei), Format .xlsx</div>
     <button type="button" id="pick">Datei auswählen</button>
     <input type="file" id="fileinput" accept=".xlsx" hidden>
   </div>
@@ -127,7 +127,7 @@ a{color:var(--accent)}
 
 <footer>
   <div class="wrap">
-    <span>XRechnung Batch Pro {{VERSION}} · Stand {{DATE}}</span>
+    <span>XRechnung Batch Pro {{VERSION}}, Stand {{DATE}}</span>
     <span>Support: <a href="mailto:kontakt@ayyoubaharchi.de">kontakt@ayyoubaharchi.de</a></span>
     <span style="margin-left:auto"><a href="https://ayyoubaha.github.io/e-rechnung-viewer/">Kostenloser Viewer &amp; Einzel-Generator</a></span>
   </div>
@@ -185,7 +185,7 @@ var ZF_ASSETS_B64 = { fontRegular: "{{FONT_REG_B64}}", fontBold: "{{FONT_BOLD_B6
       var absSheet = findSheet(wb, 'absender');
       var rSheet = findSheet(wb, 'rechnung');
       if (!absSheet || !rSheet) {
-        showError('Die Datei enthält kein Blatt „Absender" bzw. „Rechnungen" — bitte die mitgelieferte Vorlage verwenden.');
+        showError('Die Datei enthält kein Blatt „Absender" bzw. „Rechnungen"; bitte die mitgelieferte Vorlage verwenden.');
         return;
       }
       var absenderRows = XLSX.utils.sheet_to_json(absSheet, { header: 1, raw: true, defval: null });
@@ -218,7 +218,7 @@ var ZF_ASSETS_B64 = { fontRegular: "{{FONT_REG_B64}}", fontBold: "{{FONT_BOLD_B6
     }
 
     var ok = state.results.filter(function (r) { return r.xml; }).length;
-    $('summary').textContent = state.results.length + ' Rechnung(en) gelesen aus „' + state.sourceName + '" — ' + ok + ' fehlerfrei.';
+    $('summary').textContent = state.results.length + ' Rechnung(en) gelesen aus „' + state.sourceName + '": ' + ok + ' fehlerfrei.';
     var rows = $('rows');
     rows.innerHTML = '';
     state.results.forEach(function (r) {
@@ -226,12 +226,12 @@ var ZF_ASSETS_B64 = { fontRegular: "{{FONT_REG_B64}}", fontBold: "{{FONT_BOLD_B6
       var status = r.xml
         ? '<span class="st-ok">✓ bereit</span>'
         : '<span class="st-err">✕ unvollständig<small>' + r.errors.map(escText).join('<br>') + '</small></span>';
-      tr.innerHTML = '<td>' + escText(r.input.number || '—') + '</td>' +
-        '<td>' + escText(r.input.issueDate || '—') + '</td>' +
-        '<td>' + escText(r.input.buyer.name || '—') + '</td>' +
+      tr.innerHTML = '<td>' + escText(r.input.number || '–') + '</td>' +
+        '<td>' + escText(r.input.issueDate || '–') + '</td>' +
+        '<td>' + escText(r.input.buyer.name || '–') + '</td>' +
         '<td class="r">' + r.input.lines.length + '</td>' +
-        '<td class="r">' + (r.totals ? fmt(r.totals.net) : '—') + '</td>' +
-        '<td class="r">' + (r.totals ? fmt(r.totals.gross) : '—') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.net) : '–') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.gross) : '–') + '</td>' +
         '<td>' + status + '</td>';
       rows.appendChild(tr);
     });
@@ -248,17 +248,17 @@ var ZF_ASSETS_B64 = { fontRegular: "{{FONT_REG_B64}}", fontBold: "{{FONT_BOLD_B6
     state.results.forEach(function (r) {
       var tr = document.createElement('tr');
       if (r.totals) { sumNet += r.totals.net; sumVat += r.totals.taxTotal; sumGross += r.totals.gross; ok++; }
-      tr.innerHTML = '<td>' + escText(r.input.number || '—') + '</td>' +
-        '<td>' + escText(r.input.issueDate || '—') + '</td>' +
-        '<td>' + escText(r.input.buyer.name || '—') + '</td>' +
-        '<td class="r">' + (r.totals ? fmt(r.totals.net) : '—') + '</td>' +
-        '<td class="r">' + (r.totals ? fmt(r.totals.taxTotal) : '—') + '</td>' +
-        '<td class="r">' + (r.totals ? fmt(r.totals.gross) : '—') + '</td>' +
+      tr.innerHTML = '<td>' + escText(r.input.number || '–') + '</td>' +
+        '<td>' + escText(r.input.issueDate || '–') + '</td>' +
+        '<td>' + escText(r.input.buyer.name || '–') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.net) : '–') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.taxTotal) : '–') + '</td>' +
+        '<td class="r">' + (r.totals ? fmt(r.totals.gross) : '–') + '</td>' +
         '<td>' + (r.xml ? 'XRechnung erstellt' : 'NICHT erstellt: ' + r.errors.map(escText).join('; ')) + '</td>';
       tb.appendChild(tr);
     });
-    $('reportmeta').textContent = 'Quelle: ' + state.sourceName + ' · erstellt am ' + new Date().toLocaleString('de-DE') + ' · ' + ok + ' von ' + state.results.length + ' Rechnungen erstellt';
-    $('reporttotals').textContent = 'Summen (erstellte Rechnungen): Netto ' + fmt(sumNet) + ' · USt ' + fmt(sumVat) + ' · Brutto ' + fmt(sumGross);
+    $('reportmeta').textContent = 'Quelle: ' + state.sourceName + ", erstellt am " + new Date().toLocaleString('de-DE') + ", " + ok + ' von ' + state.results.length + ' Rechnungen erstellt';
+    $('reporttotals').textContent = 'Summen (erstellte Rechnungen): Netto ' + fmt(sumNet) + ', USt ' + fmt(sumVat) + ', Brutto ' + fmt(sumGross);
   }
 
   var zfAssets = null;

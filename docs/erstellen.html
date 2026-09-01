@@ -3,108 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>XRechnung &amp; ZUGFeRD erstellen – kostenlos, ohne Anmeldung, im Browser</title>
-<meta name="description" content="XRechnung (XML) oder ZUGFeRD-PDF kostenlos erstellen: Formular ausfüllen, gültige E-Rechnung herunterladen. Für Behörden und Unternehmen, auch für Kleinunternehmer (§ 19 UStG). 100 % lokal – ohne Upload, ohne Registrierung.">
-<meta property="og:title" content="XRechnung erstellen – kostenlos im Browser">
-<meta property="og:description" content="Formular ausfüllen, gültige XRechnung (XML) herunterladen. 100 % lokal, ohne Anmeldung.">
+<title>XRechnung erstellen: kostenlos und ohne Anmeldung im Browser (auch ZUGFeRD)</title>
+<meta name="description" content="XRechnung (XML) oder ZUGFeRD-PDF kostenlos erstellen: Formular ausfüllen, gültige E-Rechnung herunterladen. Für Behörden und Unternehmen, auch im Kleinunternehmer-Modus nach § 19 UStG. Die Daten bleiben auf Ihrem Gerät.">
+<meta property="og:title" content="XRechnung erstellen: kostenlos im Browser">
+<meta property="og:description" content="Formular ausfüllen, gültige XRechnung (XML) herunterladen. Ohne Upload und ohne Anmeldung.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ayyoubaha.github.io/e-rechnung-viewer/erstellen.html">
 <link rel="canonical" href="https://ayyoubaha.github.io/e-rechnung-viewer/erstellen.html">
 <meta name="robots" content="index,follow">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XRechnung-Generator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"XRechnung kostenlos im Browser erstellen – ohne Upload, ohne Registrierung. Erzeugt Rechnungen im XRechnung-3.0-Format (EN 16931).","inLanguage":"de"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XRechnung-Generator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"XRechnung kostenlos im Browser erstellen, ohne Upload und ohne Registrierung. Erzeugt Rechnungen im Format XRechnung 3.0 (EN 16931).","inLanguage":"de"}
 </script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a4a8f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23fff' text-anchor='middle'%3EER%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="stil.css">
 <style>
-:root{
-  --bg:#f6f7f9; --surface:#ffffff; --ink:#1a2332; --ink-soft:#5a6577; --line:#e3e7ee;
-  --accent:#1d5fbf; --accent-ink:#ffffff; --ok:#1d7a4f; --warn-bg:#fdf3e3; --warn-line:#e8c987; --warn-ink:#7a5a1d;
-  --err-bg:#fbecec; --err-ink:#a03030; --badge-bg:#e7f2ea; --badge-ink:#1d7a4f; --pro-bg:#f0ecfb; --pro-ink:#5b3fa8;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#12161d; --surface:#1a2029; --ink:#e8ecf2; --ink-soft:#9aa5b5; --line:#2b3442;
-    --accent:#5a95e8; --accent-ink:#0e1420; --ok:#5cc48f; --warn-bg:#2e2617; --warn-line:#6b5a2e; --warn-ink:#e0c070;
-    --err-bg:#341e1e; --err-ink:#e08a8a; --badge-bg:#1c2f24; --badge-ink:#5cc48f; --pro-bg:#251d38; --pro-ink:#b39ce8;
-  }
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px}
-header.top{padding:14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
-.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-weight:700;font-size:1.05rem}
-.logo a{color:inherit;text-decoration:none}
-.logo span{color:var(--accent)}
-.badge{background:var(--badge-bg);color:var(--badge-ink);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px;white-space:nowrap}
-nav.tabs{margin-left:auto;display:flex;gap:4px}
-nav.tabs a{padding:6px 14px;border-radius:8px;text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.9rem}
-nav.tabs a.active{background:var(--accent);color:var(--accent-ink)}
-main{padding:30px 0 10px}
-h1{font-size:clamp(1.4rem,3.4vw,1.9rem);line-height:1.25;margin:0 0 8px}
-.sub{color:var(--ink-soft);max-width:50em;margin:0 0 22px}
-fieldset{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 18px 8px;margin:0 0 18px;min-width:0}
-legend{font-weight:700;font-size:.95rem;padding:0 6px}
-.grid{display:grid;gap:12px 14px;grid-template-columns:repeat(12,1fr)}
+/* Formularseite: Erfassung im Dokumentstil */
+fieldset{border:0;border-top:1px solid var(--tinte);padding:14px 0 6px;margin:0 0 24px;min-width:0}
+legend{font-family:inherit;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:0 14px 0 0}
+.grid{display:grid;gap:12px 16px;grid-template-columns:repeat(12,1fr)}
 .f{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.f label{font-size:.8rem;font-weight:600;color:var(--ink-soft)}
-.f label .req{color:var(--err-ink)}
-.f input,.f select,.f textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
-.f input:focus,.f select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
-.f .hint{font-size:.75rem;color:var(--ink-soft)}
+.f label{font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--grau)}
+.f label .req{color:var(--rot)}
+.f input,.f select,.f textarea{font:inherit;color:var(--tinte);background:var(--flaeche);border:1px solid var(--linie);border-radius:0;padding:8px 10px;min-width:0}
+.f input:hover,.f select:hover{border-color:var(--grau)}
+.f input:focus,.f select:focus{outline:2px solid var(--blau);outline-offset:-1px;border-color:var(--blau)}
+.f .hint{font-size:.75rem;color:var(--grau);text-transform:none;letter-spacing:0}
 .c3{grid-column:span 3}.c4{grid-column:span 4}.c6{grid-column:span 6}.c8{grid-column:span 8}.c12{grid-column:span 12}
 @media(max-width:720px){.c3,.c4,.c6,.c8{grid-column:span 12}}
 .check{display:flex;gap:8px;align-items:center;font-size:.92rem;margin:2px 0 10px}
-.check input{width:17px;height:17px}
+.check input{width:16px;height:16px;accent-color:var(--blau)}
 table.lines{width:100%;border-collapse:collapse;font-size:.9rem}
-table.lines th{text-align:left;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);padding:4px 6px}
+table.lines th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);padding:4px 6px;font-weight:600}
 table.lines td{padding:4px 6px;vertical-align:top}
-table.lines input,table.lines select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:7px 8px}
+table.lines input,table.lines select{width:100%;font:inherit;color:var(--tinte);background:var(--flaeche);border:1px solid var(--linie);border-radius:0;padding:7px 8px}
+table.lines input:focus,table.lines select:focus{outline:2px solid var(--blau);outline-offset:-1px}
 table.lines .num{text-align:right}
-.rowdel{background:none;border:0;color:var(--err-ink);font-size:1.1rem;cursor:pointer;padding:6px}
-.addline{background:var(--surface);border:1px dashed var(--accent);color:var(--accent);font:inherit;font-weight:600;border-radius:8px;padding:8px 16px;cursor:pointer;margin:10px 0 6px}
+.rowdel{background:none;border:0;color:var(--rot);font-size:1.05rem;cursor:pointer;padding:6px}
+.rowdel:hover{background:var(--rotflaeche)}
+.addline{background:none;border:0;border-bottom:1px solid var(--blau);color:var(--blau);font:inherit;font-weight:600;padding:4px 2px;cursor:pointer;margin:10px 0 6px}
+.addline:hover{color:var(--blau-dunkel)}
 .tablewrap{overflow-x:auto}
-.sumbar{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:4px 0 18px;font-size:.95rem}
+.sumbar{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end;border-top:1px solid var(--tinte);border-bottom:3px double var(--tinte);padding:12px 4px;margin:4px 0 18px;font-size:.95rem}
 .sumbar b{font-size:1.05rem}
 .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:10px 0 22px}
-.cta button{font:inherit;font-weight:700;border-radius:10px;padding:12px 26px;cursor:pointer;border:0;background:var(--accent);color:var(--accent-ink);font-size:1.02rem}
-.cta button:hover{filter:brightness(1.07)}
-.cta .note{font-size:.83rem;color:var(--ok);font-weight:600}
-.errbox{background:var(--err-bg);color:var(--err-ink);border-radius:10px;padding:14px 16px;margin:0 0 18px;display:none;font-size:.9rem}
+.cta button{font:inherit;font-weight:600;border-radius:0;padding:12px 26px;cursor:pointer;border:1px solid var(--blau);background:var(--blau);color:var(--auf-blau);font-size:1rem}
+.cta button:hover{background:var(--blau-dunkel);border-color:var(--blau-dunkel)}
+.cta button.zweit{background:var(--flaeche);color:var(--tinte);border:1px solid var(--tinte)}
+.cta button.zweit:hover{background:var(--grund)}
+.cta .note{font-size:.83rem;color:var(--grau)}
+.errbox{border-left:3px solid var(--rot);background:var(--rotflaeche);color:var(--rot);padding:12px 15px;margin:0 0 18px;display:none;font-size:.9rem}
 .errbox.show{display:block}
 .errbox ul{margin:6px 0 0;padding-left:20px}
-.okbox{background:var(--badge-bg);color:var(--badge-ink);border-radius:10px;padding:14px 16px;margin:0 0 18px;display:none;font-size:.92rem}
+.okbox{border-left:3px solid var(--ok);background:var(--okflaeche);color:var(--ok);padding:12px 15px;margin:0 0 18px;display:none;font-size:.92rem}
 .okbox.show{display:block}
-.probox{background:var(--pro-bg);color:var(--pro-ink);border-radius:12px;padding:16px 18px;margin:26px 0;font-size:.92rem}
+.probox{border-top:1px solid var(--tinte);border-bottom:1px solid var(--tinte);padding:16px 0;margin:26px 0;font-size:.92rem}
 .probox b{font-size:.98rem}
 section.content{margin:44px 0}
-section.content h2{font-size:1.25rem}
-section.content p{max-width:52em;color:var(--ink-soft)}
-details.faq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin:8px 0}
+section.content h2{font-size:1.3rem}
+section.content p{max-width:52em;color:var(--grau)}
+details.faq{border-top:1px solid var(--linie);padding:2px 0}
+details.faq:last-of-type{border-bottom:1px solid var(--linie)}
 details.faq summary{font-weight:600;padding:11px 0;cursor:pointer}
-details.faq p{color:var(--ink-soft);margin:0 0 13px}
-footer{border-top:1px solid var(--line);margin-top:50px;padding:22px 0 34px;color:var(--ink-soft);font-size:.85rem}
-footer .wrap{display:flex;gap:18px;flex-wrap:wrap}
-a{color:var(--accent)}
+details.faq summary:hover{color:var(--blau)}
+details.faq p{color:var(--grau);margin:0 0 13px}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="logo"><a href="index.html">E-Rechnung <span>Viewer</span></a></div>
-    <span class="badge">100 % lokal – ohne Upload</span>
-    <nav class="tabs">
+    <a class="logo" href="./">E-Rechnung <em>Viewer</em></a>
+    <nav class="tabs" aria-label="Werkzeuge">
       <a href="index.html">Lesen</a>
-      <a href="erstellen.html" class="active">Erstellen</a>
+      <a href="erstellen.html" aria-current="page">Erstellen</a>
       <a href="pruefen.html">Prüfen</a>
+      <a href="en/" hreflang="en" title="English version">EN</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <h1>XRechnung erstellen – kostenlos &amp; ohne Anmeldung</h1>
-  <p class="sub">Formular ausfüllen → gültige <strong>XRechnung (XML)</strong> herunterladen. Geeignet für Rechnungen an Behörden
-  (Leitweg-ID) und Unternehmen, inklusive <strong>Kleinunternehmer-Modus (§ 19 UStG)</strong>. Ihre Daten bleiben auf Ihrem
-  Gerät – kein Upload, keine Registrierung. Absenderdaten werden optional nur lokal in Ihrem Browser gespeichert.</p>
+  <h1>XRechnung erstellen, kostenlos und ohne Anmeldung</h1>
+  <p class="sub">Formular ausfüllen und eine gültige <strong>XRechnung (XML)</strong> herunterladen.
+  Geeignet für Rechnungen an Behörden (Leitweg-ID) und Unternehmen, mit
+  <strong>Kleinunternehmer-Modus nach § 19 UStG</strong>. Ihre Daten bleiben auf Ihrem Gerät;
+  es gibt keinen Upload und keine Registrierung. Absenderdaten werden auf Wunsch nur lokal in
+  Ihrem Browser gespeichert.</p>
 
   <form id="form" novalidate>
     <fieldset>
@@ -133,7 +116,7 @@ a{color:var(--accent)}
         <div class="f c6"><label for="b_street">Straße &amp; Hausnummer <span class="req">*</span></label><input id="b_street"></div>
         <div class="f c3"><label for="b_plz">PLZ <span class="req">*</span></label><input id="b_plz" inputmode="numeric"></div>
         <div class="f c3"><label for="b_city">Ort <span class="req">*</span></label><input id="b_city"></div>
-        <div class="f c12"><label for="leitweg">Käufer-Referenz / Leitweg-ID <span class="req">*</span></label><input id="leitweg" placeholder="Behörde: Leitweg-ID · Unternehmen: z. B. Kundennummer oder Bestellzeichen">
+        <div class="f c12"><label for="leitweg">Käufer-Referenz / Leitweg-ID <span class="req">*</span></label><input id="leitweg" placeholder="Behörde: Leitweg-ID. Unternehmen: Kundennummer oder Bestellzeichen">
           <span class="hint">Pflichtfeld der XRechnung. Bei Behörden steht die Leitweg-ID im Auftrag; bei Firmen genügt z. B. Ihre Kundennummer beim Empfänger.</span></div>
       </div>
     </fieldset>
@@ -157,7 +140,7 @@ a{color:var(--accent)}
         <tbody id="lines"></tbody>
       </table>
       </div>
-      <button type="button" class="addline" id="addline">+ Position hinzufügen</button>
+      <button type="button" class="addline" id="addline">Position hinzufügen</button>
     </fieldset>
 
     <fieldset>
@@ -181,21 +164,20 @@ a{color:var(--accent)}
   <div class="okbox" id="okbox"></div>
 
   <div class="cta">
-    <button type="button" id="generate">⬇ XRechnung (XML) erstellen</button>
-    <button type="button" id="generatezf" style="background:var(--surface);color:var(--ink);border:2px solid var(--accent)">⬇ ZUGFeRD-PDF erstellen</button>
-    <span class="note">✓ kostenlos · ohne Upload · XRechnung 3.0 &amp; ZUGFeRD/Factur-X (EN 16931)</span>
+    <button type="button" id="generate">XRechnung (XML) erstellen</button>
+    <button type="button" id="generatezf" class="zweit">ZUGFeRD-PDF erstellen</button>
+    <span class="note">Kostenlos, ohne Upload. Formate: XRechnung 3.0 und ZUGFeRD/Factur-X (EN 16931).</span>
   </div>
 
   <div class="probox" id="probox">
-    <b>Viele Rechnungen auf einmal?</b> <b>XRechnung Batch Pro</b> erstellt XRechnungen <b>und
-    ZUGFeRD-PDFs im Stapel</b> direkt aus einer Excel-Tabelle (Vorlage inklusive), funktioniert komplett
-    offline und druckt Prüfberichte — gleicher geprüfter Generator wie hier, ohne Abo.
+    <b>Viele Rechnungen auf einmal?</b> <b>XRechnung Batch Pro</b> erstellt XRechnungen und
+    ZUGFeRD-PDFs im Stapel aus einer Excel-Tabelle (Vorlage inklusive), funktioniert vollständig
+    offline und druckt Prüfberichte. Es arbeitet mit demselben getesteten Generator wie diese
+    Seite, als Einmalkauf ohne Abo.
     <div style="margin-top:12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
-      <a id="probuy" href="https://buy.polar.sh/polar_cl_qEeLe1lpkVM3aD0yL3wSXEp8B2E0nU9ssTTAA2koqW0"
-         style="display:inline-block;background:var(--pro-ink);color:var(--pro-bg);font-weight:700;padding:10px 22px;border-radius:9px;text-decoration:none">
-        Jetzt kaufen – 39 € einmalig</a>
-      <span style="font-size:.82rem">Sofort-Download (ZIP) · Zahlung &amp; Rechnung über Polar ·
-      <a href="batch-pro.html" style="color:inherit;font-weight:700">alle Details &amp; Screenshots →</a></span>
+      <a id="probuy" class="cta" style="margin:0" href="https://buy.polar.sh/polar_cl_qEeLe1lpkVM3aD0yL3wSXEp8B2E0nU9ssTTAA2koqW0">Jetzt kaufen, 39 Euro einmalig</a>
+      <span style="font-size:.82rem">Sofortiger Download als ZIP, Zahlung und Rechnung über Polar.
+      <a href="batch-pro.html" style="font-weight:700">Alle Details und Screenshots</a></span>
     </div>
   </div>
 
@@ -208,7 +190,7 @@ a{color:var(--accent)}
     <details class="faq"><summary>XRechnung oder ZUGFeRD-PDF – was soll ich nehmen?</summary><p>Beides ist hier kostenlos: <strong>XRechnung (XML)</strong> ist der Standard für Behörden und E-Rechnungs-Systeme. <strong>ZUGFeRD</strong> ist ein normales, ansehnliches PDF mit denselben Daten unsichtbar eingebettet – ideal, wenn der Empfänger „eine normale Rechnung" erwartet, sie aber trotzdem maschinell verarbeiten können soll. Die erzeugten PDFs sind PDF/A-3-konform (Profil EN 16931) und werden in unserer Testsuite mit der Referenzimplementierung Mustang validiert.</p></details>
   </section>
 
-  <p style="font-size:.85rem;color:var(--ink-soft)">Hinweis: Dieses Tool ersetzt keine Steuer- oder Rechtsberatung.
+  <p style="font-size:.85rem;color:var(--grau)">Hinweis: Dieses Tool ersetzt keine Steuer- oder Rechtsberatung.
   Prüfen Sie erzeugte Rechnungen vor dem Versand. <a href="index.html">Zur Ansicht/Prüfung geht's hier</a>.</p>
 </main>
 
@@ -217,7 +199,7 @@ a{color:var(--accent)}
     <span>© 2026 E-Rechnung Viewer</span>
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
-    <span style="margin-left:auto">Made in Germany 🇩🇪</span>
+    <span style="margin-left:auto">Entwickelt und betrieben in Deutschland</span>
   </div>
 </footer>
 

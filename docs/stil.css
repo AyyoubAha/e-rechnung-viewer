@@ -1,0 +1,68 @@
+/* E-Rechnung Viewer: gemeinsames Stylesheet.
+   Gestaltung "Fachliteratur": Serifen-Überschriften, Urkundenblau auf kühlem
+   Grauweiß, Dokumentlinien statt Karten, Monospace für Kennungen und IBAN.
+   Systemschriften mit Absicht: Das Produktversprechen (funktioniert offline,
+   kein Request an Dritte) verbietet Webfonts. */
+:root{
+  --grund:#f2f3f5; --flaeche:#ffffff; --tinte:#14181f; --grau:#556070; --linie:#ccd2db;
+  --blau:#1a4a8f; --blau-dunkel:#123663; --auf-blau:#ffffff;
+  --ok:#1d6b46; --okflaeche:#e7f1ea;
+  --warn:#79591c; --warnflaeche:#f7efdc; --warnlinie:#d8bd7f;
+  --rot:#9c2f2f; --rotflaeche:#f7e7e7;
+  --serif:Charter,"Bitstream Charter",Cambria,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --grund:#13161b; --flaeche:#1b1f26; --tinte:#e8ebef; --grau:#9aa3b1; --linie:#333a45;
+    --blau:#7aa5e0; --blau-dunkel:#a3c2ec; --auf-blau:#0f1521;
+    --ok:#63bd8e; --okflaeche:#1b2b22;
+    --warn:#d8bd72; --warnflaeche:#2b2517; --warnlinie:#6a5a30;
+    --rot:#dd8f8f; --rotflaeche:#33211f;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--grund);color:var(--tinte);
+  font:16px/1.6 "Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-variant-numeric:tabular-nums}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+a{color:var(--blau);text-decoration:underline;text-underline-offset:2px}
+a:hover{color:var(--blau-dunkel)}
+:focus-visible{outline:2px solid var(--blau);outline-offset:1px}
+h1,h2,h3{font-family:var(--serif);font-weight:700;letter-spacing:0}
+
+header.top{border-bottom:2px solid var(--tinte);background:var(--grund)}
+header.top .wrap{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;padding-top:16px;padding-bottom:0}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--tinte);text-decoration:none;padding-bottom:12px}
+.logo:hover{color:var(--tinte)}
+.logo em{font-style:normal;color:var(--blau)}
+nav.tabs{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}
+nav.tabs a{text-decoration:none;color:var(--grau);font-weight:600;font-size:.92rem;padding:8px 14px 10px;border-bottom:3px solid transparent}
+nav.tabs a:hover{color:var(--tinte)}
+nav.tabs a[aria-current="page"]{color:var(--tinte);border-bottom-color:var(--blau)}
+
+main{padding:32px 0 20px}
+h1{font-size:clamp(1.5rem,3.6vw,2.05rem);line-height:1.2;margin:0 0 10px}
+.sub{color:var(--grau);max-width:52em;margin:0 0 22px}
+.sub strong{color:var(--tinte)}
+
+table.plain{width:100%;border-collapse:collapse;font-size:.92rem}
+table.plain th,table.plain td{padding:10px 12px;border-bottom:1px solid var(--linie);text-align:left;vertical-align:top}
+table.plain th{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grau);border-bottom:1px solid var(--tinte);font-weight:600}
+.tablewrap{overflow-x:auto;margin:12px 0}
+
+.notice{border-left:3px solid var(--warnlinie);background:var(--warnflaeche);color:var(--warn);padding:11px 15px;font-size:.92rem;margin:16px 0}
+.steps{border-top:1px solid var(--tinte);border-bottom:1px solid var(--tinte);padding:6px 0;margin:18px 0}
+.steps ol{margin:12px 0;padding-left:22px}
+.steps li{margin:10px 0}
+.cta{display:inline-block;background:var(--blau);color:var(--auf-blau);font-weight:600;padding:12px 24px;text-decoration:none;margin:8px 0}
+.cta:hover{background:var(--blau-dunkel);color:var(--auf-blau)}
+
+footer{border-top:2px solid var(--tinte);margin-top:56px;padding:20px 0 32px;color:var(--grau);font-size:.85rem}
+footer .wrap{display:flex;gap:8px 18px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--grau)}
+footer a:hover{color:var(--tinte)}
+
+@media (prefers-reduced-motion: no-preference){
+  a,.cta,nav.tabs a{transition:color .12s,background-color .12s,border-color .12s}
+}
